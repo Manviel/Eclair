@@ -1,24 +1,46 @@
 # Eclair
+
 ## ARM
+
 ### C++ Department
 
 - Credentials for Raspberry
+
 ```
 login: pi
 password: raspberry
 ```
 
 - Install wiringPi
-```sh
+
+```
 sudo apt-get install wiringpi
 ```
 
 - Compile
-```sh
+
+```
 gcc –o blink blink.c -lwiringPi
 ```
 
 - Run
-```sh
+
+```
 sudo ./blink
+```
+
+## Setup
+
+To make it run locally you need to install [PARCEL](https://parceljs.org/getting_started.html)
+
+To get all assets locally
+
+```
+npm run build
+```
+
+To start working
+
+```
+npm run dev
 ```
