@@ -1,0 +1,85 @@
+.b7_winner_selections_big {
+	display: none;
+	position: absolute;
+	left: -350px;
+	width: 350px;
+	z-index: 2;
+	font-family: Arial;
+}
+.b7_winner_selections_big > div {
+	background: rgb(255,255,255);
+	border-left: 2px solid rgb(168,168,168);
+	border-right: 2px solid rgb(168,168,168);
+	font-size: 12px;
+}
+
+.b7_winner_selections_big > div:nth-child(2) {
+	border-radius: 10px 10px 0 0;
+	border-top: 2px solid rgb(168,168,168);
+	font-size: 15px;
+	margin-bottom: 0;
+	font-weight: bold;
+	text-align: center;
+}
+.b7_winner_selections_big > div:last-child {
+	border-radius: 0 0 10px 10px;
+	border-bottom: 2px solid rgb(168,168,168);
+}
+.b7_winner_selections_big > div > span {
+	display: block;
+	width: 100%;
+	height: 1px;
+	background: rgb(208,208,208);
+}
+.b7_winner_selections_big > div > div {
+	position: relative;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	width: 303px;
+	padding: 2px 4px 2px 35px;
+}
+
+.b7_winner_selections_big > div:nth-child(2) {
+	background: rgb(255,240,104);
+}
+
+.b7_winner_selections_big > div:nth-child(2) > div {
+	width: 343px;
+	padding: 8px 8px;
+	font-family: 'PT Sans Narrow', Arial, sans-serif;
+	font-size: 20px;
+}
+
+.b7_winner_selections_big > div > div > span.b7_winner_icon {
+	width: 20px;
+	height: 20px;
+	margin-right: 2px;
+	display: block;
+	cursor: default;
+	background: url('https://bet777.be/i/sports_icons_sprite.png') no-repeat scroll 0 0 transparent;
+	position: absolute;
+	top: 7px;
+	left: 7px;
+}
+.b7_winner_selections_big > div > div > span:last-child {
+	position: absolute;
+	bottom: 2px;
+	right: 4px;
+	font-weight: bold;
+}
+
+.b7_winner_selections_big > span:first-child {
+	position: absolute;
+	left: -16px;
+	top: 13px;
+	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAmCAMAAAD3EJukAAAAYFBMVEUAAACoqaj/8Gj/8Gj/8GipqqfPyYusraW6uJuoqaioqaipqaipqaiqqqeqq6bXz4fa0oTl23vDv5Swr6Koqaj/8Gipqqf/8Gj/8Gj/8Gj/8GjKxI//8Gj/8Gjw43P36m5VnPexAAAAHXRSTlMA/b+AQFb+/f3Qu6yVNiYU/v7+/fXpdFA8KAb+kU7pPO8AAACQSURBVCjPvZHHDoNAEENxkg2kQXoH/v8vmYWDhQyaA4g5Pq1XLsmkCwdlp+MO+L7en4KseO4BZOdHuVpvKDZ221alnWGK0+vFEHHeietIiPM70lbcxwG/Tu2+1r/HnXi+NaXXCRtc5vzNEhpkGmT/Ng6zS/golqqsVy02rjA0Q4CMJq/dv9WJ43sspXYyy2YNELQcXsWrvrwAAAAASUVORK5CYII=);
+	background-position: 0 0;
+	background-repeat: no-repeat;
+	width: 22px;
+	height: 19px;
+}
+
+.addthis_native_toolbox.addthis_native_sidebarblocker {
+	display: inline-block;
+}

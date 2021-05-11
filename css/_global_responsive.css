@@ -1,0 +1,1193 @@
+/* Font */
+@font-face {
+  font-family: "DIN";
+  font-style: normal;
+  font-weight: 300;
+  src: local("DIN Light"), local("DIN-Light"),
+    url(fonts/DIN-Light.woff2) format("woff2");
+}
+@font-face {
+  font-family: "DIN";
+  font-style: normal;
+  font-weight: 400;
+  src: local("DIN Regular"), local("DIN-Regular"),
+    url(fonts/DIN-Regular.woff2) format("woff2");
+}
+@font-face {
+  font-family: "DIN";
+  font-style: normal;
+  font-weight: 500;
+  src: local("DIN Medium"), local("DIN-Medium"),
+    url(fonts/DIN-Medium.woff2) format("woff2");
+}
+@font-face {
+  font-family: "DIN";
+  font-style: normal;
+  font-weight: 700;
+  src: local("DIN Bold"), local("DIN-Bold"),
+    url(fonts/DIN-Bold.woff2) format("woff2");
+}
+@font-face {
+  font-family: "DIN";
+  font-style: normal;
+  font-weight: 900;
+  src: local("DIN Black"), local("DIN-Black"),
+    url(fonts/DIN-Black.woff2) format("woff2");
+}
+
+html,
+body,
+button {
+  font-family: "DIN", Arial, sans-serif;
+}
+
+/* Margin Fix */
+html.IsDesktop #content-main {
+  margin: 10px auto;
+}
+html.IsDesktop #panels-right-holder {
+  margin-left: 10px;
+}
+html.IsDesktop #panels-left-holder {
+  margin-right: 10px;
+}
+
+html.IsDesktop .super-banner-slider {
+  margin: 0;
+}
+html.IsDesktop .panel-center .tab-switch-btns-holder {
+  padding: 0;
+}
+html.IsDesktop .panel-center .events-container {
+  padding: 10px 0;
+}
+
+body.LBettingOverview .panel-side .events-container {
+  padding: 0;
+}
+body.LBettingEventView .panel-left .live-now-betting-rblock {
+  padding: 0 0 6px;
+}
+html.IsDesktop .filter-container {
+  margin: 10px 0;
+}
+html.IsDesktop .event-view-scoreboard-image {
+  margin: 10px 0 0;
+}
+html.IsDesktop .event-view {
+  padding: 0 0 80px;
+}
+
+/* IE Warning */
+#B7IEWarning,
+#B7CookieWarning {
+  z-index: 1299;
+  position: fixed;
+  left: 0;
+  right: 0;
+  line-height: 24px;
+  padding: 4px 32px 4px 4px;
+  font-size: 10pt;
+  font-weight: 700;
+  text-align: justify;
+  color: white;
+  display: block !important;
+}
+#B7IEWarning {
+  top: 0;
+  background: #09c;
+}
+#B7CookieWarning {
+  bottom: 0;
+  background: #444;
+  padding: 4px 4px 4px 8px;
+}
+#B7IEWarning a,
+#B7CookieWarning a:not(.b7_button_link) {
+  color: white;
+}
+#B7CookieWarning a.b7_button_link {
+  background-color: #7fb306;
+  margin-bottom: 0;
+}
+#B7IEWarning > img,
+#B7CookieWarning > img {
+  margin-right: 4px;
+  vertical-align: top;
+}
+#B7IEWarning > div,
+#B7CookieWarning > div {
+  z-index: 99999999;
+  position: fixed;
+  right: 0;
+  width: 32px;
+  line-height: 32px;
+  font-size: 12pt;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+}
+#B7IEWarning > div {
+  top: 0;
+}
+#B7CookieWarning > div {
+  bottom: 0;
+}
+html.HasIEWarning {
+  margin-top: 32px;
+}
+html.HasCookieWarning {
+  margin-bottom: 32px;
+}
+html.IsMobile #B7CookieWarning,
+html.IsTablet #B7CookieWarning {
+  padding: 4px 8px;
+}
+html.IsMobile #B7CookieWarning {
+  font-size: 8pt;
+  line-height: 16px;
+}
+html.IsDesktop #B7CookieWarning a.b7_button_link {
+  float: right;
+  padding: 0 1.5em;
+}
+html.IsMobile #B7CookieWarning a.b7_button_link,
+html.IsTablet #B7CookieWarning a.b7_button_link {
+  display: block;
+  text-align: center;
+  padding: 4px;
+  margin-top: 4px;
+}
+html.IsMobile #B7CookieWarning a.b7_button_link {
+  font-size: 9pt;
+}
+
+/* Overlay / Popup */
+#b7_body {
+  position: relative;
+  z-index: 1;
+}
+#b7_overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 900000;
+  background: rgba(0, 0, 0, 0.75);
+  text-align: center;
+  cursor: wait;
+}
+#b7_overlay > .b7_loading {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 50vw;
+  height: 50vw;
+  max-width: 256px;
+  max-height: 256px;
+  background: url(/themes/sbtech/public/loading_white.png) center center/100%
+    100% no-repeat;
+  transform: translate(-50%, -50%) rotate(0deg);
+  transform-origin: 50% 50%;
+  -webkit-transform: translate(-50%, -50%) rotate(0deg);
+  -webkit-transform-origin: 50% 50%;
+}
+#b7_overlay.animate > .b7_loading {
+  animation: b7_loading_rotate 1s linear infinite;
+  -webkit-animation: b7_loading_rotate 1s linear infinite;
+}
+@keyframes b7_loading_rotate {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+@-webkit-keyframes b7_loading_rotate {
+  0% {
+    -webkit-transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    -webkit-transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+#b7_overtop {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 900001;
+  text-align: center;
+  cursor: wait;
+}
+#b7_overtop > * {
+  cursor: auto;
+}
+#b7_overtop iframe {
+  display: block;
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 900002;
+  margin-bottom: 16px;
+}
+#b7_overtop iframe:not(.visible) {
+  pointer-events: none;
+}
+#b7_overtop iframe.visible {
+  display: none;
+  visibility: visible;
+}
+#b7_overtop .b7_closer {
+  display: none;
+  background-image: url(/themes/sbtech/public/close.png);
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  z-index: 900003;
+  cursor: pointer;
+}
+#b7_overtop .b7_closer:hover {
+  background-position: -40px 0;
+}
+
+#b7_overtop .b7_new_popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  width: 90vw;
+  max-width: 512px;
+  margin: 0 auto;
+  background: rgba(13, 13, 13, 0.95);
+  opacity: 0;
+}
+#b7_overtop .b7_new_popup.b7_new_popup_wide {
+  max-width: 720px;
+}
+#b7_overtop .b7_new_popup > .b7_new_popup_title {
+  position: relative;
+  padding: 12px;
+  color: #7fb306;
+  text-align: center;
+  font-weight: 400;
+}
+#b7_overtop .b7_new_popup > .b7_new_popup_title > span:last-child {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  line-height: 38px;
+  font-size: 30px;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+}
+#b7_overtop .b7_new_popup > .b7_new_popup_body {
+  padding: 16px;
+  color: white;
+}
+#b7_overtop .b7_new_popup > .b7_new_popup_body button {
+  cursor: pointer;
+  background: #7fb306;
+  color: white;
+  text-transform: uppercase;
+}
+#b7_overtop .b7_new_popup > .b7_new_popup_body button:hover {
+  background: #669005;
+}
+#b7_overtop .b7_new_popup > .b7_new_popup_body > button {
+  width: 100%;
+  margin-top: 16px;
+}
+#b7_overtop .b7_new_popup > .b7_new_popup_body > button:empty {
+  display: none;
+}
+
+/* Custom Header */
+#b7_header {
+  position: fixed;
+  z-index: 900003;
+  left: 0;
+  top: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+html.IsDesktop #b7_header {
+  display: none;
+}
+html.IsMobile body.unstickyHeader .content-main,
+html.IsTablet body.unstickyHeader .content-main,
+html.IsMobile body.hiddenHeader .content-main,
+html.IsTablet body.hiddenHeader .content-main,
+html.IsMobile .content-main,
+html.IsTablet .content-main {
+  padding-top: 52px !important;
+}
+html.IsTablet body.unstickyHeader .content-main,
+html.IsTablet body.hiddenHeader .content-main,
+html.IsTablet .content-main {
+  margin-bottom: 52px;
+}
+html.IsTablet .content-main {
+  top: 52px;
+}
+html.IsMobile .content-main .panel-side {
+  top: 52px !important;
+}
+html.IsTablet .content-main .panel-side {
+  top: 0 !important;
+}
+.b7_header_area {
+  position: relative;
+  height: 52px;
+  box-sizing: border-box;
+  background: #1a1a1a url(https://www.bet777.be/imgs/splash.png) 20px / auto
+    100% no-repeat;
+}
+.b7_header_area > a {
+  display: block;
+  position: absolute;
+  top: 2px;
+  width: 52px;
+  height: 44px;
+  text-align: center;
+  color: #ffffff;
+  font-size: 8pt;
+  text-decoration: none;
+  line-height: 7pt;
+  white-space: nowrap;
+}
+.icon.show_active,
+.b7_header_area > a.active > .icon,
+.b7_header_area > a.active > span:not(:first-child) {
+  filter: brightness(45%) sepia(100%) hue-rotate(33.333deg) saturate(500%)
+    brightness(109%);
+  -webkit-filter: brightness(45%) sepia(100%) hue-rotate(33.333deg)
+    saturate(500%) brightness(109%);
+}
+.b7_header_area > a > span:first-child {
+  display: block;
+  position: absolute;
+  right: 2px;
+  top: 2px;
+  z-index: 1;
+  padding: 2px;
+  min-width: 10px;
+  text-align: center;
+  background: rgb(127, 179, 6);
+  color: black;
+  border-radius: 100%;
+  font-size: 7pt;
+}
+.b7_header_area > a > span:first-child:empty {
+  display: none !important;
+}
+
+.b7_header_area > a:nth-child(1) {
+  left: 1%;
+}
+.b7_header_area > a:nth-child(2) {
+  left: 21%;
+}
+.b7_header_area > a:nth-child(3) {
+  right: 21%;
+}
+.b7_header_area > a:nth-child(4) {
+  right: 1%;
+}
+
+@media only screen and (max-width: 768px) {
+  .b7_header_area > a:nth-child(2) {
+    left: 20%;
+  }
+  .b7_header_area > a:nth-child(3) {
+    right: 12%;
+  }
+}
+@media only screen and (max-width: 420px) {
+  .b7_header_area > a:nth-child(3) {
+    right: 21%;
+  }
+}
+@media only screen and (max-width: 370px) {
+  .b7_header_area > a:nth-child(1) {
+    left: 0%;
+  }
+  .b7_header_area > a:nth-child(2) {
+    left: 18%;
+  }
+  .b7_header_area > a:nth-child(4) {
+    right: 0%;
+  }
+}
+@media only screen and (max-width: 350px) {
+  .b7_header_area > a:nth-child(2) {
+    left: 17%;
+  }
+  .b7_header_area > a:nth-child(3) {
+    right: 17%;
+  }
+}
+
+.b7_header_area > a:nth-child(5) {
+  left: calc(50% - 40px);
+  width: 80px;
+  height: 52px;
+}
+.b7_header_area .icon {
+  display: block;
+  width: 34px;
+  height: 34px;
+  margin: 0 auto;
+}
+.b7_header_area > a > span:last-child .two_line {
+  position: relative;
+  top: -1px;
+  display: inline-block;
+  line-height: 0.75em;
+}
+
+/* Custom Menu (69px with Clock) */
+#b7_overmenu {
+  display: none;
+  position: absolute;
+  top: 53px;
+  left: 0;
+  width: 100%;
+  min-height: calc(100% - 53px);
+  z-index: 900002;
+}
+.b7_menu {
+  background: #050505;
+  position: relative;
+  text-shadow: none;
+}
+.b7_menu.b7_menu_fixed {
+  position: fixed;
+  top: 0;
+  z-index: 900001;
+  height: 100%;
+  box-shadow: 1px 0 0 #565656;
+}
+.b7_menu[data-side="right"] {
+  box-shadow: -1px 0 0 #565656, 0 1px 0 #565656, -1px 1px 0 #565656;
+}
+.b7_menu > a {
+  display: block;
+  padding: 10px 10px 10px 20px;
+  color: #fff;
+  text-decoration: none;
+  line-height: 34px;
+  font-size: 10pt;
+}
+.b7_menu > a.active {
+  background: rgba(255, 255, 255, 0.125);
+  box-shadow: 6px 0 0 rgb(127, 179, 6) inset;
+}
+.b7_menu[data-side="right"] > a {
+  padding: 5px 10px 5px 20px;
+}
+.b7_menu > a.b7_has_select {
+  padding-top: 0 !important;
+}
+.b7_menu > a.b7_account_details {
+  margin: 5px 5px 0;
+  padding: 5px 5px 5px 56px;
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  font-weight: 700;
+  line-height: 20px;
+}
+.b7_menu > a.b7_account_details > div > button {
+  position: relative;
+  top: 7.5px;
+  z-index: 2;
+  float: right;
+  padding: 5px 15px;
+  border: 0;
+  border-radius: 0;
+  font-family: "DIN", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 9pt;
+  background: rgb(127, 179, 6);
+  color: #000;
+  text-transform: uppercase;
+  box-shadow: none;
+  text-shadow: none;
+}
+.b7_menu > a.b7_account_details > div > span {
+  display: block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.b7_menu > a.b7_account_details > div > span:nth-child(2) {
+  font-size: 11pt;
+}
+.b7_menu > a.b7_account_details > div > span:nth-child(3) {
+  color: rgb(127, 179, 6);
+}
+.b7_menu > a.b7_account_details > div > span:nth-child(3) > span {
+  display: inline-block;
+  margin: 0 5px;
+  color: #fff;
+  font-weight: 400;
+  transform: scale(1, 0.5);
+  -webkit-transform: scale(1, 0.5);
+}
+.b7_menu > a.b7_account_balances {
+  line-height: 20px;
+  display: block;
+}
+.b7_menu > a.b7_account_balances > span {
+  display: inline-block;
+  width: 50%;
+  text-align: center;
+  font-size: 9pt;
+  color: #ccc;
+}
+.b7_menu > a div.icon {
+  width: 34px;
+  height: 34px;
+  vertical-align: top;
+}
+.b7_menu > a div.icon:first-child {
+  margin-right: 4px;
+}
+.b7_menu > a div.icon:last-child {
+  float: right;
+}
+.b7_menu > a > select {
+  width: calc(100% - 10px);
+  padding: 10px 10px 10px 20px;
+  border: 0 none;
+  border-radius: 0;
+  background: #565656;
+  color: #fff;
+  font-family: "DIN", Arial, sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+}
+
+/* Fancies */
+a.b7_button_link,
+html.IsDesktop a.b7_button_link_desktop,
+html.IsMobile a.b7_button_link_mobile,
+html.IsTablet a.b7_button_link_tablet,
+html.IsMobile a.b7_button_link_mobile_tablet,
+html.IsTablet a.b7_button_link_mobile_tablet {
+  display: inline-block;
+  padding: 0.5em 2em;
+  background: #565656;
+  font-family: "DIN", Arial, sans-serif;
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+a.b7_button_link:hover,
+html.IsDesktop a.b7_button_link_desktop:hover,
+html.IsMobile a.b7_button_link_mobile:hover,
+html.IsTablet a.b7_button_link_tablet:hover,
+html.IsMobile a.b7_button_link_mobile_tablet:hover,
+html.IsTablet a.b7_button_link_mobile_tablet:hover {
+  background: #444;
+}
+a.b7_button_link.b7_button_link_green,
+html.IsDesktop a.b7_button_link_desktop.b7_button_link_green,
+html.IsMobile a.b7_button_link_mobile.b7_button_link_green,
+html.IsTablet a.b7_button_link_tablet.b7_button_link_green,
+html.IsMobile a.b7_button_link_mobile_tablet.b7_button_link_green,
+html.IsTablet a.b7_button_link_mobile_tablet.b7_button_link_green {
+  background: rgb(127, 179, 6);
+}
+a.b7_button_link.b7_button_link_green:hover,
+html.IsDesktop a.b7_button_link_desktop.b7_button_link_green:hover,
+html.IsMobile a.b7_button_link_mobile.b7_button_link_green:hover,
+html.IsTablet a.b7_button_link_tablet.b7_button_link_green:hover,
+html.IsMobile a.b7_button_link_mobile_tablet.b7_button_link_green:hover,
+html.IsTablet a.b7_button_link_mobile_tablet.b7_button_link_green:hover {
+  background: rgb(148, 211, 14);
+}
+
+html.IsDesktop .b7_only_mobile,
+html.IsDesktop .b7_only_tablet,
+html.IsDesktop .b7_only_mobile_or_tablet,
+html.IsMobile .b7_only_desktop,
+html.IsMobile .b7_only_tablet,
+html.IsTablet .b7_only_desktop,
+html.IsTablet .b7_only_mobile {
+  display: none !important;
+}
+
+html.IsDesktop .panel-side-small-hidden {
+  width: 150px;
+  opacity: 0;
+  pointer-events: none;
+}
+@media only screen and (max-width: 1220px) {
+  html.IsDesktop .panel-side-small-hidden {
+    display: none !important;
+  }
+}
+html.IsMobile .panel-side-small-hidden,
+html.IsTablet .panel-side-small-hidden {
+  display: none !important;
+}
+html.IsTablet .panel-left.panel-side-small-hidden ~ .panel-center {
+  left: 0;
+}
+.breadcrumbs {
+  color: #fff;
+  border-bottom: 0;
+}
+.breadcrumbs-rest-wrapper::before {
+  display: none;
+}
+.b7_page_header {
+  display: block;
+  width: 100%;
+  border: 0;
+}
+
+.panel-left,
+.panel-right,
+.hasRightBetslip .panel-right {
+  background-color: #050505;
+}
+
+html.IsMobile .panel-right,
+html.IsTablet .panel-right {
+  z-index: 2999 !important;
+}
+
+.panel-block-left,
+.panel-block-right {
+  background-color: #1a1a1a;
+}
+.b7_content {
+  text-align: center;
+  line-height: 1.5em;
+  padding: 1.25em;
+  margin-top: 3px;
+  color: #fff;
+  background-color: #1a1a1a;
+}
+
+.b7_content_no_padding {
+  padding: 0 !important;
+}
+.b7_content p {
+  text-align: left;
+  margin: 0 auto 1em;
+  font-size: 16px;
+}
+
+.b7_content ol {
+  text-align: left;
+  margin: 0 auto;
+  display: inline-block;
+  counter-reset: dh-counter;
+}
+.b7_content ol > li {
+  position: relative;
+  margin: 0 auto 3em;
+  padding: 0.6667em 0 0 4.6667em;
+}
+.b7_content ol > li::before {
+  content: counter(dh-counter);
+  counter-increment: dh-counter;
+  display: inline-block;
+  position: absolute;
+  top: 0.16667em;
+  left: 0;
+  margin: 0 1em 0 0.5em;
+  padding: 0.333em;
+  width: 1.1em;
+  font-size: 1.333em;
+  font-weight: 700;
+  background: rgb(127, 179, 6);
+  color: white;
+  border-radius: 100%;
+  text-align: center;
+  vertical-align: baseline;
+}
+.b7_content ul {
+  display: block;
+  text-align: justify;
+  margin: 0 auto 3em;
+}
+.b7_content ul > li {
+  position: relative;
+  margin: 1.25em auto;
+  padding: 0 0 0 1.25em;
+}
+.b7_content ul > li::before {
+  content: "•";
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  width: 1em;
+  font-size: 1em;
+  font-weight: 700;
+  color: rgb(127, 179, 6);
+  border-radius: 100%;
+  text-align: center;
+  vertical-align: baseline;
+}
+.b7_content h4 {
+  text-align: left;
+}
+
+a.b7_link {
+  color: rgb(127, 179, 6);
+  text-decoration: none;
+}
+
+#b7_choose_account_body {
+  position: relative;
+}
+#b7_choose_account_body > div {
+  display: inline-block;
+  width: 50%;
+  margin-top: 16px;
+  text-align: center;
+}
+html.IsMobile #b7_choose_account_body > div {
+  width: 100%;
+}
+html.IsMobile #b7_choose_account_body > div:nth-child(3) {
+  margin-top: 24px;
+}
+#b7_choose_account_body > div > button {
+  margin: 16px auto 0;
+  width: 75%;
+  text-transform: uppercase;
+}
+#b7_choose_account_body > span {
+  display: block;
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  height: 50%;
+  width: 1px;
+  background: rgb(127, 179, 6);
+}
+html.IsMobile #b7_choose_account_body > span {
+  display: none !important;
+}
+
+/* Collapsables */
+.responsive-block .b7_collapsable_heading {
+  cursor: pointer;
+  border: 0;
+}
+html.IsDesktop .responsive-block .b7_collapsable_heading {
+  margin-top: 10px;
+  border-radius: 0;
+  padding: 11px 16px !important;
+}
+html.IsMobile .responsive-block .b7_collapsable_heading,
+html.IsTablet .responsive-block .b7_collapsable_heading {
+  margin-top: 12px;
+}
+.responsive-block .b7_collapsable_heading::before {
+  top: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  width: 4px !important;
+  content: "";
+  border-radius: 0 !important;
+  background-color: rgb(127, 179, 6) !important;
+}
+.responsive-block .b7_collapsable_heading::after {
+  content: "";
+  display: block;
+  position: absolute;
+  background-image: url(//media.bet777.be/public/responsive/promo_splash_arrow.png);
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  width: 21px;
+  height: 10px;
+  margin-top: 0;
+  top: 50%;
+  right: 1em;
+  filter: brightness(45%) sepia(100%) hue-rotate(33.333deg) saturate(500%)
+    brightness(109%);
+  -webkit-filter: brightness(45%) sepia(100%) hue-rotate(33.333deg)
+    saturate(500%) brightness(109%);
+  transition: transform 0.05s linear;
+  -webkit-transition: transform 0.05s linear;
+  transform: translateY(-50%) scale(1, -1);
+  -webkit-transform: translateY(-50%) scale(1, -1);
+}
+.responsive-block .b7_collapsable_heading.expanded::after {
+  margin-top: 0;
+  transform: translateY(-50%) scale(1, 1);
+  -webkit-transform: translateY(-50%) scale(1, 1);
+}
+.responsive-block .b7_collapsable_body {
+  border: 1px solid #444;
+  border-top: 0;
+}
+html.IsDesktop .responsive-block .b7_collapsable_body {
+  padding: 14px;
+  margin-bottom: 14px;
+  border-radius: 0;
+}
+html.IsMobile .responsive-block .b7_collapsable_body,
+html.IsTablet .responsive-block .b7_collapsable_body {
+  padding: 12px;
+  margin-bottom: 12px;
+}
+
+img#fixmenow {
+  max-width: 100%;
+}
+
+.b7_promo_optin,
+.b7_promo_notoptin {
+  display: none;
+}
+
+/* Fixed Desktop Header */
+.main_navigation > li a:hover,
+.main_navigation > li a:active,
+.main_navigation > li a:focus {
+  color: rgb(127, 179, 6);
+  transition: 0.2s;
+  background: none;
+}
+.main_navigation > li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  height: 100%;
+  transition: all 0.2s linear;
+  width: 100%;
+  border-bottom: 4px solid rgb(127, 179, 6);
+  transform: scaleX(0);
+}
+.main_navigation > li a:hover::after {
+  transform: scaleX(1);
+}
+.main_navigation > li a.page-header-main-navi-link-selected::after {
+  transform: scaleX(1) !important;
+}
+.main_navigation > li a.b7_header_casino:hover,
+.main_navigation > li a.b7_header_casino:active,
+.main_navigation > li a.b7_header_casino:focus {
+  color: rgb(255, 107, 0);
+}
+.main_navigation > li a.b7_header_casino::after {
+  border-bottom-color: rgb(255, 107, 0);
+}
+.main_navigation > li a.b7_header_livecasino:hover,
+.main_navigation > li a.b7_header_livecasino:active,
+.main_navigation > li a.b7_header_livecasino:focus {
+  color: rgb(207, 5, 43);
+}
+.main_navigation > li a.b7_header_livecasino::after {
+  border-bottom-color: rgb(207, 5, 43);
+}
+.main_navigation > li a.b7_header_hidden {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+.main_navigation > li a.b7_header_hidden::after {
+  display: none !important;
+}
+
+.page-header-dropdown-inner {
+  top: auto !important;
+  padding-top: 8px;
+  border-radius: 0 !important;
+}
+.page-header-dropdown-item {
+  border-left: 0 !important;
+}
+.page-header-dropdown-btn:hover,
+.page-header-custom-dropdown-item .page-header-custom-link:hover {
+  box-shadow: 4px 0 0 rgb(127, 179, 6) inset;
+}
+.b7_custom_desktop_menu.always_active .page-header-dropdown-text {
+  color: #fff;
+}
+.page-header-element .page-header-dropdown-text {
+  transition: color 0.05s;
+  -webkit-transition: color 0.05s;
+}
+.page-header-element .page-header-dropdown-text .b7_icon {
+  width: 32px;
+  height: 32px;
+  opacity: 0.425;
+  transition: opacity 0.05s linear;
+  -webkit-transition: opacity 0.05s linear;
+}
+.page-header-element:hover .page-header-dropdown-text .b7_icon,
+.b7_custom_desktop_menu.always_active .page-header-dropdown-text .b7_icon {
+  opacity: 1;
+}
+.b7_custom_desktop_menu,
+.b7_custom_desktop_menu_item {
+  font-size: 13px;
+  border-left: 0 !important;
+}
+.b7_custom_desktop_menu .b7_icon.header_account_desktop,
+.b7_custom_desktop_menu_item .page-header-custom-link-text {
+  margin-right: 4px;
+}
+.b7_custom_desktop_menu .page-header-custom-link {
+  position: relative;
+}
+.b7_custom_desktop_menu .page-header-custom-link .icon.b7_icon {
+  width: 28px;
+  height: 28px;
+  position: absolute;
+  top: 7px;
+}
+.b7_custom_desktop_menu .page-header-custom-link .icon.b7_icon:first-child {
+  left: 8px;
+}
+.b7_custom_desktop_menu .page-header-custom-link .icon.b7_icon:last-child {
+  right: 8px;
+}
+.b7_custom_desktop_menu .page-header-custom-link .icon.b7_icon.blank {
+  display: none !important;
+}
+.b7_custom_desktop_menu .page-header-custom-dropdown-section {
+  width: 224px;
+}
+
+#hr-mid-Top_ResponsiveHeader_17857-page-header-right1
+  .page-header-dropdown-placeholder[data-uat="dropdown-language-selected"],
+#hr-mid-Top_ResponsiveHeader_17857-page-header-right1
+  .page-header-dropdown-wrap::after,
+#hr-mid-Top_ResponsiveHeader_17858-page-header-right1
+  .page-header-dropdown-placeholder[data-uat="dropdown-language-selected"],
+#hr-mid-Top_ResponsiveHeader_17858-page-header-right1
+  .page-header-dropdown-wrap::after {
+  display: none !important;
+}
+
+.page-header-dropdown-btn[data-uat="dropdown-language-btn"] {
+  position: relative;
+  padding-left: 60px;
+}
+.page-header-dropdown-btn[data-uat="dropdown-language-btn"]::after {
+  display: block;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 8px;
+  width: 41px;
+  height: 41px;
+  background: url(//media.bet777.be/public/responsive/header_flags.png) 0 0
+    no-repeat;
+}
+.page-header-dropdown-btn[data-uat="dropdown-language-btn"][onclick*="474"]::after {
+  background-position: 0 0;
+}
+.page-header-dropdown-btn[data-uat="dropdown-language-btn"][onclick*="475"]::after {
+  background-position: 0 -41px;
+}
+.page-header-dropdown-btn[data-uat="dropdown-language-btn"][onclick*="476"]::after {
+  background-position: 0 -82px;
+}
+
+html.IsDesktop .page-header-join-button,
+html.IsDesktop .page-header-login-button {
+  min-width: 130px;
+  padding: 6px 0;
+  font-size: 18px;
+  text-align: center;
+}
+
+html.IsDesktop .page-header-login-button {
+  background-color: #565656 !important;
+  margin-right: 0;
+}
+html.IsDesktop .page-header-login-button:hover {
+  background-color: #669005 !important;
+}
+html.IsDesktop .page-header-join-button {
+  background-color: rgb(127, 179, 6) !important;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+html.IsDesktop .page-header-wrapper.page-header-wrapper-top {
+  opacity: 0;
+  height: 81px;
+  pointer-events: none;
+}
+html.IsDesktop .page-header-wrapper.page-header-wrapper-middle {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 81px;
+}
+
+.b7_custom_desktop_menu .page-header-dropdown-additional-separation {
+  background-color: #1a1a1a !important;
+}
+
+.page-header-wrapper-top .page-header-dropdown-wrap::after,
+.page-header-wrapper-middle .page-header-dropdown-wrap::after,
+.page-header-wrapper-bottom .page-header-dropdown-wrap::after {
+  content: "";
+  display: block;
+  position: absolute;
+  background-image: url(//media.bet777.be/public/responsive/desktop_arrow.png);
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  width: 12px;
+  height: 6px;
+  margin-top: 0;
+  top: 50%;
+  right: 4px;
+  filter: brightness(45%) sepia(100%) hue-rotate(33.333deg) saturate(500%)
+    brightness(109%);
+  -webkit-filter: brightness(45%) sepia(100%) hue-rotate(33.333deg)
+    saturate(500%) brightness(109%);
+  transition: transform 0.05s linear;
+  -webkit-transition: transform 0.05s linear;
+  transform: translateY(-50%) scale(1, 1);
+  -webkit-transform: translateY(-50%) scale(1, 1);
+}
+.page-header-wrapper-bottom .page-header-dropdown-wrap::after {
+  right: 7px;
+}
+.page-header-wrapper-top .page-header-dropdown-wrap:hover::after,
+.page-header-wrapper-middle .page-header-dropdown-wrap:hover::after,
+.page-header-wrapper-bottom .page-header-dropdown-wrap:hover::after {
+  margin-top: 0;
+  transform: translateY(-50%) scale(1, -1);
+  -webkit-transform: translateY(-50%) scale(1, -1);
+}
+.page-header-wrapper-bottom .page-header-dropdown-arrow {
+  display: none !important;
+}
+.page-header-dropdown-balance .page-header-dropdown-text,
+.page-header-dropdown-balance-btn.FreeBets,
+.page-header-dropdown-balance::after {
+  display: none !important;
+}
+#hr-mid-Top_ResponsiveHeader_17857-page-header-right1
+  .page-header-dropdown-inner,
+#hr-mid-Top_ResponsiveHeader_17858-page-header-right1
+  .page-header-dropdown-inner {
+  left: -38px;
+  right: auto;
+}
+.page-header-dropdown-balance .page-header-dropdown-item {
+  padding-right: 14px;
+}
+.page-header-dropdown-balance .page-header-dropdown-inner {
+  right: -96px;
+}
+.page-header-dropdown-balance .page-header-dropdown-placeholder {
+  font-size: 13px;
+  padding: 8px 40px 8px 8px;
+  border: 1px solid #545454;
+  color: rgb(127, 179, 6) !important;
+  position: relative;
+}
+.page-header-dropdown-balance .page-header-dropdown-placeholder::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 8px;
+  right: 5px;
+  background: url(//media.bet777.be/public/responsive/desktop_info.png) right
+    center/auto 100% no-repeat;
+}
+
+.popup_panel {
+  background-color: rgba(0, 0, 0, 0.75);
+}
+.b7_inlinepopup_titlebar {
+  line-height: 50px;
+  padding: 0 18px;
+  text-align: center;
+  font-size: 17px;
+  font-weight: 700;
+  background: #000;
+  color: rgb(127, 179, 6);
+  position: relative;
+}
+.b7_inlinepopup_titlebar_closer {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50px;
+  height: 50px;
+  line-height: 44px;
+  font-size: 32px;
+  font-weight: 700;
+  text-decoration: none;
+  color: rgb(127, 179, 6);
+  cursor: pointer;
+}
+
+html.IsMobile #b7_overtop iframe,
+html.IsTablet #b7_overtop iframe {
+  margin-top: 52px;
+}
+
+/* App Banner */
+html.hasAppDownloadBanner:not(.ios_app) body {
+  padding-top: 80px;
+}
+html.hasAppDownloadBanner:not(.ios_app) #b7_header {
+  top: 80px;
+}
+html.hasAppDownloadBanner #MobileAppNotificationBlock {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+html.IsMobile.hasAppDownloadBanner .content-main .panel-side {
+  top: 132px !important;
+}
+
+html.IsTablet.hasAppDownloadBanner .panel-side {
+  bottom: 80px !important;
+}
+html.hasAppDownloadBanner #b7_overmenu {
+  top: 133px;
+  height: calc(100% - 133px);
+}
+html.hasAppDownloadBanner #b7_overlay,
+html.hasAppDownloadBanner #b7_overtop,
+html.hasAppDownloadBanner .b7_menu.b7_menu_fixed {
+  top: 80px;
+  height: calc(100% - 80px);
+}
+
+#MobileAppNotificationBlock .c-app-notification__title,
+#MobileAppNotificationBlock .c-app-notification__content {
+  color: #000;
+}

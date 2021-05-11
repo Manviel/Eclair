@@ -1,0 +1,265 @@
+.r_content_contener_main.contentPage {
+  margin: 0 !important;
+}
+@font-face {
+  font-family: BebasNeue;
+  src: url("https://css.bet777.be/desktop/Themes/casino777v3/public/advent_calendar/BebasNeue.otf");
+}
+#error {
+  color: white;
+  font-size: 16px;
+  text-align: center;
+  margin-top: 20px;
+}
+#advent_container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  max-width: 720px;
+  max-height: 1027px;
+  margin: 0 auto 16px;
+  padding-top: 10px;
+}
+#terms {
+  text-align: left;
+  display: block;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  position: relative;
+  height: auto;
+  width: 90%;
+  margin-top: 30px;
+  color: #f6f6f6;
+}
+#countdown_container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  max-width: 720px;
+  max-height: 1027px;
+  margin: 0 auto 16px;
+  padding-top: 10px;
+}
+#countdown_message {
+  font-family: BebasNeue;
+  position: absolute;
+  font-size: 25px;
+  background-color: white;
+  padding: 0;
+  opacity: 0.9;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  top: 55%;
+  width: 99%;
+  margin: 0 auto;
+  color: black;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+#countdown_bg {
+  position: relative;
+  z-index: -1;
+  width: 100%;
+  height: auto;
+  max-width: 720px;
+  max-height: 1027px;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  display: block;
+}
+#bg {
+  position: relative;
+  z-index: -1;
+  width: 100%;
+  height: auto;
+  max-width: 720px;
+  max-height: 1027px;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  display: block;
+}
+#countdown_message {
+  position: relative;
+  width: 80%;
+  display: none;
+  border: 1px solid black;
+  font-family: "Arial";
+  background: #151515;
+  color: #e0e0e0;
+  border-radius: 10px;
+  font-size: 16px;
+  min-height: 39%;
+  padding: 5%;
+  margin: 0 auto;
+  margin-bottom: 30px;
+  top: 20px;
+}
+#winnings_container {
+  position: relative;
+  width: 80%;
+  display: none;
+  border: 1px solid black;
+  font-family: "Arial";
+  background: #151515;
+  color: #e0e0e0;
+  border-radius: 10px;
+  min-height: 39%;
+  padding: 5%;
+  margin: 0 auto 32px;
+  top: 20px;
+}
+#mistletoe {
+  position: absolute;
+  top: -31px;
+  width: 55%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  display: none;
+}
+@media only screen and (max-width: 500px) {
+  #mistletoe {
+    top: -22px;
+    left: 0;
+    width: 80%;
+  }
+}
+#prize_name {
+  position: relative;
+  width: 99%;
+  margin: 0 auto;
+  margin-top: 5%;
+  text-align: center;
+  color: #f8ee9e;
+  font-size: 24px;
+  word-wrap: break-word;
+  line-height: 30px;
+}
+#sub_message {
+  position: relative;
+  width: 99%;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 5%;
+  font-size: 16px;
+  word-wrap: break-word;
+  line-height: 20px;
+}
+#prize_image {
+  position: relative;
+  width: auto;
+  height: auto;
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 10px;
+  z-index: 1;
+}
+@media only screen and (max-width: 500px) {
+  #prize_image {
+    max-width: 100%;
+  }
+}
+#error_message {
+  position: absolute;
+  top: 53%;
+  width: 99%;
+  text-align: center;
+  left: 0;
+  right: 0;
+  font-size: 18px;
+  line-height: 20px;
+  word-wrap: break-word;
+  margin: 0 auto;
+  display: none;
+}
+#loader {
+  position: absolute;
+  top: 59%;
+  height: 15px;
+  width: 128px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  display: block;
+  text-align: center;
+}
+.ball_holder {
+  max-width: 600px;
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  top: 47%;
+  padding: 0;
+  list-style-type: none;
+  color: #191919;
+}
+.ball_holder li {
+  position: relative;
+  float: left;
+  margin: 0% 1% 0% 1%;
+  width: 31%;
+  height: 100%;
+  max-width: 192px;
+  max-height: 230px;
+}
+.ball_holder li.active_day > img {
+}
+.month_number {
+  position: absolute;
+  text-align: center;
+  display: none;
+  left: 0;
+  right: 0;
+  bottom: 35%;
+  font-family: "BebasNeue";
+  font-size: 26px;
+}
+@media only screen and (min-width: 500px) {
+  .month_number {
+    font-size: 36px;
+  }
+}
+@media only screen and (min-width: 700px) {
+  .month_number {
+    font-size: 46px;
+  }
+}
+.ball {
+  position: relative;
+  display: none;
+  width: 100%;
+}
+.spin_active_ball {
+  -webkit-animation: spin 0.5s linear 3;
+  -moz-animation: spin 0.5s linear 3;
+  animation: spin 0.5s linear 3;
+}
+@-moz-keyframes spin {
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+.active_day .month_number {
+  cursor: pointer;
+}
+.prev_day .month_number {
+  color: #191919;
+}

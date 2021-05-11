@@ -1,0 +1,70 @@
+#promo_banner {
+  width: 100%;
+  height: 160px;
+  margin: 2px 0 8px;
+  background-color: black;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% auto;
+}
+#promo_content {
+  padding: 8px;
+}
+#promo_content p {
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+#promo_termsConditions {
+  text-align: center;
+  padding: 8px 0;
+}
+#promo_termsConditions > div {
+  text-align: left;
+  padding: 8px;
+  margin: 8px 8px 0;
+  background: rgba(0, 0, 0, 0.2);
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.2) rgba(255, 255, 255, 0.1)
+    rgba(255, 255, 255, 0.1) rgba(0, 0, 0, 0.2);
+}
+#promo_termsConditions > div ul {
+  margin: 0 0 0 12px;
+  padding: 0px 4px;
+}
+#promo_termsConditions > div ul li {
+  list-style: disc outside !important;
+  line-height: 150%;
+  margin: 8px 0;
+}
+#promo_termsConditions > div ul li:first-child {
+  margin: 0 0 8px;
+}
+#promo_termsConditions > div ul li:last-child {
+  margin: 8px 0 0;
+}
+
+.promotion_register_button {
+  border: 0;
+  border-bottom: 3px solid #41651c;
+  border-radius: 0 !important;
+  font-family: inherit;
+  font-weight: bold;
+  margin: 8px;
+  padding: 0 20px;
+  font-size: 12pt;
+  line-height: 32px;
+  text-transform: uppercase;
+  text-align: center;
+  color: #fff;
+  background: #76b338;
+  cursor: pointer;
+  display: inline-block;
+  white-space: nowrap;
+}
+.promotion_register_button:hover {
+  background: #94d30e;
+}
+.promotion_register_button:active {
+  background: #94d30e;
+}

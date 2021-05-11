@@ -1,0 +1,49 @@
+div.carousel {
+    overflow: hidden;
+    position:relative;
+    margin-bottom: 10px;
+}
+
+div.carousel + div.carousel-selector {
+    margin-top: -10px;
+    text-align: center;
+}
+
+div.carousel + div.carousel-selector > span {
+    background: none repeat scroll 0 0 rgba(255, 255, 255, 0.3);
+    border-radius: 100%;
+    display: inline-block;
+    height: 6px;
+    margin: 5px 3px;
+    width: 6px;
+}
+
+div.carousel + div.carousel-selector > span.selected {
+    background: none repeat scroll 0 0 rgba(255, 255, 255, 0.8);
+}
+
+div.carousel > ul  {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+
+}
+
+div.carousel > ul > li {
+    float: left;
+}
+
+div.carousel > ul > li > a {
+    background-position: center center;
+    background-size: 100% auto;
+    background-repeat: repeat-x;
+    display: block;
+}
+div.carousel > ul > li > a > div {
+    background-position: center center;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+}
+div.carousel > ul > li > a > div > img {
+    width: 100%;
+}

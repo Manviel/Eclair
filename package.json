@@ -1,0 +1,29 @@
+{
+  "name": "eclair",
+  "version": "1.0.0",
+  "description": "- Credentials for Raspberry\r ```\r login: pi\r password: raspberry\r ```",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Manviel/Eclair.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Manviel/Eclair/issues"
+  },
+  "homepage": "https://github.com/Manviel/Eclair#readme",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.5",
+    "parcel-plugin-static-files-copy": "^2.6.0"
+  },
+  "staticFiles": {
+    "staticPath": "public",
+    "watcherGlob": "**"
+  }
+}

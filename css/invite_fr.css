@@ -1,0 +1,10 @@
+.invite-social-media > .share-facebook > span, .invite-social-media > .share-twitter > span {
+	font-size: 12pt !important;
+	font-weight: bold !important;
+}
+.invite-social-media > .share-facebook > span, .invite-address-book .title {
+	letter-spacing: -0.5px;
+}
+.invite-send-emails-email label:first-child {
+	letter-spacing: -1px;
+}

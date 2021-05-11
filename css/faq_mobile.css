@@ -1,0 +1,44 @@
+.contentPage {
+	margin: 0 !important;
+}
+
+.contentPage > h4 {
+    display: block;
+    font-size: 13pt;
+    font-weight: normal;
+    padding: 16px;
+    position: relative;
+}
+.contentPage > div {
+	display: none;
+	padding: 0 16px 24px;
+    background: rgb(48,48,48);
+}
+.contentPage > div > h4 {
+	padding: 24px 0 12px;
+}
+
+h4 .b7_icon_20 {
+	transform-origin: 50% 50%;
+	-webkit-transform-origin: 50% 50%;
+}
+h4.open .b7_icon_20 {
+	transform: scale(1,-1);
+	-webkit-transform: scale(1,-1);
+}
+
+.b7_icon_20 {
+    width: 20px;
+    height: 20px;
+    display: block;
+    position: absolute;
+    top: calc(50% - 10px);
+    right: 16px;
+}
+.b7_icon_16 {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 8px;
+}

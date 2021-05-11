@@ -1,0 +1,98 @@
+#contact_form label {
+  margin: 0 32px 0 8px;
+}
+#contact_form input[type="radio"] {
+  vertical-align: middle;
+}
+#contact_form input[type="text"],
+#contact_form select,
+#contact_form textarea {
+  font-family: inherit;
+  padding: 8px;
+  font-weight: normal;
+  background: white;
+  width: calc(100% - 16px);
+}
+#contact_form select {
+  width: calc(100% + 2px);
+}
+#contact_form input[type="button"] {
+  display: inline-block;
+  width: auto;
+  cursor: pointer;
+  vertical-align: middle;
+  font-family: inherit;
+  font-size: 1.2em;
+  text-transform: uppercase;
+  border: 0;
+  border-bottom: 5px solid #41651c;
+  background: #76b338;
+  color: white;
+  padding: 4px 20px;
+  height: 48px;
+  font-weight: bold;
+  width: 100%;
+}
+#contact_form .contact_message_error {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 12px;
+  color: rgb(255, 0, 0);
+  opacity: 0;
+}
+#contact_form img#ajax_loader {
+  vertical-align: middle;
+  margin: 0 8px;
+  display: none;
+}
+#contact_form .has_error {
+  box-shadow: inset 2px 2px 0 rgb(255, 0, 0), inset -2px -2px 0 rgb(255, 0, 0);
+}
+#contact_form > div {
+  margin: 1em 0;
+  text-align: center;
+}
+#contact_choices {
+  margin: 2em 0 !important;
+  text-align: left !important;
+}
+#contact_message textarea {
+  height: 128px;
+  min-height: 128px;
+  max-height: 128px;
+}
+#contact_message .contact_message_error {
+  vertical-align: top;
+}
+#contact_captcha img {
+  width: calc(33% - 16px);
+  height: 43px;
+  margin-right: 3%;
+}
+#contact_captcha input[type="text"] {
+  width: calc(65% - 16px);
+  height: 27px;
+}
+#contact_error_message,
+#contact_success_message {
+  background-color: white;
+  margin-top: 1em;
+  font-weight: 700;
+  display: none;
+}
+#contact_error_message {
+  padding: 16px 16px 16px 52px;
+  border: 1px solid rgb(255, 0, 0);
+  color: rgb(255, 0, 0);
+  background-image: url("https://css.bet777.be/desktop/Themes/casino777v3/public/ico_x.png");
+  background-repeat: no-repeat;
+  background-position: 8px 50%;
+}
+#contact_success_message {
+  padding: 16px 16px 16px 64px;
+  border: 1px solid rgb(0, 192, 0);
+  color: rgb(0, 192, 0);
+  background-image: url("https://css.bet777.be/desktop/Themes/casino777v3/public/green-check_green-check_03.png");
+  background-repeat: no-repeat;
+  background-position: 8px 50%;
+}

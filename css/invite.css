@@ -1,0 +1,558 @@
+.freeContentBlock .r_content_contener .r_content_header h2 {
+  font-size: 13px;
+}
+
+#right_column .invite_summary {
+  margin-bottom: 10px;
+}
+
+#right_column .invite_summary ul {
+  background: #222222;
+  border: 1px solid #3d3d3d;
+  border-top: none;
+  list-style-type: none;
+}
+
+#right_column .invite_summary ul > li {
+  border-bottom: 1px solid #000;
+  border-top: 1px solid #3d3d3d;
+  margin: 0 10px;
+  padding: 0;
+  min-height: 100px;
+}
+
+#right_column .invite_summary ul > li > div {
+  float: right;
+  width: 160px;
+  padding: 0 10px;
+  margin: 27px 0;
+}
+
+#right_column .invite_summary ul > li > div:first-child {
+  float: left;
+  width: 85px;
+  color: #fee007;
+  font-size: 50px;
+  font-weight: bold;
+  text-align: right;
+  margin: 20px 0;
+}
+
+#right_column .invite_summary ul > li > div > div {
+  font-size: 14pt;
+  color: #afafaf;
+}
+
+#right_column .invite_summary ul > li > div > div:last-child {
+  color: #fff;
+}
+
+#right_column .invite_summary ul li:first-child {
+  border-top: none;
+}
+
+#right_column .invite_summary ul li:last-child {
+  border-bottom: none;
+}
+
+div.r_content_contener_main.contentPage {
+  padding-bottom: 0;
+}
+.invite-description {
+  margin: 27px 35px 38px;
+}
+.invite-description > img {
+  margin: 0 20px 20px 30px;
+}
+.invite-description > p {
+  margin-bottom: 18px;
+}
+.invite-gap {
+  border-top: 1px solid #000;
+  margin: 20px 40px 30px 36px;
+}
+.invite-gap:before {
+  content: " ";
+  border-top: 1px solid #3d3d3d;
+  padding-top: 2px;
+  display: block;
+}
+.invite-social-media {
+  margin: 0 35px -23px;
+  font-size: small;
+}
+#promo_content p.title {
+  color: #fee007;
+  font-style: "PT Sans Caption", Arial, sans-serif;
+  font-size: 14pt;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+.invite-social-media > .share-facebook,
+.invite-social-media > .share-twitter {
+  width: 218px;
+  height: 42px;
+  margin: 22px 85px 22px 85px;
+  background: red;
+  float: left;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.invite-social-media > .share-facebook > span,
+.invite-social-media > .share-twitter > span {
+  color: #fff;
+  font-size: 14pt;
+  line-height: 40px;
+  margin-left: 50px;
+  text-decoration: none;
+}
+
+.invite-social-media > .share-facebook > span {
+  margin-left: 40px;
+}
+
+.invite-social-media > .share-facebook {
+  margin-right: 12px;
+  background: url("http://sbtech-dev.betfirst.be/cache/public/invite/facebook-share.png");
+}
+.invite-social-media > .share-twitter {
+  background: url("http://sbtech-dev.betfirst.be/cache/public/invite/twitter-share.png");
+  margin-left: 12px;
+}
+#promo_content div.clear {
+  clear: both;
+}
+.invite-email {
+  margin: -22px 25px 20px;
+  display: table;
+}
+.invite-email > .invite-form > div {
+  display: table-cell;
+  padding: 10px;
+}
+.invite-email > .invite-form > .invite-send-emails {
+  width: 482px;
+  border-right: 1px solid #000;
+  text-align: left;
+}
+.invite-email > .invite-form > .invite-send-emails > .invite-send-emails-email {
+  display: table;
+  margin-right: -10px;
+}
+.invite-email
+  > .invite-form
+  > .invite-send-emails
+  > .invite-send-emails-email
+  > label {
+  display: table-cell;
+  margin-right: 7px;
+  max-width: 261px;
+  overflow: hidden;
+}
+.invite-email
+  > .invite-form
+  > .invite-send-emails
+  > .invite-send-emails-email
+  > label:last-child {
+  margin-right: 0;
+}
+.invite-email
+  > .invite-form
+  > .invite-send-emails
+  > .invite-send-emails-email
+  > label
+  > input {
+  color: #fff;
+  background: #404040;
+  width: 150px;
+  height: 20px;
+  border: 1px solid #222222;
+  margin: 0 5px;
+  padding: 0 5px;
+}
+
+.invite-email
+  > .invite-form
+  > .invite-send-emails
+  > .invite-send-emails-email
+  > label
+  > input.error {
+  background-color: #990100;
+}
+
+.invite-email
+  > .invite-form
+  > .invite-send-emails
+  > .invite-send-emails-email
+  > label
+  > span {
+  cursor: pointer;
+}
+
+.invite-email > .invite-form > .invite-send-emails > .invite-more {
+  float: right;
+  margin: 5px 14px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.invite-email > .invite-form > .invite-send-emails > .error {
+  color: red;
+  margin: 0;
+  padding: 0;
+  height: 0;
+  visibility: hidden;
+}
+
+.invite-email > .invite-form > .invite-send-emails > label {
+  float: left;
+  margin-top: 30px;
+  display: inline-block;
+}
+.invite-email > .invite-form > .invite-send-emails > label > textarea {
+  width: 234px;
+  height: 86px;
+  border: 1px solid #222222;
+  color: #fff;
+  background: #404040;
+  margin: 10px 0;
+  padding: 5px;
+  resize: none;
+}
+.invite-email > .invite-form > .invite-send-emails > .invite-send {
+  float: right;
+  display: block;
+  width: 170px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  border: 1px solid red;
+  margin-top: -55px;
+  cursor: pointer;
+
+  border: 1px solid rgb(176, 160, 0);
+  border-radius: 5px;
+  font-family: "PT Sans Narrow", Arial, sans-serif;
+  color: #000;
+  font-size: 14pt;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgb(204, 204, 204), -1px -1px 1px rgb(153, 153, 153);
+  background: rgb(255, 236, 0);
+  background: -moz-linear-gradient(
+    top,
+    rgb(255, 255, 32) 0%,
+    rgb(255, 240, 0) 2%,
+    rgb(255, 244, 0) 5%,
+    rgb(255, 224, 0) 85%,
+    rgb(255, 208, 0) 100%
+  );
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0%, rgb(255, 255, 32)),
+    color-stop(2%, rgb(255, 240, 0)),
+    color-stop(5%, rgb(255, 244, 0)),
+    color-stop(85%, rgb(255, 224, 0)),
+    color-stop(100%, rgb(255, 208, 0))
+  );
+  background: -webkit-linear-gradient(
+    top,
+    rgb(255, 255, 32) 0%,
+    rgb(255, 240, 0) 2%,
+    rgb(255, 244, 0) 5%,
+    rgb(255, 224, 0) 85%,
+    rgb(255, 208, 0) 100%
+  );
+  background: -o-linear-gradient(
+    top,
+    rgb(255, 255, 32) 0%,
+    rgb(255, 240, 0) 2%,
+    rgb(255, 244, 0) 5%,
+    rgb(255, 224, 0) 85%,
+    rgb(255, 208, 0) 100%
+  );
+  background: -ms-linear-gradient(
+    top,
+    rgb(255, 255, 32) 0%,
+    rgb(255, 240, 0) 2%,
+    rgb(255, 244, 0) 5%,
+    rgb(255, 224, 0) 85%,
+    rgb(255, 208, 0) 100%
+  );
+  background: linear-gradient(
+    to bottom,
+    rgb(255, 255, 32) 0%,
+    rgb(255, 240, 0) 2%,
+    rgb(255, 244, 0) 5%,
+    rgb(255, 224, 0) 85%,
+    rgb(255, 208, 0) 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFF20',endColorstr='#FFD000',GradientType=0);
+}
+
+.invite-email > .invite-form > .invite-send-emails > .invite-send:hover {
+  background: rgb(255, 244, 0);
+  background: -moz-linear-gradient(
+    top,
+    rgb(255, 255, 40) 0%,
+    rgb(255, 248, 0) 2%,
+    rgb(255, 255, 0) 5%,
+    rgb(255, 232, 0) 85%,
+    rgb(255, 216, 0) 100%
+  );
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0%, rgb(255, 255, 40)),
+    color-stop(2%, rgb(255, 248, 0)),
+    color-stop(5%, rgb(255, 255, 0)),
+    color-stop(85%, rgb(255, 232, 0)),
+    color-stop(100%, rgb(255, 216, 0))
+  );
+  background: -webkit-linear-gradient(
+    top,
+    rgb(255, 255, 40) 0%,
+    rgb(255, 248, 0) 2%,
+    rgb(255, 255, 0) 5%,
+    rgb(255, 232, 0) 85%,
+    rgb(255, 216, 0) 100%
+  );
+  background: -o-linear-gradient(
+    top,
+    rgb(255, 255, 40) 0%,
+    rgb(255, 248, 0) 2%,
+    rgb(255, 255, 0) 5%,
+    rgb(255, 232, 0) 85%,
+    rgb(255, 216, 0) 100%
+  );
+  background: -ms-linear-gradient(
+    top,
+    rgb(255, 255, 40) 0%,
+    rgb(255, 248, 0) 2%,
+    rgb(255, 255, 0) 5%,
+    rgb(255, 232, 0) 85%,
+    rgb(255, 216, 0) 100%
+  );
+  background: linear-gradient(
+    to bottom,
+    rgb(255, 255, 40) 0%,
+    rgb(255, 248, 0) 2%,
+    rgb(255, 255, 0) 5%,
+    rgb(255, 232, 0) 85%,
+    rgb(255, 216, 0) 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFF28',endColorstr='#FFD808',GradientType=0);
+}
+
+.invite-email > .invite-form > .invite-send-emails > .invite-send:active {
+  text-shadow: -1px -1px 1px rgb(204, 204, 204), 1px 1px 1px rgb(153, 153, 153);
+  background: rgb(255, 244, 0);
+  background: -moz-linear-gradient(
+    bottom,
+    rgb(255, 255, 40) 0%,
+    rgb(255, 248, 0) 2%,
+    rgb(255, 255, 0) 5%,
+    rgb(255, 232, 0) 85%,
+    rgb(255, 216, 0) 100%
+  );
+  background: -webkit-gradient(
+    linear,
+    left bottom,
+    left bottom,
+    color-stop(0%, rgb(255, 255, 40)),
+    color-stop(2%, rgb(255, 248, 0)),
+    color-stop(5%, rgb(255, 255, 0)),
+    color-stop(85%, rgb(255, 232, 0)),
+    color-stop(100%, rgb(255, 216, 0))
+  );
+  background: -webkit-linear-gradient(
+    bottom,
+    rgb(255, 255, 40) 0%,
+    rgb(255, 248, 0) 2%,
+    rgb(255, 255, 0) 5%,
+    rgb(255, 232, 0) 85%,
+    rgb(255, 216, 0) 100%
+  );
+  background: -o-linear-gradient(
+    bottom,
+    rgb(255, 255, 40) 0%,
+    rgb(255, 248, 0) 2%,
+    rgb(255, 255, 0) 5%,
+    rgb(255, 232, 0) 85%,
+    rgb(255, 216, 0) 100%
+  );
+  background: -ms-linear-gradient(
+    bottom,
+    rgb(255, 255, 40) 0%,
+    rgb(255, 248, 0) 2%,
+    rgb(255, 255, 0) 5%,
+    rgb(255, 232, 0) 85%,
+    rgb(255, 216, 0) 100%
+  );
+  background: linear-gradient(
+    to top,
+    rgb(255, 255, 40) 0%,
+    rgb(255, 248, 0) 2%,
+    rgb(255, 255, 0) 5%,
+    rgb(255, 232, 0) 85%,
+    rgb(255, 216, 0) 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFD808',endColorstr='#FFFF28',GradientType=0);
+}
+
+.invite-email > .invite-form > .invite-address-book {
+  border-left: 1px solid #3d3d3d;
+  max-width: 184px;
+}
+.invite-email > .invite-form > .invite-address-book > .address-book-gmail,
+.invite-email > .invite-form > .invite-address-book > .address-book-windows,
+.invite-email > .invite-form > .invite-address-book > .address-book-yahoo {
+  color: white;
+  font-style: "PT Sans Caption", Arial, sans-serif;
+  font-size: 12pt;
+  font-weight: bold;
+  width: 130px;
+  height: 30px;
+  text-align: center;
+  margin: 22px 30px;
+  line-height: 30px;
+  cursor: pointer;
+  text-shadow: 1px 1px 1px rgb(204, 204, 204), -1px -1px 1px rgb(153, 153, 153);
+  background: rgb(189, 189, 189); /* Old browsers */
+  background: -moz-linear-gradient(
+    top,
+    rgba(189, 189, 189, 1) 0%,
+    rgba(112, 112, 112, 1) 100%
+  ); /* FF3.6+ */
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0%, rgba(189, 189, 189, 1)),
+    color-stop(100%, rgba(112, 112, 112, 1))
+  ); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(
+    top,
+    rgba(189, 189, 189, 1) 0%,
+    rgba(112, 112, 112, 1) 100%
+  ); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(
+    top,
+    rgba(189, 189, 189, 1) 0%,
+    rgba(112, 112, 112, 1) 100%
+  ); /* Opera 11.10+ */
+  background: -ms-linear-gradient(
+    top,
+    rgba(189, 189, 189, 1) 0%,
+    rgba(112, 112, 112, 1) 100%
+  ); /* IE10+ */
+  background: linear-gradient(
+    to bottom,
+    rgba(189, 189, 189, 1) 0%,
+    rgba(112, 112, 112, 1) 100%
+  ); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bdbdbd', endColorstr='#707070',GradientType=0 ); /* IE6-9 */
+  -webkit-box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.75);
+}
+.invite-email > .invite-form > .invite-address-book > .address-book-gmail:hover,
+.invite-email
+  > .invite-form
+  > .invite-address-book
+  > .address-book-windows:hover,
+.invite-email > .invite-form > .invite-address-book > .address-book-yahoo:hover,
+.invite-email
+  > .invite-form
+  > .invite-address-book
+  > .address-book-gmail:active,
+.invite-email
+  > .invite-form
+  > .invite-address-book
+  > .address-book-windows:active,
+.invite-email
+  > .invite-form
+  > .invite-address-book
+  > .address-book-yahoo:active {
+  background: rgb(112, 112, 112); /* Old browsers */
+  background: -moz-linear-gradient(
+    top,
+    rgba(112, 112, 112, 1) 0%,
+    rgba(189, 189, 189, 1) 100%
+  ); /* FF3.6+ */
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0%, rgba(112, 112, 112, 1)),
+    color-stop(100%, rgba(189, 189, 189, 1))
+  ); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(
+    top,
+    rgba(112, 112, 112, 1) 0%,
+    rgba(189, 189, 189, 1) 100%
+  ); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(
+    top,
+    rgba(112, 112, 112, 1) 0%,
+    rgba(189, 189, 189, 1) 100%
+  ); /* Opera 11.10+ */
+  background: -ms-linear-gradient(
+    top,
+    rgba(112, 112, 112, 1) 0%,
+    rgba(189, 189, 189, 1) 100%
+  ); /* IE10+ */
+  background: linear-gradient(
+    to bottom,
+    rgba(112, 112, 112, 1) 0%,
+    rgba(189, 189, 189, 1) 100%
+  ); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#707070', endColorstr='#bdbdbd',GradientType=0 ); /* IE6-9 */
+}
+
+.invite-email
+  > .invite-form
+  > .invite-address-book
+  > .address-book-gmail:active,
+.invite-email
+  > .invite-form
+  > .invite-address-book
+  > .address-book-windows:active,
+.invite-email
+  > .invite-form
+  > .invite-address-book
+  > .address-book-yahoo:active {
+  text-shadow: -1px -1px 1px rgb(204, 204, 204), 1px 1px 1px rgb(153, 153, 153);
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.blink {
+  animation: blink 1s step-start 0s infinite;
+  -webkit-animation: blink 1s step-start 0s infinite;
+}
