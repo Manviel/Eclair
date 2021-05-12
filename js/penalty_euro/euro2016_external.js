@@ -1101,16 +1101,6 @@ var Charm = (function () {
       },
 
       //4. Utilities
-
-      /*
-    The `wait` method lets you set up a timed sequence of events
-       wait(1000)
-        .then(() => console.log("One"))
-        .then(() => wait(1000))
-        .then(() => console.log("Two"))
-        .then(() => wait(1000))
-        .then(() => console.log("Three"))
-     */
     },
     {
       key: "wait",
@@ -1420,7 +1410,7 @@ var messages = {
   init_message: "",
 };
 var timers = [0, 1, 0, 1, 0, 1, 0, 1, 0, 1];
-var pr = "voucher_10_en";
+
 var tn = "TK:Guest";
 var lg = "en";
 var stage = new PIXI.Container();
@@ -1487,8 +1477,19 @@ loader
   .add(prfx + "small_logo.png")
   .add(prfx + "messages/congrats_" + lg + ".png")
   .add(prfx + "messages/try_again_" + lg + ".png")
+  .add(prfx + "messages/voucher_10_" + lg + ".png")
+  .add(prfx + "messages/voucher_15_" + lg + ".png")
+  .add(prfx + "messages/voucher_25_" + lg + ".png")
+  .add(prfx + "messages/voucher_50_" + lg + ".png")
+  .add(prfx + "messages/voucher_100_" + lg + ".png")
+  .add(prfx + "messages/voucher_250_" + lg + ".png")
+  .add(prfx + "messages/fifa_21_ps5.png")
+  .add(prfx + "messages/fifa_21_xbox.png")
+  .add(prfx + "messages/iphone.png")
+  .add(prfx + "messages/ps5.png")
+  .add(prfx + "messages/samsung_galaxy.png")
+  .add(prfx + "messages/xbox_series_s.png")
   .add(prfx + "red_card.png")
-  .add(prfx + "messages/" + pr + ".png")
   .add(prfx + "flags/1.png")
   .add(prfx + "flags/2.png")
   .add(prfx + "flags/3.png")
@@ -2062,6 +2063,7 @@ Scene1.prototype.clearScene = function (idflag) {
     typeof flags[rand_number] == "undefined"
   );
   var random_flag = flags[rand_number];
+
   out_next_scene1.startScene(idflag, random_flag.idflag);
   active1 = 0;
 };
@@ -2156,7 +2158,7 @@ var scene_call = 0;
 var gjp = [];
 var gja = [];
 var teams_selected = "";
-var rl = 0;
+
 var FRAMES = [prfx + "football.png", prfx + "football.png"];
 // You turn to kick
 var ball;
@@ -2615,7 +2617,11 @@ Scene2.prototype.clearScene = function () {
       message.visible = false;
     };
 
-    out_next_scene2.startScene(rl, teams);
+    // Decide who won
+    var decision = 1;
+    var won = "iphone";
+
+    out_next_scene2.startScene(decision, teams, won);
   }
 };
 
@@ -2707,6 +2713,8 @@ function onTweenCompleteGloves(param) {
   }, 600);
 }
 
+var tipTextBot;
+
 function alterTurnImages() {
   if (current_turn == 0) {
     ball.texture = resources[prfx + "football2.png"].texture;
@@ -2718,9 +2726,9 @@ function alterTurnImages() {
     container_icon.position.y = 95;
   }
 
-  container_goal_ball.removeChild(textBottom);
+  container_goal_ball.removeChild(tipTextBot);
 
-  textBottom = new PIXI.Text(
+  tipTextBot = new PIXI.Text(
     current_turn === 0 ? "YOU TURN TO KICK!" : "YOU TURN TO GOAL!",
     {
       font: "bold 18px Arial",
@@ -2729,12 +2737,12 @@ function alterTurnImages() {
     }
   );
 
-  textBottom.anchor.x = 0.5;
-  textBottom.anchor.y = 0.5;
-  textBottom.position.x = containermain.width / 2 + 30;
-  textBottom.position.y = 515;
+  tipTextBot.anchor.x = 0.5;
+  tipTextBot.anchor.y = 0.5;
+  tipTextBot.position.x = containermain.width / 2 + 30;
+  tipTextBot.position.y = 515;
 
-  container_goal_ball.addChild(textBottom);
+  container_goal_ball.addChild(tipTextBot);
 
   textScoreTeam1.text = "" + sum_score_player;
   textScoreTeam2.text = "" + sum_score_auto;
@@ -2846,7 +2854,7 @@ function Scene3(stage, renderer, background) {
 
   containermain.position.x = 0;
   containermain.position.y = 0;
-  containermain.height = 420;
+  containermain.height = 440;
   containermain.width = 420;
   container_prize.addChild(containermain);
 
@@ -2886,11 +2894,13 @@ function Scene3(stage, renderer, background) {
   message_final.position.y = container_prize.height;
   c.fadeOut(message_final);
   container_prize.addChild(message_final);
+
   textBottom = new PIXI.Text(messages["loser"], {
     font: "bold italic 16px Arial",
     fill: "white",
     align: "center",
   });
+
   textBottom.anchor.x = 0.5;
   textBottom.anchor.y = 0.5;
   textBottom.position.x = containermain.width / 2;
@@ -2917,8 +2927,9 @@ function Scene3(stage, renderer, background) {
   outstage.addChild(container_prize);
 }
 
-Scene3.prototype.startScene = function (result, teams) {
+Scene3.prototype.startScene = function (result, teams, won) {
   active3 = 1;
+
   if (result == 0) {
     message_final.texture =
       resources[prfx + "messages/try_again_" + lg + ".png"].texture;
@@ -2926,14 +2937,7 @@ Scene3.prototype.startScene = function (result, teams) {
   } else if (result == 1) {
     message_final.texture =
       resources[prfx + "messages/congrats_" + lg + ".png"].texture;
-    prize.texture = resources[prfx + "messages/" + prs + ".png"].texture;
-    textBottom.text = messages["winner"];
-  } else if (result == 2) {
-    message_final.texture =
-      resources[prfx + "messages/congrats_" + lg + ".png"].texture;
-    if (prb != "0")
-      prize.texture = resources[prfx + "messages/" + prb + ".png"].texture;
-    else prize.texture = resources[prfx + "messages/" + prs + ".png"].texture;
+    prize.texture = resources[prfx + "messages/" + won + ".png"].texture;
     textBottom.text = messages["winner"];
   }
 
