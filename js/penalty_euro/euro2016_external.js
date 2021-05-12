@@ -1771,18 +1771,15 @@ var active1 = 0;
 var page_flags = 1;
 var mask_menu = new PIXI.Graphics();
 var container_flags = new PIXI.Container();
-var container_button = new PIXI.Container();
 var sub_container_flags = new PIXI.Container();
 var sub_container_flags2 = new PIXI.Container();
 var container_1;
-var containerbutton;
 var logo;
 var left_arrow;
 var right_arrow;
 var flags = [];
 var text_terms_conditions;
 var text_temp;
-var prize_init;
 var text_play;
 
 var text_init = new PIXI.Text(messages["init_message"], {
@@ -1795,13 +1792,9 @@ function Scene1(stage, renderer, next_scene) {
   // Initialize sprites 1
 
   container_1 = new PIXI.Sprite(resources[prfx + "container_box.png"].texture);
-  containerbutton = new PIXI.Sprite(resources[prfx + "play.png"].texture);
   logo = new PIXI.Sprite(resources[prfx + "logo.png"].texture);
   left_arrow = new PIXI.Sprite(resources[prfx + "arrow_left.png"].texture);
   right_arrow = new PIXI.Sprite(resources[prfx + "arrow_right.png"].texture);
-  prize_init = new PIXI.Sprite(
-    resources[prfx + "messages/" + pr + ".png"].texture
-  );
 
   out_next_scene1 = next_scene;
   outstage = stage;
@@ -1828,15 +1821,6 @@ function Scene1(stage, renderer, next_scene) {
   container_1.height = 420;
   container_1.width = 420;
   container_flags.addChild(container_1);
-
-  prize_init.anchor.x = 0.5;
-  prize_init.anchor.y = 0.5;
-  prize_init.position.x = container_1.width / 2;
-  prize_init.position.y = 180;
-  prize_init.height = 180;
-  prize_init.width = 180;
-  prize_init.mask = mask_menu;
-  container_flags.addChild(prize_init);
 
   text_terms_conditions = new PIXI.Text(messages["terms_conditions"], {
     font: "15px Arial",
@@ -2070,28 +2054,7 @@ function Scene1(stage, renderer, next_scene) {
   container_flags.addChild(left_arrow);
   container_flags.addChild(right_arrow);
 
-  containerbutton.position.x = 0;
-  containerbutton.position.y = 0;
-  containerbutton.height = 38;
-  containerbutton.width = 128;
-  containerbutton.interactive = true;
-  containerbutton.buttonMode = true;
-  containerbutton.defaultCursor = "pointer";
-  containerbutton.mouseup = containerbutton.touchend = function () {
-    moveToFlags();
-  };
-
-  container_button.addChild(containerbutton);
-
-  text_play = new PIXI.Text(messages["play"], {
-    font: "italic 19px Arial",
-    fill: "white",
-    align: "center",
-  });
-  text_play.anchor.x = 0.5;
-  text_play.anchor.y = 0.5;
-  text_play.position.x = containerbutton.width / 2;
-  text_play.position.y = containerbutton.height / 2;
+  moveToFlags();
 
   text_init.anchor.x = 0.5;
   text_init.anchor.y = 0.5;
@@ -2099,19 +2062,12 @@ function Scene1(stage, renderer, next_scene) {
   text_init.position.y = 60;
   container_flags.addChild(text_init);
 
-  container_button.addChild(text_play);
-  container_button.position.x = 146;
-  container_button.position.y = 320;
-  container_button.mask = mask_menu;
-  container_flags.addChild(container_button);
   outstage.addChild(container_flags);
   outstage.addChild(logo);
 }
 
 Scene1.prototype.startScene = function () {
   active1 = 1;
-  c.scale(prize_init, 1, 1, 22);
-  requestAnimationFrame(animatePrizeWinnerInit);
 };
 
 Scene1.prototype.clearScene = function (idflag) {
@@ -2173,40 +2129,8 @@ Scene1.prototype.isActive = function () {
   return active1 === 1 ? true : false;
 };
 var yspeed_init = 0.6;
-function animatePrizeWinnerInit() {
-  if (prize_init.position.y > 205) {
-    // bounce the circle
-    yspeed_init *= -1;
-    // affix to the bottom of the stage
-    prize_init.position.y = 205;
-  } else if (prize_init.position.y < 180) {
-    // bounce the circle
-    yspeed_init *= -1;
-    // affix to the top of the stage
-    prize_init.position.y = 180;
-  }
-  prize_init.position.y += yspeed_init;
-  requestAnimationFrame(animatePrizeWinnerInit);
-}
 
 function moveToFlags() {
-  var prize_init_tween = c.slide(
-    prize_init,
-    prize_init.position.x,
-    prize_init.position.y - 420,
-    outstage.transition_rate,
-    "smoothstep"
-  );
-  prize_init_tween.onComplete = function () {
-    prize_init.visible = false;
-  };
-  c.slide(
-    container_button,
-    container_button.position.x,
-    container_button.position.y - 420,
-    outstage.transition_rate,
-    "smoothstep"
-  );
   c.slide(
     text_temp,
     text_temp.position.x,
