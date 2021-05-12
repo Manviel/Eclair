@@ -503,25 +503,23 @@
 
               // reduce only has a series version, as doing reduce in parallel won't
               // work in many situations.
-              async.inject = async.foldl = async.reduce = function (
-                arr,
-                memo,
-                iterator,
-                callback
-              ) {
-                async.eachOfSeries(
-                  arr,
-                  function (x, i, callback) {
-                    iterator(memo, x, function (err, v) {
-                      memo = v;
-                      callback(err);
-                    });
-                  },
-                  function (err) {
-                    callback(err, memo);
-                  }
-                );
-              };
+              async.inject =
+                async.foldl =
+                async.reduce =
+                  function (arr, memo, iterator, callback) {
+                    async.eachOfSeries(
+                      arr,
+                      function (x, i, callback) {
+                        iterator(memo, x, function (err, v) {
+                          memo = v;
+                          callback(err);
+                        });
+                      },
+                      function (err) {
+                        callback(err, memo);
+                      }
+                    );
+                  };
 
               async.foldr = async.reduceRight = function (
                 arr,
@@ -1590,7 +1588,8 @@
 
             // Split a filename into [root, dir, basename, ext], unix version
             // 'root' is just a slash, or nothing.
-            var splitPathRe = /^(\/?|)([\s\S]*?)((?:\.{1,2}|[^\/]+?|)(\.[^.\/]*|))(?:[\/]*)$/;
+            var splitPathRe =
+              /^(\/?|)([\s\S]*?)((?:\.{1,2}|[^\/]+?|)(\.[^.\/]*|))(?:[\/]*)$/;
             var splitPath = function (filename) {
               return splitPathRe.exec(filename).slice(1);
             };
@@ -4334,16 +4333,15 @@
            * @param {String} event The event want to remove all listeners for.
            * @api public
            */
-          EventEmitter.prototype.removeAllListeners = function removeAllListeners(
-            event
-          ) {
-            if (!this._events) return this;
+          EventEmitter.prototype.removeAllListeners =
+            function removeAllListeners(event) {
+              if (!this._events) return this;
 
-            if (event) delete this._events[prefix ? prefix + event : event];
-            else this._events = prefix ? {} : Object.create(null);
+              if (event) delete this._events[prefix ? prefix + event : event];
+              else this._events = prefix ? {} : Object.create(null);
 
-            return this;
-          };
+              return this;
+            };
 
           //
           // Alias methods names because people roll like that.
@@ -14218,9 +14216,8 @@ Graphics.prototype.destroyCachedSprite = function ()
 
             this.context.globalAlpha = 1;
 
-            this.context.globalCompositeOperation = this.blendModes[
-              CONST.BLEND_MODES.NORMAL
-            ];
+            this.context.globalCompositeOperation =
+              this.blendModes[CONST.BLEND_MODES.NORMAL];
 
             if (navigator.isCocoonJS && this.view.screencanvas) {
               this.context.fillStyle = "black";
@@ -16283,9 +16280,8 @@ Graphics.prototype.destroyCachedSprite = function ()
            */
           FilterManager.prototype.popFilter = function () {
             var filterData = this.filterStack.pop();
-            var previousFilterData = this.filterStack[
-              this.filterStack.length - 1
-            ];
+            var previousFilterData =
+              this.filterStack[this.filterStack.length - 1];
 
             var input = filterData.renderTarget;
 
@@ -16446,9 +16442,8 @@ Graphics.prototype.destroyCachedSprite = function ()
             this.renderer.shaderManager.setShader(shader);
 
             // TODO (cengler) - Can this be cached and not `toArray`ed each frame?
-            shader.uniforms.projectionMatrix.value = this.renderer.currentRenderTarget.projectionMatrix.toArray(
-              true
-            );
+            shader.uniforms.projectionMatrix.value =
+              this.renderer.currentRenderTarget.projectionMatrix.toArray(true);
 
             //TODO can this be optimised?
             shader.syncUniforms();
@@ -17182,7 +17177,6 @@ Graphics.prototype.destroyCachedSprite = function ()
                   gl.stencilFunc(gl.EQUAL, level, 0xff);
                 }
               } else {
-                //  console.log("<<>>")
                 if (!sms.reverse) {
                   gl.stencilFunc(gl.EQUAL, 0xff - (level + 1), 0xff);
                   gl.stencilOp(gl.KEEP, gl.KEEP, gl.INCR);
@@ -17635,42 +17629,6 @@ Graphics.prototype.destroyCachedSprite = function ()
 
             return (this.program = program);
           };
-
-          /*
-Shader.prototype.buildSync = function ()
-{
-   // var str = ""
-
-   // str =  "Shader.prototype.syncUniforms = function()";
-   // str += "{\n";
-
-    for (var key in this.uniforms)
-    {
-        var uniform = this.uniforms[key];
-
-        Object.defineProperty(this, key, {
-
-            get: function ()
-            {
-                return uniform.value
-            },
-            set: function (value)
-            {
-                this.setUniform(uniform, value);
-            }
-        });
-
-        console.log( makePropSetter( key, " bloop", uniform.type )  )
-  //      Object.def
-        //    location = uniform._location,
-          //  value = uniform.value,
-            //i, il;
-
-    //    str += "gl.uniform1i(this.uniforms."+ key +"._location, this.uniforms." + key + ".value );\n"
-
-    }
-
-}*/
 
           /**
            * Adds a new uniform
@@ -18238,22 +18196,7 @@ Shader.prototype.buildSync = function ()
              * @member {Float32Array}
              */
             this.colors = new Float32Array([
-              1,
-              1,
-              1,
-              1,
-              1,
-              1,
-              1,
-              1,
-              1,
-              1,
-              1,
-              1,
-              1,
-              1,
-              1,
-              1,
+              1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
             ]);
 
             /*
@@ -19588,13 +19531,14 @@ Shader.prototype.buildSync = function ()
 
             // color and alpha
             var tint = sprite.tint;
-            colors[index + 4] = colors[index + 9] = colors[index + 14] = colors[
-              index + 19
-            ] =
-              (tint >> 16) +
-              (tint & 0xff00) +
-              ((tint & 0xff) << 16) +
-              ((sprite.worldAlpha * 255) << 24);
+            colors[index + 4] =
+              colors[index + 9] =
+              colors[index + 14] =
+              colors[index + 19] =
+                (tint >> 16) +
+                (tint & 0xff00) +
+                ((tint & 0xff) << 16) +
+                ((sprite.worldAlpha * 255) << 24);
 
             // increment the batchsize
             this.sprites[this.currentBatchSize++] = sprite;
@@ -19629,8 +19573,8 @@ Shader.prototype.buildSync = function ()
             var start = 0;
 
             var currentBaseTexture = null;
-            var currentBlendMode = this.renderer.blendModeManager
-              .currentBlendMode;
+            var currentBlendMode =
+              this.renderer.blendModeManager.currentBlendMode;
             var currentShader = null;
 
             var blendSwap = false;
@@ -19678,9 +19622,10 @@ Shader.prototype.buildSync = function ()
                   this.renderer.shaderManager.setShader(shader);
 
                   //TODO - i KNOW this can be optimised! Once v3 is stable il look at this next...
-                  shader.uniforms.projectionMatrix.value = this.renderer.currentRenderTarget.projectionMatrix.toArray(
-                    true
-                  );
+                  shader.uniforms.projectionMatrix.value =
+                    this.renderer.currentRenderTarget.projectionMatrix.toArray(
+                      true
+                    );
                   //Make this a little more dynamic / intelligent!
                   shader.syncUniforms();
 
@@ -19913,9 +19858,8 @@ Shader.prototype.buildSync = function ()
 
           Text.fontPropertiesCache = {};
           Text.fontPropertiesCanvas = document.createElement("canvas");
-          Text.fontPropertiesContext = Text.fontPropertiesCanvas.getContext(
-            "2d"
-          );
+          Text.fontPropertiesContext =
+            Text.fontPropertiesCanvas.getContext("2d");
 
           Object.defineProperties(Text.prototype, {
             /**
@@ -20423,8 +20367,9 @@ Shader.prototype.buildSync = function ()
                   // Word should be split in the middle
                   var characters = words[j].split("");
                   for (var c = 0; c < characters.length; c++) {
-                    var characterWidth = this.context.measureText(characters[c])
-                      .width;
+                    var characterWidth = this.context.measureText(
+                      characters[c]
+                    ).width;
                     if (characterWidth > spaceLeft) {
                       result += "\n" + characters[c];
                       spaceLeft = wordWrapWidth - characterWidth;
@@ -25494,26 +25439,7 @@ Shader.prototype.buildSync = function ()
                 m: {
                   type: "1fv",
                   value: [
-                    1,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    1,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    1,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    1,
-                    0,
+                    1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0,
                   ],
                 },
               }
@@ -25693,26 +25619,8 @@ Shader.prototype.buildSync = function ()
            */
           ColorMatrixFilter.prototype.blackAndWhite = function (multiply) {
             var matrix = [
-              0.3,
-              0.6,
-              0.1,
-              0,
-              0,
-              0.3,
-              0.6,
-              0.1,
-              0,
-              0,
-              0.3,
-              0.6,
-              0.1,
-              0,
-              0,
-              0,
-              0,
-              0,
-              1,
-              0,
+              0.3, 0.6, 0.1, 0, 0, 0.3, 0.6, 0.1, 0, 0, 0.3, 0.6, 0.1, 0, 0, 0,
+              0, 0, 1, 0,
             ];
 
             this._loadMatrix(matrix, multiply);
@@ -25855,26 +25763,7 @@ Shader.prototype.buildSync = function ()
            */
           ColorMatrixFilter.prototype.negative = function (multiply) {
             var matrix = [
-              0,
-              1,
-              1,
-              0,
-              0,
-              1,
-              0,
-              1,
-              0,
-              0,
-              1,
-              1,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              1,
-              0,
+              0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0,
             ];
 
             this._loadMatrix(matrix, multiply);
@@ -25887,26 +25776,8 @@ Shader.prototype.buildSync = function ()
            */
           ColorMatrixFilter.prototype.sepia = function (multiply) {
             var matrix = [
-              0.393,
-              0.7689999,
-              0.18899999,
-              0,
-              0,
-              0.349,
-              0.6859999,
-              0.16799999,
-              0,
-              0,
-              0.272,
-              0.5339999,
-              0.13099999,
-              0,
-              0,
-              0,
-              0,
-              0,
-              1,
-              0,
+              0.393, 0.7689999, 0.18899999, 0, 0, 0.349, 0.6859999, 0.16799999,
+              0, 0, 0.272, 0.5339999, 0.13099999, 0, 0, 0, 0, 0, 1, 0,
             ];
 
             this._loadMatrix(matrix, multiply);
@@ -25919,26 +25790,11 @@ Shader.prototype.buildSync = function ()
            */
           ColorMatrixFilter.prototype.technicolor = function (multiply) {
             var matrix = [
-              1.9125277891456083,
-              -0.8545344976951645,
-              -0.09155508482755585,
-              0,
-              11.793603434377337,
-              -0.3087833385928097,
-              1.7658908555458428,
-              -0.10601743074722245,
-              0,
-              -70.35205161461398,
-              -0.231103377548616,
-              -0.7501899197440212,
-              1.847597816108189,
-              0,
-              30.950940869491138,
-              0,
-              0,
-              0,
-              1,
-              0,
+              1.9125277891456083, -0.8545344976951645, -0.09155508482755585, 0,
+              11.793603434377337, -0.3087833385928097, 1.7658908555458428,
+              -0.10601743074722245, 0, -70.35205161461398, -0.231103377548616,
+              -0.7501899197440212, 1.847597816108189, 0, 30.950940869491138, 0,
+              0, 0, 1, 0,
             ];
 
             this._loadMatrix(matrix, multiply);
@@ -25951,26 +25807,8 @@ Shader.prototype.buildSync = function ()
            */
           ColorMatrixFilter.prototype.polaroid = function (multiply) {
             var matrix = [
-              1.438,
-              -0.062,
-              -0.062,
-              0,
-              0,
-              -0.122,
-              1.378,
-              -0.122,
-              0,
-              0,
-              -0.016,
-              -0.016,
-              1.483,
-              0,
-              0,
-              0,
-              0,
-              0,
-              1,
-              0,
+              1.438, -0.062, -0.062, 0, 0, -0.122, 1.378, -0.122, 0, 0, -0.016,
+              -0.016, 1.483, 0, 0, 0, 0, 0, 1, 0,
             ];
 
             this._loadMatrix(matrix, multiply);
@@ -25983,26 +25821,7 @@ Shader.prototype.buildSync = function ()
            */
           ColorMatrixFilter.prototype.toBGR = function (multiply) {
             var matrix = [
-              0,
-              0,
-              1,
-              0,
-              0,
-              0,
-              1,
-              0,
-              0,
-              0,
-              1,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              1,
-              0,
+              0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0,
             ];
 
             this._loadMatrix(matrix, multiply);
@@ -26015,26 +25834,11 @@ Shader.prototype.buildSync = function ()
            */
           ColorMatrixFilter.prototype.kodachrome = function (multiply) {
             var matrix = [
-              1.1285582396593525,
-              -0.3967382283601348,
-              -0.03992559172921793,
-              0,
-              63.72958762196502,
-              -0.16404339962244616,
-              1.0835251566291304,
-              -0.05498805115633132,
-              0,
-              24.732407896706203,
-              -0.16786010706155763,
-              -0.5603416277695248,
-              1.6014850761964943,
-              0,
-              35.62982807460946,
-              0,
-              0,
-              0,
-              1,
-              0,
+              1.1285582396593525, -0.3967382283601348, -0.03992559172921793, 0,
+              63.72958762196502, -0.16404339962244616, 1.0835251566291304,
+              -0.05498805115633132, 0, 24.732407896706203, -0.16786010706155763,
+              -0.5603416277695248, 1.6014850761964943, 0, 35.62982807460946, 0,
+              0, 0, 1, 0,
             ];
 
             this._loadMatrix(matrix, multiply);
@@ -26047,26 +25851,11 @@ Shader.prototype.buildSync = function ()
            */
           ColorMatrixFilter.prototype.browni = function (multiply) {
             var matrix = [
-              0.5997023498159715,
-              0.34553243048391263,
-              -0.2708298674538042,
-              0,
-              47.43192855600873,
-              -0.037703249837783157,
-              0.8609577587992641,
-              0.15059552388459913,
-              0,
-              -36.96841498319127,
-              0.24113635128153335,
-              -0.07441037908422492,
-              0.44972182064877153,
-              0,
-              -7.562075277591283,
-              0,
-              0,
-              0,
-              1,
-              0,
+              0.5997023498159715, 0.34553243048391263, -0.2708298674538042, 0,
+              47.43192855600873, -0.037703249837783157, 0.8609577587992641,
+              0.15059552388459913, 0, -36.96841498319127, 0.24113635128153335,
+              -0.07441037908422492, 0.44972182064877153, 0, -7.562075277591283,
+              0, 0, 0, 1, 0,
             ];
 
             this._loadMatrix(matrix, multiply);
@@ -26079,26 +25868,11 @@ Shader.prototype.buildSync = function ()
            */
           ColorMatrixFilter.prototype.vintage = function (multiply) {
             var matrix = [
-              0.6279345635605994,
-              0.3202183420819367,
-              -0.03965408211312453,
-              0,
-              9.651285835294123,
-              0.02578397704808868,
-              0.6441188644374771,
-              0.03259127616149294,
-              0,
-              7.462829176470591,
-              0.0466055556782719,
-              -0.0851232987247891,
-              0.5241648018700465,
-              0,
-              5.159190588235296,
-              0,
-              0,
-              0,
-              1,
-              0,
+              0.6279345635605994, 0.3202183420819367, -0.03965408211312453, 0,
+              9.651285835294123, 0.02578397704808868, 0.6441188644374771,
+              0.03259127616149294, 0, 7.462829176470591, 0.0466055556782719,
+              -0.0851232987247891, 0.5241648018700465, 0, 5.159190588235296, 0,
+              0, 0, 1, 0,
             ];
 
             this._loadMatrix(matrix, multiply);
@@ -26239,26 +26013,8 @@ Shader.prototype.buildSync = function ()
            */
           ColorMatrixFilter.prototype.lsd = function (multiply) {
             var matrix = [
-              2,
-              -0.4,
-              0.5,
-              0,
-              0,
-              -0.5,
-              2,
-              -0.4,
-              0,
-              0,
-              -0.4,
-              -0.5,
-              3,
-              0,
-              0,
-              0,
-              0,
-              0,
-              1,
-              0,
+              2, -0.4, 0.5, 0, 0, -0.5, 2, -0.4, 0, 0, -0.4, -0.5, 3, 0, 0, 0,
+              0, 0, 1, 0,
             ];
 
             this._loadMatrix(matrix, multiply);
@@ -26270,26 +26026,7 @@ Shader.prototype.buildSync = function ()
            */
           ColorMatrixFilter.prototype.reset = function () {
             var matrix = [
-              1,
-              0,
-              0,
-              0,
-              0,
-              0,
-              1,
-              0,
-              0,
-              0,
-              0,
-              0,
-              1,
-              0,
-              0,
-              0,
-              0,
-              0,
-              1,
-              0,
+              1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0,
             ];
 
             this._loadMatrix(matrix, false);
@@ -26878,9 +26615,8 @@ Shader.prototype.buildSync = function ()
                 );
               },
               set: function (value) {
-                this.blurYTintFilter.uniforms.color.value = core.utils.hex2rgb(
-                  value
-                );
+                this.blurYTintFilter.uniforms.color.value =
+                  core.utils.hex2rgb(value);
               },
             },
 
@@ -27637,7 +27373,8 @@ Shader.prototype.buildSync = function ()
                 return this.tiltShiftXFilter.gradientBlur;
               },
               set: function (value) {
-                this.tiltShiftXFilter.gradientBlur = this.tiltShiftYFilter.gradientBlur = value;
+                this.tiltShiftXFilter.gradientBlur =
+                  this.tiltShiftYFilter.gradientBlur = value;
               },
             },
 
@@ -27652,7 +27389,8 @@ Shader.prototype.buildSync = function ()
                 return this.tiltShiftXFilter.start;
               },
               set: function (value) {
-                this.tiltShiftXFilter.start = this.tiltShiftYFilter.start = value;
+                this.tiltShiftXFilter.start = this.tiltShiftYFilter.start =
+                  value;
               },
             },
 
@@ -29368,15 +29106,14 @@ Shader.prototype.buildSync = function ()
                         size.width /= resolution;
                         size.height /= resolution;
 
-                        resource.textures[
-                          frameKeys[frameIndex]
-                        ] = new core.Texture(
-                          res.texture.baseTexture,
-                          size,
-                          size.clone(),
-                          trim,
-                          frame.rotated
-                        );
+                        resource.textures[frameKeys[frameIndex]] =
+                          new core.Texture(
+                            res.texture.baseTexture,
+                            size,
+                            size.clone(),
+                            trim,
+                            frame.rotated
+                          );
 
                         // lets also add the frame to pixi's global cache for fromFrame and fromImage functions
                         core.utils.TextureCache[frameKeys[frameIndex]] =
@@ -30428,12 +30165,10 @@ Shader.prototype.buildSync = function ()
 
             this.renderer.shaderManager.setShader(shader);
 
-            shader.uniforms.translationMatrix.value = mesh.worldTransform.toArray(
-              true
-            );
-            shader.uniforms.projectionMatrix.value = renderer.currentRenderTarget.projectionMatrix.toArray(
-              true
-            );
+            shader.uniforms.translationMatrix.value =
+              mesh.worldTransform.toArray(true);
+            shader.uniforms.projectionMatrix.value =
+              renderer.currentRenderTarget.projectionMatrix.toArray(true);
             shader.uniforms.alpha.value = mesh.worldAlpha;
 
             shader.syncUniforms();

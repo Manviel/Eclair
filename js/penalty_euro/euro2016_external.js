@@ -1364,12 +1364,6 @@ CombinedTween.prototype.start = function () {};
 CombinedTween.prototype.update = function () {};
 
 // Main part
-function showTermsConditions() {
-  return false;
-}
-var showCashier = function () {
-  return false;
-};
 PIXI.SCALE_MODES.DEFAULT = PIXI.SCALE_MODES.NEAREST;
 PIXI.utils._saidHello = true;
 // initialization
@@ -1405,7 +1399,6 @@ var messages = {
     "NO LUCK THIS TIME,\nCOME BACK AGAIN TO TRY TO\n WIN ONE OF OUR GREAT PRIZES",
   top_winner: "YOU HAVE WON",
   title_text: "CHOOSE A TEAM TO START!",
-  terms_conditions: "",
   play: "PLAY",
   init_message: "",
 };
@@ -1622,8 +1615,7 @@ function resize() {
         : clientWidth < CANVAS_HEIGHT
         ? clientWidth
         : CANVAS_HEIGHT;
-    document.getElementsByTagName("canvas")[0].style.height = height_new + "px";
-    document.getElementsByTagName("canvas")[0].style.width = width_new + "px";
+
     document.getElementsByTagName("canvas")[0].style.top =
       (clientHeight <
       (clientWidth < CANVAS_HEIGHT
@@ -1661,8 +1653,7 @@ function resize() {
         : clientWidth < CANSAS_WIDTH
         ? clientWidth
         : CANSAS_WIDTH;
-    document.getElementsByTagName("canvas")[0].style.height = height_new + "px";
-    document.getElementsByTagName("canvas")[0].style.width = width_new + "px";
+
     document.getElementsByTagName("canvas")[0].style.top =
       (clientHeight <
       (clientWidth < CANSAS_WIDTH
@@ -1684,6 +1675,8 @@ function resize() {
     renderer.original_height = CANVAS_HEIGHT;
   }
 
+  document.getElementsByTagName("canvas")[0].style.height = height_new + "px";
+  document.getElementsByTagName("canvas")[0].style.width = width_new + "px";
   document.getElementById("container_shoot").style.width = width_new + "px";
   scene3.repositionElements(orientation);
   scene2.repositionElements(orientation);
@@ -1743,7 +1736,6 @@ var logo;
 var left_arrow;
 var right_arrow;
 var flags = [];
-var text_terms_conditions;
 var text_temp;
 var text_play;
 
@@ -1787,23 +1779,6 @@ function Scene1(stage, renderer, next_scene) {
   container_1.width = 420;
   container_flags.addChild(container_1);
 
-  text_terms_conditions = new PIXI.Text(messages["terms_conditions"], {
-    font: "15px Arial",
-    fill: "white",
-    align: "center",
-  });
-  text_terms_conditions.anchor.x = 0.5;
-  text_terms_conditions.anchor.y = 0.5;
-  text_terms_conditions.position.x = container_1.width / 2;
-  text_terms_conditions.position.y = 375;
-  text_terms_conditions.interactive = true;
-  text_terms_conditions.buttonMode = true;
-  text_terms_conditions.defaultCursor = "pointer";
-  text_terms_conditions.mouseup = text_terms_conditions.touchend = function () {
-    showTermsConditions();
-  };
-
-  container_flags.addChild(text_terms_conditions);
   text_temp = new PIXI.Text(messages["title_text"], {
     font: "italic 19px Arial",
     fill: "white",
@@ -2012,7 +1987,7 @@ function Scene1(stage, renderer, next_scene) {
   right_arrow.mask = mask_menu;
   left_arrow.mask = mask_menu;
   text_temp.mask = mask_menu;
-  text_terms_conditions.mask = mask_menu;
+
   container_flags.addChild(sub_container_flags);
   container_flags.addChild(sub_container_flags2);
   container_flags.addChild(mask_menu);
@@ -2077,6 +2052,7 @@ Scene1.prototype.repositionElements = function (orientation) {
     container_flags.position.x = outrenderer.original_width / 2 - 420 / 2;
     logo.position.x = outrenderer.original_width / 2;
   }
+
   if (orientation >= 1) {
     if (active1 === 1) container_flags.position.x = 285;
     logo.position.y = 240;
@@ -2838,7 +2814,6 @@ var textTeam1;
 var textTeam2;
 var selected_flag = new PIXI.Sprite();
 var random_flag_sprite = new PIXI.Sprite();
-var text_terms_conditions_final;
 
 function Scene3(stage, renderer, background) {
   // Initialize sprites 3
@@ -2866,19 +2841,6 @@ function Scene3(stage, renderer, background) {
   logo3.width = 45;
 
   container_prize.addChild(logo3);
-
-  text_terms_conditions_final = new PIXI.Text(messages["terms_conditions"], {
-    font: "15px Arial",
-    fill: "white",
-    align: "center",
-  });
-  text_terms_conditions_final.anchor.x = 0.5;
-  text_terms_conditions_final.anchor.y = 0.5;
-  text_terms_conditions_final.position.x = containermain.width / 2;
-  text_terms_conditions_final.position.y = 340;
-  text_terms_conditions_final.interactive = true;
-  text_terms_conditions_final.buttonMode = true;
-  text_terms_conditions_final.defaultCursor = "pointer";
 
   prize.anchor.x = 0.5;
   prize.anchor.y = 0.5;
