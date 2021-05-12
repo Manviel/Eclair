@@ -33,6 +33,10 @@ sudo ./blink
 
 To make it run locally you need to install [PARCEL](https://parceljs.org/getting_started.html)
 
+```
+npm install
+```
+
 To get all assets locally
 
 ```

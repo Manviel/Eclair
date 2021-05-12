@@ -1448,7 +1448,7 @@ var scene3;
 var scene4;
 
 loader
-  .add(prfx + "backgroundfull.jpg")
+  .add(prfx + "backgroundfull.png")
   .add(prfx + "page_logo.png")
   .add(prfx + "lights.png")
   .add(prfx + "flash.png")
@@ -1526,7 +1526,7 @@ function setup() {
   flash = new PIXI.Sprite(resources[prfx + "flash.png"].texture);
   sky = new PIXI.Sprite(resources[prfx + "sky.jpg"].texture);
   lights = new PIXI.Sprite(resources[prfx + "lights.png"].texture);
-  background = new PIXI.Sprite(resources[prfx + "backgroundfull.jpg"].texture);
+  background = new PIXI.Sprite(resources[prfx + "backgroundfull.png"].texture);
 
   // create a renderer instance.
 
