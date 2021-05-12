@@ -3040,29 +3040,19 @@ Scene3.prototype.startScene = function (result, teams) {
   active3 = 1;
   if (result == 0) {
     message_final.texture =
-      resources[
-        "/public/euro2016_penalty/messages/try_again_" + lg + ".png"
-      ].texture;
-    prize.texture = resources["/public/euro2016_penalty/red_card.png"].texture;
+      resources[prfx + "messages/try_again_" + lg + ".png"].texture;
+    prize.texture = resources[prfx + "red_card.png"].texture;
   } else if (result == 1) {
     message_final.texture =
-      resources[
-        "/public/euro2016_penalty/messages/congrats_" + lg + ".png"
-      ].texture;
-    prize.texture =
-      resources["/public/euro2016_penalty/messages/" + prs + ".png"].texture;
+      resources[prfx + "messages/congrats_" + lg + ".png"].texture;
+    prize.texture = resources[prfx + "messages/" + prs + ".png"].texture;
     textBottom.text = messages["winner"];
   } else if (result == 2) {
     message_final.texture =
-      resources[
-        "/public/euro2016_penalty/messages/congrats_" + lg + ".png"
-      ].texture;
+      resources[prfx + "messages/congrats_" + lg + ".png"].texture;
     if (prb != "0")
-      prize.texture =
-        resources["/public/euro2016_penalty/messages/" + prb + ".png"].texture;
-    else
-      prize.texture =
-        resources["/public/euro2016_penalty/messages/" + prs + ".png"].texture;
+      prize.texture = resources[prfx + "messages/" + prb + ".png"].texture;
+    else prize.texture = resources[prfx + "messages/" + prs + ".png"].texture;
     textBottom.text = messages["winner"];
   }
 
