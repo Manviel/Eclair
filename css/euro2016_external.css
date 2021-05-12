@@ -3,10 +3,6 @@
   margin: 0;
 }
 
-.image_container {
-  background-image: url("../public/euro2016_penalty/logo.png");
-}
-
 @font-face {
   font-family: "DIN";
   src: url(../public/fonts/DINPro-Regular.woff2) format("woff2");
@@ -20,33 +16,4 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-}
-
-#overlay_game {
-  width: 100%;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  text-align: center;
-  padding-top: 9%;
-  font-size: 24px;
-  text-transform: uppercase;
-  font-weight: bold;
-  color: white;
-  background-color: #151515;
-}
-
-#overlay_game > div.image_container {
-  width: 100%;
-  height: 40%;
-  margin: 0 auto;
-  background-size: contain;
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
-}
-
-#message_overlay {
-  font-size: 19px;
-  padding: 0 10px;
-  width: calc(100% - 20px);
 }

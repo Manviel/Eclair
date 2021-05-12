@@ -1507,23 +1507,14 @@ loader
   .add(prfx + "flags/22.png")
   .add(prfx + "flags/23.png")
   .add(prfx + "flags/24.png")
-  .on("progress", loadProgressHandler)
   .load(setup);
 
-function loadProgressHandler(loader, resource) {
-  var div_overlay = document.getElementById("message_overlay");
-  div_overlay.innerHTML = loader.progress.toFixed(2) + " % ";
-}
-
 function setup() {
-  document.getElementById("overlay_game").style.display = "none";
   flash = new PIXI.Sprite(resources[prfx + "flash.png"].texture);
   sky = new PIXI.Sprite(resources[prfx + "sky.jpg"].texture);
-
   background = new PIXI.Sprite(resources[prfx + "backgroundfull.png"].texture);
 
   // create a renderer instance.
-
   renderer.original_width = renderer.width;
   renderer.original_height = renderer.height;
 
