@@ -1420,7 +1420,7 @@ var messages = {
   init_message: "",
 };
 var timers = [0, 1, 0, 1, 0, 1, 0, 1, 0, 1];
-var pr = "10_cashback_en";
+var pr = "voucher_10_en";
 var tn = "TK:Guest";
 var lg = "en";
 var stage = new PIXI.Container();
@@ -2263,9 +2263,6 @@ function moveToFlags() {
 /**
  * JS code for the stage 2
  */
-
-var outrenderer;
-var outstage;
 var out_next_scene2;
 var outbackground;
 var current_turn = 0;
@@ -2282,7 +2279,7 @@ var gja = [];
 var teams_selected = "";
 var rl = 0;
 var FRAMES = [prfx + "football.png", prfx + "football.png"];
-// create a new Sprite using the texture
+// You turn to kick
 var ball;
 var gloves;
 var white_mark;
@@ -2758,7 +2755,7 @@ Scene2.prototype.repositionElements = function (orientation) {
   }
   if (orientation >= 1) container_goal_ball.position.y = 0;
   else container_goal_ball.position.y = 130;
-  container_score.position.y = 0;
+  container_score.position.y = 10;
 };
 Scene2.prototype.isActive = function () {
   return active2 === 1 ? true : false;
@@ -2933,11 +2930,8 @@ function initGame() {
 }
 
 /**
- * JS code for the stage 1
+ * JS code for the stage 3
  */
-var outrenderer;
-var outstage;
-var outbackground;
 var active3 = 0;
 
 var container_prize = new PIXI.Container();
