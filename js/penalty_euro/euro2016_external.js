@@ -2504,6 +2504,7 @@ var teams = null;
 // Team name
 Scene2.prototype.startScene = function (idflag, random_flag) {
   initGame();
+
   active2 = 1;
   active_score_2 = 1;
   textTeam1 = new PIXI.Text(names[idflag][1], {
@@ -2582,6 +2583,8 @@ Scene2.prototype.startScene = function (idflag, random_flag) {
     outstage.transition_rate,
     true
   );
+
+  alterTurnImages();
 };
 
 Scene2.prototype.clearScene = function () {
@@ -2794,6 +2797,7 @@ function turnInteractiveOnOff(newinteractive) {
     arcos[i].interactive = newinteractive;
   }
 }
+
 function initGame() {
   var url = c_url + "PenaltyGame/click";
 
@@ -2803,24 +2807,7 @@ function initGame() {
       data: tn,
     },
     function (response) {
-      if (response) {
-        if (typeof response["sprites"] != "undefined") {
-          var inits = response["sprites"];
-          for (var key in inits) {
-            if (!inits.hasOwnProperty(key)) continue;
-            var a = JSON.parse(Base64.decode(inits[key]));
-            for (var i = 0; i < a.length; i++) {
-              if (key == "1") gjp.push(a[i]);
-              else if (key == "2") gja.push(a[i]);
-            }
-            if (key == "t") rl = parseInt(a);
-          }
-        } else {
-          console.log("Error Inside Response");
-        }
-      } else {
-        console.log("Error");
-      }
+      console.log("START", response);
     },
     "jsonp"
   );
@@ -3024,20 +3011,14 @@ function animatePrizeWinner() {
 
 function endGame(teams) {
   var url = c_url + "PenaltyEURO2016/endGame/";
+
   jQuery.post(
     url,
     {
       data: teams,
     },
     function (response) {
-      if (response) {
-        if (typeof response["msg"] != "undefined") {
-        } else {
-          alert("Error");
-        }
-      } else {
-        alert("Error");
-      }
+      console.log("END", response);
     },
     "jsonp"
   );
