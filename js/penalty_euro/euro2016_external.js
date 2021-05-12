@@ -2618,7 +2618,7 @@ Scene2.prototype.clearScene = function () {
     };
 
     // Decide who won
-    var decision = 1;
+    var decision = 0;
     var won = "iphone";
 
     out_next_scene2.startScene(decision, teams, won);
@@ -2854,14 +2854,14 @@ function Scene3(stage, renderer, background) {
 
   containermain.position.x = 0;
   containermain.position.y = 0;
-  containermain.height = 440;
+  containermain.height = 480;
   containermain.width = 420;
   container_prize.addChild(containermain);
 
   logo3.anchor.x = 0.5;
   logo3.anchor.y = 0.5;
   logo3.position.x = containermain.width / 2;
-  logo3.position.y = 370;
+  logo3.position.y = 420;
   logo3.height = 45;
   logo3.width = 45;
 
@@ -2883,7 +2883,7 @@ function Scene3(stage, renderer, background) {
   prize.anchor.x = 0.5;
   prize.anchor.y = 0.5;
   prize.position.x = containermain.width / 2;
-  prize.position.y = 180;
+  prize.position.y = 220;
   prize.height = 180;
   prize.width = 180;
   container_prize.addChild(prize);
@@ -2892,6 +2892,7 @@ function Scene3(stage, renderer, background) {
   message_final.anchor.y = 0.5;
   message_final.position.x = container_prize.width / 2;
   message_final.position.y = container_prize.height;
+
   c.fadeOut(message_final);
   container_prize.addChild(message_final);
 
@@ -2904,7 +2905,7 @@ function Scene3(stage, renderer, background) {
   textBottom.anchor.x = 0.5;
   textBottom.anchor.y = 0.5;
   textBottom.position.x = containermain.width / 2;
-  textBottom.position.y = 315;
+  textBottom.position.y = 355;
   c.fadeOut(textBottom);
 
   textTop = new PIXI.Text(messages["top_winner"], {
@@ -2978,10 +2979,12 @@ Scene3.prototype.isActive = function () {
 function showMessage(result) {
   c.fadeIn(message_final);
   c.scale(message_final, 1, 1, 22);
+
+  // Final top message
   var tween_message_final = c.slide(
     message_final,
     message_final.position.x,
-    60,
+    80,
     40,
     "bounce 3 -3"
   );
