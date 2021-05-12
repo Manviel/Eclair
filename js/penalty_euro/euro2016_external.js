@@ -1434,11 +1434,9 @@ var scene3;
 
 loader
   .add(prfx + "backgroundfull.png")
-  .add(prfx + "page_logo.png")
   .add(prfx + "flash.png")
   .add(prfx + "sky.jpg")
   .add(prfx + "container_box.png")
-  .add(prfx + "play.png")
   .add(prfx + "logo.png")
   .add(prfx + "arrow_left.png")
   .add(prfx + "arrow_lefth.png")
@@ -2373,6 +2371,7 @@ function Scene2(stage, renderer, next_scene, background) {
 
         current_click = gloves;
         current_auto = ball;
+
         if (
           this.position.x == arcos[item - 1].position.x &&
           this.position.y == arcos[item - 1].position.y
@@ -2386,6 +2385,7 @@ function Scene2(stage, renderer, next_scene, background) {
             resources[prfx + "good_score.png"].texture;
           sum_score_auto += 1;
         }
+
         score_goal_auto[number_clicks_glove] = current_result;
         number_clicks_glove += 1;
         current_turn = 0;
@@ -2569,8 +2569,7 @@ Scene2.prototype.clearScene = function () {
       outstage.transition_rate,
       true
     );
-    /*new Tween(container_goal_ball, "position.x",(-600) , outstage.transition_rate, true);
-          new Tween(container_score, "position.x", (-600), outstage.transition_rate, true);*/
+
     var cont_ball_tween = c.slide(
       container_goal_ball,
       -600,
@@ -2578,7 +2577,7 @@ Scene2.prototype.clearScene = function () {
       outstage.transition_rate,
       "smoothstep"
     );
-    //c.slide(container_score, -600, container_score.position.y, outstage.transition_rate, "smoothstep");
+
     cont_ball_tween.setOnComplete = function () {
       container_goal_ball.visible = false;
       message.visible = false;
@@ -2711,8 +2710,10 @@ function alterTurnImages() {
 
   container_goal_ball.addChild(tipTextBot);
 
+  // Assign user score
   textScoreTeam1.text = "" + sum_score_player;
   textScoreTeam2.text = "" + sum_score_auto;
+
   c.scale(ball, 1, 1, 25);
   container_icon.visible = true;
   turnInteractiveOnOff(true);
@@ -2800,11 +2801,6 @@ var containermain;
 var prize;
 var textBottom;
 var textTop;
-var containerscore;
-var textTeam1;
-var textTeam2;
-var selected_flag = new PIXI.Sprite();
-var random_flag_sprite = new PIXI.Sprite();
 
 function Scene3(stage, renderer, background) {
   // Initialize sprites 3
@@ -2883,6 +2879,9 @@ function Scene3(stage, renderer, background) {
 
 Scene3.prototype.startScene = function (result, teams, won) {
   active3 = 1;
+
+  console.log(teams);
+  console.log(textScoreTeam1.text, textScoreTeam2.text);
 
   if (result == 0) {
     message_final.texture =
