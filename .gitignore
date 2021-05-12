@@ -4,5 +4,4 @@
 !.vscode/launch.json
 !.vscode/extensions.json
 .cache
-/dist
 /node_modules
