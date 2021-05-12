@@ -1429,8 +1429,13 @@ var loader = PIXI.loader;
 var resources = PIXI.loader.resources;
 var prfx = "./euro2016_penalty/";
 
+var CANSAS_WIDTH = 560;
+var CANVAS_HEIGHT = 740;
+
 // Containers/Sprites
-var renderer = PIXI.autoDetectRenderer(480, 720, { backgroundColor: 0x242424 });
+var renderer = PIXI.autoDetectRenderer(CANSAS_WIDTH, CANVAS_HEIGHT, {
+  backgroundColor: 0x242424,
+});
 var background_container = new PIXI.Container();
 var container_flashes = new PIXI.Container();
 var container_logos = new PIXI.Container();
@@ -1438,12 +1443,11 @@ var background;
 var sky;
 var flash;
 var loading_container = new PIXI.Container();
-var c_url = "";
+var c_url = "https://code.bet777.be/";
 // Scenes
 var scene1;
 var scene2;
 var scene3;
-var scene4;
 
 loader
   .add(prfx + "backgroundfull.png")
@@ -1515,7 +1519,6 @@ loader
 function loadProgressHandler(loader, resource) {
   var div_overlay = document.getElementById("message_overlay");
   div_overlay.innerHTML = loader.progress.toFixed(2) + " % ";
-  //div_overlay.style.opacity = (100 - (loader.progress).toFixed(1))*(0.01);
 }
 
 function setup() {
@@ -1547,10 +1550,10 @@ function setup() {
   container_flashes.position.x = 0;
   container_flashes.position.y = 212;
 
-  container_logos.position.x = -480;
+  container_logos.position.x = -1 * CANSAS_WIDTH;
   container_logos.position.y = 378;
 
-  flash.position.x = 720;
+  flash.position.x = CANVAS_HEIGHT;
   flash.position.y = 200;
 
   sky.anchor.x = 0;
@@ -1597,38 +1600,39 @@ function resize() {
   var w = width * ratio2;
   var h = height * ratio2;
   var orientation = w / h;
+  var clientHeight = window.document.documentElement.clientHeight;
+  var clientWidth = window.document.documentElement.clientWidth;
+
   if (orientation >= 1) {
-    renderer.resize(720, 480);
+    renderer.resize(CANVAS_HEIGHT, CANSAS_WIDTH);
     height_new =
-      window.document.documentElement.clientHeight <
-      (window.document.documentElement.clientWidth / 720) * 480
-        ? window.document.documentElement.clientHeight < 480
-          ? window.document.documentElement.clientHeight
-          : 480
-        : window.document.documentElement.clientWidth < 720
-        ? (window.document.documentElement.clientWidth / 720) * 480
-        : 480;
+      clientHeight < (clientWidth / CANVAS_HEIGHT) * CANSAS_WIDTH
+        ? clientHeight < CANSAS_WIDTH
+          ? clientHeight
+          : CANSAS_WIDTH
+        : clientWidth < CANVAS_HEIGHT
+        ? (clientWidth / CANVAS_HEIGHT) * CANSAS_WIDTH
+        : CANSAS_WIDTH;
     width_new =
-      window.document.documentElement.clientHeight <
-      (window.document.documentElement.clientWidth / 720) * 480
-        ? window.document.documentElement.clientHeight < 480
-          ? (window.document.documentElement.clientHeight / 480) * 720
-          : 720
-        : window.document.documentElement.clientWidth < 720
-        ? window.document.documentElement.clientWidth
-        : 720;
+      clientHeight < (clientWidth / CANVAS_HEIGHT) * CANSAS_WIDTH
+        ? clientHeight < CANSAS_WIDTH
+          ? (clientHeight / CANSAS_WIDTH) * CANVAS_HEIGHT
+          : CANVAS_HEIGHT
+        : clientWidth < CANVAS_HEIGHT
+        ? clientWidth
+        : CANVAS_HEIGHT;
     document.getElementsByTagName("canvas")[0].style.height = height_new + "px";
     document.getElementsByTagName("canvas")[0].style.width = width_new + "px";
     document.getElementsByTagName("canvas")[0].style.top =
-      (window.document.documentElement.clientHeight <
-      (window.document.documentElement.clientWidth < 720
-        ? (window.document.documentElement.clientWidth / 720) * 480
-        : 480)
+      (clientHeight <
+      (clientWidth < CANVAS_HEIGHT
+        ? (clientWidth / CANVAS_HEIGHT) * CANSAS_WIDTH
+        : CANSAS_WIDTH)
         ? 0
-        : (window.document.documentElement.clientHeight -
-            (window.document.documentElement.clientWidth < 720
-              ? (window.document.documentElement.clientWidth / 720) * 480
-              : 480)) /
+        : (clientHeight -
+            (clientWidth < CANVAS_HEIGHT
+              ? (clientWidth / CANVAS_HEIGHT) * CANSAS_WIDTH
+              : CANSAS_WIDTH)) /
           2) + "px";
     background.position.y = 212;
 
@@ -1636,40 +1640,38 @@ function resize() {
 
     container_logos.position.y = 378;
 
-    renderer.original_width = 720;
-    renderer.original_height = 480;
+    renderer.original_width = CANVAS_HEIGHT;
+    renderer.original_height = CANSAS_WIDTH;
   } else {
-    renderer.resize(480, 720);
+    renderer.resize(CANSAS_WIDTH, CANVAS_HEIGHT);
     height_new =
-      window.document.documentElement.clientHeight <
-      (window.document.documentElement.clientWidth / 480) * 720
-        ? window.document.documentElement.clientHeight < 720
-          ? window.document.documentElement.clientHeight
-          : 720
-        : window.document.documentElement.clientWidth < 480
-        ? (window.document.documentElement.clientWidth / 480) * 720
-        : 720;
+      clientHeight < (clientWidth / CANSAS_WIDTH) * CANVAS_HEIGHT
+        ? clientHeight < CANVAS_HEIGHT
+          ? clientHeight
+          : CANVAS_HEIGHT
+        : clientWidth < CANSAS_WIDTH
+        ? (clientWidth / CANSAS_WIDTH) * CANVAS_HEIGHT
+        : CANVAS_HEIGHT;
     width_new =
-      window.document.documentElement.clientHeight <
-      (window.document.documentElement.clientWidth / 480) * 720
-        ? window.document.documentElement.clientHeight < 720
-          ? (window.document.documentElement.clientHeight / 720) * 480
-          : 480
-        : window.document.documentElement.clientWidth < 480
-        ? window.document.documentElement.clientWidth
-        : 480;
+      clientHeight < (clientWidth / CANSAS_WIDTH) * CANVAS_HEIGHT
+        ? clientHeight < CANVAS_HEIGHT
+          ? (clientHeight / CANVAS_HEIGHT) * CANSAS_WIDTH
+          : CANSAS_WIDTH
+        : clientWidth < CANSAS_WIDTH
+        ? clientWidth
+        : CANSAS_WIDTH;
     document.getElementsByTagName("canvas")[0].style.height = height_new + "px";
     document.getElementsByTagName("canvas")[0].style.width = width_new + "px";
     document.getElementsByTagName("canvas")[0].style.top =
-      (window.document.documentElement.clientHeight <
-      (window.document.documentElement.clientWidth < 480
-        ? (window.document.documentElement.clientWidth / 480) * 720
-        : 720)
+      (clientHeight <
+      (clientWidth < CANSAS_WIDTH
+        ? (clientWidth / CANSAS_WIDTH) * CANVAS_HEIGHT
+        : CANVAS_HEIGHT)
         ? 0
-        : (window.document.documentElement.clientHeight -
-            (window.document.documentElement.clientWidth < 480
-              ? (window.document.documentElement.clientWidth / 480) * 720
-              : 720)) /
+        : (clientHeight -
+            (clientWidth < CANSAS_WIDTH
+              ? (clientWidth / CANSAS_WIDTH) * CANVAS_HEIGHT
+              : CANVAS_HEIGHT)) /
           2) + "px";
     background.position.y = 340;
 
@@ -1677,8 +1679,8 @@ function resize() {
 
     container_logos.position.y = 505;
 
-    renderer.original_width = 480;
-    renderer.original_height = 720;
+    renderer.original_width = CANSAS_WIDTH;
+    renderer.original_height = CANVAS_HEIGHT;
   }
 
   document.getElementById("container_shoot").style.width = width_new + "px";
@@ -2562,7 +2564,7 @@ Scene2.prototype.startScene = function (idflag, random_flag) {
   new Tween(
     outbackground,
     "position.x",
-    outbackground.position.x - 720,
+    outbackground.position.x - CANVAS_HEIGHT,
     outstage.transition_rate,
     true
   );
@@ -2707,10 +2709,18 @@ function alterTurnImages() {
     ball.texture = resources[prfx + "football2.png"].texture;
     gloves.texture = resources[prfx + "gloves.png"].texture;
     container_icon.position.y = 340;
+
+    // displayMessage(current_turn);
+
+    console.log("You turn to kick!");
   } else {
     gloves.texture = resources[prfx + "gloves2.png"].texture;
     ball.texture = resources[prfx + "football.png"].texture;
     container_icon.position.y = 95;
+
+    // displayMessage(current_turn);
+
+    console.log("Your turn to goal!");
   }
   textScoreTeam1.text = "" + sum_score_player;
   textScoreTeam2.text = "" + sum_score_auto;
@@ -2774,7 +2784,8 @@ function turnInteractiveOnOff(newinteractive) {
   }
 }
 function initGame() {
-  var url = c_url + "PenaltyEURO2016/initializeGame/";
+  var url = c_url + "PenaltyGame/click";
+
   jQuery.post(
     url,
     {
@@ -2931,7 +2942,7 @@ Scene3.prototype.startScene = function (result, teams) {
   new Tween(
     outbackground,
     "position.x",
-    outbackground.position.x - 720,
+    outbackground.position.x - CANVAS_HEIGHT,
     outstage.transition_rate,
     true
   );
