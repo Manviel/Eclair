@@ -1430,7 +1430,7 @@ var resources = PIXI.loader.resources;
 var prfx = "./euro2016_penalty/";
 
 var CANSAS_WIDTH = 560;
-var CANVAS_HEIGHT = 740;
+var CANVAS_HEIGHT = 720;
 
 // Containers/Sprites
 var renderer = PIXI.autoDetectRenderer(CANSAS_WIDTH, CANVAS_HEIGHT, {
@@ -2709,19 +2709,30 @@ function alterTurnImages() {
     ball.texture = resources[prfx + "football2.png"].texture;
     gloves.texture = resources[prfx + "gloves.png"].texture;
     container_icon.position.y = 340;
-
-    // displayMessage(current_turn);
-
-    console.log("You turn to kick!");
   } else {
     gloves.texture = resources[prfx + "gloves2.png"].texture;
     ball.texture = resources[prfx + "football.png"].texture;
     container_icon.position.y = 95;
-
-    // displayMessage(current_turn);
-
-    console.log("Your turn to goal!");
   }
+
+  container_goal_ball.removeChild(textBottom);
+
+  textBottom = new PIXI.Text(
+    current_turn === 0 ? "YOU TURN TO KICK!" : "YOU TURN TO GOAL!",
+    {
+      font: "bold 18px Arial",
+      fill: "white",
+      align: "center",
+    }
+  );
+
+  textBottom.anchor.x = 0.5;
+  textBottom.anchor.y = 0.5;
+  textBottom.position.x = containermain.width / 2 + 30;
+  textBottom.position.y = 515;
+
+  container_goal_ball.addChild(textBottom);
+
   textScoreTeam1.text = "" + sum_score_player;
   textScoreTeam2.text = "" + sum_score_auto;
   c.scale(ball, 1, 1, 25);
