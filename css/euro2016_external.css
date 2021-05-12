@@ -10,6 +10,10 @@
 body {
   background: #242424;
   font-family: sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 #overlay_game {
@@ -40,17 +44,4 @@ body {
   font-size: 19px;
   padding: 0 10px;
   width: calc(100% - 20px);
-}
-
-#message_cookie_overlay {
-  bottom: 0;
-  font-size: 11px;
-  position: fixed;
-  z-index: 3333333;
-  color: white;
-  padding-top: 5px;
-  height: 19px;
-  width: 100%;
-  text-align: center;
-  background-color: rgba(230, 0, 0, 0.6);
 }

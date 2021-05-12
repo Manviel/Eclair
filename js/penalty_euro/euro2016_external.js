@@ -1436,7 +1436,6 @@ var background_container = new PIXI.Container();
 var container_flashes = new PIXI.Container();
 var container_logos = new PIXI.Container();
 var background;
-var lights;
 var sky;
 var flash;
 var loading_container = new PIXI.Container();
@@ -1450,7 +1449,7 @@ var scene4;
 loader
   .add(prfx + "backgroundfull.png")
   .add(prfx + "page_logo.png")
-  .add(prfx + "lights.png")
+
   .add(prfx + "flash.png")
   .add(prfx + "sky.jpg")
   .add(prfx + "container_box.png")
@@ -1525,7 +1524,7 @@ function setup() {
   document.getElementById("overlay_game").style.display = "none";
   flash = new PIXI.Sprite(resources[prfx + "flash.png"].texture);
   sky = new PIXI.Sprite(resources[prfx + "sky.jpg"].texture);
-  lights = new PIXI.Sprite(resources[prfx + "lights.png"].texture);
+
   background = new PIXI.Sprite(resources[prfx + "backgroundfull.png"].texture);
 
   // create a renderer instance.
@@ -1556,11 +1555,6 @@ function setup() {
   flash.position.x = 720;
   flash.position.y = 200;
 
-  lights.anchor.x = 0;
-  lights.anchor.y = 0;
-  lights.position.x = 0;
-  lights.position.y = 47;
-
   sky.anchor.x = 0;
   sky.anchor.y = 0;
   sky.position.x = 0;
@@ -1574,7 +1568,7 @@ function setup() {
   createLogos();
 
   background_container.addChild(sky);
-  background_container.addChild(lights);
+
   background_container.addChild(background);
   background_container.addChild(container_logos);
   background_container.addChild(container_flashes);
@@ -1640,8 +1634,7 @@ function resize() {
               : 480)) /
           2) + "px";
     background.position.y = 212;
-    lights.position.y = 47;
-    lights.position.x = 0;
+
     container_flashes.position.y = 212;
     anim_logos.pause();
     container_logos.position.y = 378;
@@ -1689,8 +1682,7 @@ function resize() {
               : 720)) /
           2) + "px";
     background.position.y = 340;
-    lights.position.y = 180;
-    lights.position.x = -95;
+
     container_flashes.position.y = 340;
     anim_logos.pause();
     container_logos.position.y = 505;
