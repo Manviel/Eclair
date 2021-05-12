@@ -1449,7 +1449,6 @@ var scene4;
 loader
   .add(prfx + "backgroundfull.png")
   .add(prfx + "page_logo.png")
-
   .add(prfx + "flash.png")
   .add(prfx + "sky.jpg")
   .add(prfx + "container_box.png")

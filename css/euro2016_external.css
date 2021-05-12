@@ -7,9 +7,16 @@
   background-image: url("../public/euro2016_penalty/logo.png");
 }
 
+/* @font-face {
+  font-family: "DIN";
+  src: url(../public/fonts/DINPro-Regular.woff2) format("woff2");
+  font-weight: normal;
+  font-style: normal;
+} */
+
 body {
   background: #242424;
-  font-family: sans-serif;
+  font-family: "DIN", Arial, sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
