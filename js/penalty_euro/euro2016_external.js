@@ -2262,12 +2262,13 @@ function Scene2(stage, renderer, next_scene, background) {
   var empty_score;
   var current_result;
 
+  // Top scorebaord
   containerscore.anchor.x = 0.5;
   containerscore.anchor.y = 0.5;
   containerscore.position.x = 200;
   containerscore.position.y = 41;
-  containerscore.width = 400;
-  containerscore.height = 82;
+  containerscore.width = 500;
+  containerscore.height = 92;
   container_score.position.x =
     outrenderer.original_width + (outrenderer.original_width / 2 - 200);
   container_score.position.y = 0;
@@ -2288,18 +2289,22 @@ function Scene2(stage, renderer, next_scene, background) {
     empty_score.width = 22;
     empty_score.height = 22;
     empty_score.position.x = i * 22 + 12;
-    empty_score.position.y = 60;
+
+    empty_score.position.y = 70;
+
     score_sprites.push(empty_score);
     container_score.addChild(empty_score);
 
-    //Add the other one for the computer score
+    // Add the other one for the computer score
     empty_score = new PIXI.Sprite(resources[prfx + "empty_score.png"].texture);
     empty_score.anchor.x = 0.5;
     empty_score.anchor.y = 0.5;
     empty_score.width = 22;
     empty_score.height = 22;
     empty_score.position.x = 200 + 78 + (i * 22 + 12);
-    empty_score.position.y = 60;
+
+    empty_score.position.y = 70;
+
     score_sprites_auto.push(empty_score);
     container_score.addChild(empty_score);
   }
@@ -2483,46 +2488,47 @@ function Scene2(stage, renderer, next_scene, background) {
 
 var textScoreTeam1 = new PIXI.Text("0", {
   font: "bold 30px Arial",
-  fill: "#74B500",
+  fill: "white",
   align: "center",
 });
 
 var textScoreTeam2 = new PIXI.Text("0", {
   font: "bold 30px Arial",
-  fill: "#74B500",
+  fill: "white",
   align: "center",
 });
 
 var teams = null;
-
+// Team name
 Scene2.prototype.startScene = function (idflag, random_flag) {
   initGame();
   active2 = 1;
   active_score_2 = 1;
   textTeam1 = new PIXI.Text(names[idflag][1], {
     font: "bold 17px Arial",
-    fill: "black",
+    fill: "white",
     align: "left",
   });
   textTeam1.position.x = 45;
-  textTeam1.position.y = 9;
   textTeam2 = new PIXI.Text(names[random_flag][1], {
     font: "bold 17px Arial",
-    fill: "black",
+    fill: "white",
     align: "right",
   });
   textTeam2.anchor.x = 1;
   textTeam2.position.x = 360;
-  textTeam2.position.y = 9;
+
+  textTeam1.position.y = 18;
+  textTeam2.position.y = 18;
 
   textScoreTeam1.position.x = 170;
-  textScoreTeam1.position.y = 48;
+  textScoreTeam1.position.y = 52;
+  textScoreTeam2.position.y = 52;
 
   textScoreTeam2.anchor.x = 0.5;
   textScoreTeam2.position.x = 222;
-  textScoreTeam2.position.y = 48;
 
-  //Adds the flag selected by the user
+  // Adds the flag selected by the user
   var textureFlag = PIXI.Texture.fromImage(prfx + "flags/" + idflag + ".png");
   selected_flag.texture = textureFlag;
   selected_flag.anchor.x = 0.5;
@@ -2530,10 +2536,12 @@ Scene2.prototype.startScene = function (idflag, random_flag) {
   selected_flag.width = 32;
   selected_flag.height = 32;
   selected_flag.position.x = 20;
-  selected_flag.position.y = 18;
+
+  selected_flag.position.y = 28;
+  random_flag_sprite.position.y = 28;
 
   container_score.addChild(selected_flag);
-  //Adds a random flag as opponent
+  // Adds a random flag as opponent
   var textureRandomFlag = PIXI.Texture.fromImage(
     prfx + "flags/" + random_flag + ".png"
   );
@@ -2543,7 +2551,6 @@ Scene2.prototype.startScene = function (idflag, random_flag) {
   random_flag_sprite.width = 32;
   random_flag_sprite.height = 32;
   random_flag_sprite.position.x = 380;
-  random_flag_sprite.position.y = 18;
 
   teams = names[idflag][0] + ":" + names[random_flag][0];
 
@@ -2602,22 +2609,12 @@ Scene2.prototype.clearScene = function () {
       container_goal_ball.visible = false;
       message.visible = false;
     };
-    /*var c1=0;
-          var c2=0;
-          for(var i =0;i < gja.length;i++){
-              if(gja[i] == 1)
-                 c1+=1; 
-          }
-          for(var i =0;i < gjp.length;i++){
-              if(gjp[i] == 1)
-                 c2+=1; 
-          }
-          if(c1 > c2) out_next_scene2.startScene(0,teams);
-          else out_next_scene2.startScene(1,teams);*/
+
     out_next_scene2.startScene(rl, teams);
   }
 };
 
+// Your turn to goal
 Scene2.prototype.repositionElements = function (orientation) {
   if (active2 == 0) {
     container_goal_ball.position.x =
@@ -2632,6 +2629,7 @@ Scene2.prototype.repositionElements = function (orientation) {
   }
   if (orientation >= 1) container_goal_ball.position.y = 0;
   else container_goal_ball.position.y = 130;
+
   container_score.position.y = 10;
 };
 Scene2.prototype.isActive = function () {
@@ -2847,6 +2845,9 @@ function Scene3(stage, renderer, background) {
   logo3.anchor.y = 0.5;
   logo3.position.x = containermain.width / 2;
   logo3.position.y = 370;
+  logo3.height = 45;
+  logo3.width = 45;
+
   container_prize.addChild(logo3);
 
   text_terms_conditions_final = new PIXI.Text(messages["terms_conditions"], {

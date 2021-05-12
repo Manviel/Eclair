@@ -38,7 +38,7 @@ body {
 
 #overlay_game > div.image_container {
   width: 100%;
-  height: 50%;
+  height: 40%;
   margin: 0 auto;
   background-size: contain;
   background-position: 50% 50%;
