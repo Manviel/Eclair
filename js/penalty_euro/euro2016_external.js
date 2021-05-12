@@ -1428,7 +1428,6 @@ var c = new Charm(PIXI);
 var loader = PIXI.loader;
 var resources = PIXI.loader.resources;
 var prfx = "./euro2016_penalty/";
-var anim_logos;
 
 // Containers/Sprites
 var renderer = PIXI.autoDetectRenderer(480, 720, { backgroundColor: 0x242424 });
@@ -1564,7 +1563,6 @@ function setup() {
   background_container.position.y = -170;
 
   createFlashes();
-  createLogos();
 
   background_container.addChild(sky);
 
@@ -1635,16 +1633,9 @@ function resize() {
     background.position.y = 212;
 
     container_flashes.position.y = 212;
-    anim_logos.pause();
+
     container_logos.position.y = 378;
-    anim_logos = c.slide(
-      container_logos,
-      container_logos.position.x + 720,
-      container_logos.position.y,
-      1000,
-      "linear",
-      true
-    );
+
     renderer.original_width = 720;
     renderer.original_height = 480;
   } else {
@@ -1683,16 +1674,9 @@ function resize() {
     background.position.y = 340;
 
     container_flashes.position.y = 340;
-    anim_logos.pause();
+
     container_logos.position.y = 505;
-    anim_logos = c.slide(
-      container_logos,
-      container_logos.position.x + 480,
-      container_logos.position.y,
-      1000,
-      "linear",
-      true
-    );
+
     renderer.original_width = 480;
     renderer.original_height = 720;
   }
@@ -1722,28 +1706,6 @@ function createFlashes() {
   }
 }
 
-function createLogos() {
-  var logo_temp;
-  for (var i = 0; i < 10; i++) {
-    logo_temp = new PIXI.Sprite(resources[prfx + "page_logo.png"].texture);
-    logo_temp.anchor.x = 0.5;
-    logo_temp.anchor.y = 0.5;
-    logo_temp.anchor.y = 0.5;
-    logo_temp.position.x = i * 240;
-    logo_temp.position.y = 25;
-    animateLogo(logo_temp, i);
-    if (i % 2 == 0) logo_temp.visible = false;
-    container_logos.addChild(logo_temp);
-  }
-  anim_logos = c.slide(
-    container_logos,
-    container_logos.position.x + 720,
-    container_logos.position.y,
-    1000,
-    "linear",
-    true
-  );
-}
 function animateLogo(param, i) {
   if (timers[i] == 0) {
     setTimeout(function () {
@@ -1802,7 +1764,7 @@ function Scene1(stage, renderer, next_scene) {
 
   logo.anchor.x = 0.5;
   logo.anchor.y = 0.5;
-  logo.height = 132;
+  logo.height = 250;
   logo.width = 250;
   logo.position.x = outrenderer.original_width / 2;
   logo.position.y = 66;
