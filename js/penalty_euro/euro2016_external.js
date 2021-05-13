@@ -1431,6 +1431,7 @@ var c_url = "https://code.bet777.be/";
 var scene1;
 var scene2;
 var scene3;
+var scene4;
 
 loader
   .add(prfx + "backgroundfull.png")
@@ -1507,6 +1508,26 @@ loader
   .add(prfx + "flags/24.png")
   .load(setup);
 
+function initGame() {
+  var url = c_url + "PenaltyGame/click";
+
+  jQuery.post(
+    url,
+    {
+      data: tn,
+    },
+    function (response) {
+      if (!response.success) {
+        console.log("START", response);
+        scene4.startScene(response.message);
+      } else {
+        scene1.startScene();
+      }
+    },
+    "jsonp"
+  );
+}
+
 function setup() {
   flash = new PIXI.Sprite(resources[prfx + "flash.png"].texture);
   sky = new PIXI.Sprite(resources[prfx + "sky.jpg"].texture);
@@ -1560,8 +1581,9 @@ function setup() {
   scene3 = new Scene3(stage, renderer, background_container);
   scene2 = new Scene2(stage, renderer, scene3, background_container);
   scene1 = new Scene1(stage, renderer, scene2);
-  scene1.startScene();
+  scene4 = new Scene4(stage, renderer, background_container);
 
+  initGame();
   renderImage();
   resize();
 }
@@ -1736,7 +1758,6 @@ var text_init = new PIXI.Text(messages["init_message"], {
 
 function Scene1(stage, renderer, next_scene) {
   // Initialize sprites 1
-
   container_1 = new PIXI.Sprite(resources[prfx + "container_box.png"].texture);
   logo = new PIXI.Sprite(resources[prfx + "logo.png"].texture);
   left_arrow = new PIXI.Sprite(resources[prfx + "arrow_left.png"].texture);
@@ -2477,8 +2498,6 @@ var textScoreTeam2 = new PIXI.Text("0", {
 var teams = null;
 // Team name
 Scene2.prototype.startScene = function (idflag, random_flag) {
-  initGame();
-
   active2 = 1;
   active_score_2 = 1;
   textTeam1 = new PIXI.Text(names[idflag][1], {
@@ -2779,21 +2798,6 @@ function turnInteractiveOnOff(newinteractive) {
   }
 }
 
-function initGame() {
-  var url = c_url + "PenaltyGame/click";
-
-  jQuery.post(
-    url,
-    {
-      data: tn,
-    },
-    function (response) {
-      console.log("START", response);
-    },
-    "jsonp"
-  );
-}
-
 /**
  * JS code for the stage 3
  */
@@ -2987,3 +2991,75 @@ function endGame(teams) {
     "jsonp"
   );
 }
+
+/**
+ * JS code for the stage 4
+ */
+var active4 = 0;
+
+function Scene4(stage, renderer, background) {
+  containerscore = new PIXI.Sprite(
+    resources[prfx + "container_score.png"].texture
+  );
+
+  outstage = stage;
+  outrenderer = renderer;
+  outbackground = background;
+
+  message_final.anchor.x = 0.5;
+  message_final.anchor.y = 0.5;
+  message_final.position.x = container_prize.width / 2;
+  message_final.position.y = container_prize.height;
+
+  container_prize.addChild(message_final);
+
+  c.fadeOut(textTop);
+
+  container_score.addChild(containerscore);
+  outstage.addChild(container_score);
+}
+
+Scene4.prototype.startScene = function (result) {
+  active4 = 1;
+
+  console.log(result);
+
+  message_final.texture =
+    resources[prfx + "messages/try_again_" + lg + ".png"].texture;
+  prize.texture = resources[prfx + "red_card.png"].texture;
+  textBottom.text = result;
+
+  new Tween(
+    outbackground,
+    "position.x",
+    outbackground.position.x - CANVAS_HEIGHT,
+    outstage.transition_rate,
+    true
+  );
+  var tween_cont_final = new Tween(
+    container_prize,
+    "position.x",
+    outrenderer.original_width / 2 - 420 / 2,
+    outstage.transition_rate,
+    true
+  );
+
+  tween_cont_final.setOnComplete(function (params) {
+    showMessage(result);
+  });
+};
+
+Scene4.prototype.clearScene = function () {};
+Scene4.prototype.repositionElements = function (orientation) {
+  if (active4 == 1) {
+    container_prize.position.x = outrenderer.original_width / 2 - 210;
+  } else {
+    container_prize.position.x =
+      outrenderer.original_width * 2 + (outrenderer.original_width / 2 - 210);
+  }
+  if (orientation >= 1) container_prize.position.y = 80;
+  else container_prize.position.y = 170;
+};
+Scene4.prototype.isActive = function () {
+  return active4 === 1 ? true : false;
+};
