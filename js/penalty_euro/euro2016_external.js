@@ -2881,9 +2881,6 @@ function Scene3(stage, renderer, background) {
   message_final.position.x = container_prize.width / 2;
   message_final.position.y = container_prize.height;
 
-  c.fadeOut(message_final);
-  container_prize.addChild(message_final);
-
   textBottom = new PIXI.Text(messages["loser"], {
     font: "bold 16px DIN",
     fill: "white",
@@ -2894,7 +2891,6 @@ function Scene3(stage, renderer, background) {
   textBottom.anchor.y = 0.5;
   textBottom.position.x = containermain.width / 2;
   textBottom.position.y = 355;
-  c.fadeOut(textBottom);
 
   textTop = new PIXI.Text(messages["top_winner"], {
     font: "bold 18px DIN",
@@ -2905,8 +2901,12 @@ function Scene3(stage, renderer, background) {
   textTop.anchor.y = 0.5;
   textTop.position.x = containermain.width / 2;
   textTop.position.y = 110;
+
+  c.fadeOut(message_final);
+  c.fadeOut(textBottom);
   c.fadeOut(textTop);
 
+  container_prize.addChild(message_final);
   container_prize.addChild(textBottom);
   container_prize.addChild(textTop);
 
@@ -2978,7 +2978,8 @@ function showMessage(result) {
   );
   tween_message_final.onComplete = function () {
     c.fadeIn(textBottom);
-    if (result == 1 || result == 2) {
+
+    if (result == 1) {
       c.fadeIn(textTop);
       requestAnimationFrame(animatePrizeWinner);
       c.breathe(prize, 0.85, 0.85, 20, false);
@@ -3026,6 +3027,7 @@ var active4 = 0;
 var container_error = new PIXI.Container();
 var errorBottom;
 var prizeLogo;
+var error_final = new PIXI.Sprite();
 
 function Scene4(stage, renderer, background) {
   var logo4 = new PIXI.Sprite(resources[prfx + "small_logo.png"].texture);
@@ -3061,12 +3063,12 @@ function Scene4(stage, renderer, background) {
   prizeLogo.width = 180;
   container_error.addChild(prizeLogo);
 
-  message_final.anchor.x = 0.5;
-  message_final.anchor.y = 0.5;
-  message_final.position.x = containerWrap.width - 35;
-  message_final.position.y = container_error.height;
+  error_final.anchor.x = 0.5;
+  error_final.anchor.y = 0.5;
+  error_final.position.x = containerWrap.width - 35;
+  error_final.position.y = 80;
 
-  container_error.addChild(message_final);
+  container_error.addChild(error_final);
 
   errorBottom = new PIXI.Text(messages["loser"], {
     font: "bold 16px DIN",
@@ -3086,7 +3088,7 @@ function Scene4(stage, renderer, background) {
 Scene4.prototype.startScene = function (result) {
   active4 = 1;
 
-  message_final.texture =
+  error_final.texture =
     resources[prfx + "messages/try_again_" + lg + ".png"].texture;
   prizeLogo.texture = resources[prfx + "red_card.png"].texture;
   errorBottom.text = result;
@@ -3107,7 +3109,8 @@ Scene4.prototype.repositionElements = function (orientation) {
     container_error.position.y = 80;
   } else {
     container_error.position.y = 170;
-    container_error.position.x = -100;
+
+    if (active4) container_error.position.x = -100;
   }
 };
 Scene4.prototype.isActive = function () {
