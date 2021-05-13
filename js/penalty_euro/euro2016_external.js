@@ -1810,7 +1810,7 @@ function Scene1(stage, renderer, next_scene) {
   container_1.position.x = 0;
   container_1.position.y = 0;
   container_1.height = 420;
-  container_1.width = 420;
+  container_1.width = 440;
   container_flags.addChild(container_1);
 
   text_temp = new PIXI.Text(messages["title_text"], {
@@ -1820,12 +1820,12 @@ function Scene1(stage, renderer, next_scene) {
   });
   text_temp.anchor.x = 0.5;
   text_temp.anchor.y = 0.5;
-  text_temp.position.x = container_1.width / 2;
+  text_temp.position.x = container_1.width / 2 + 10;
   text_temp.position.y = 60 + 420;
   container_flags.addChild(text_temp);
   container_flags.position.x = outrenderer.original_width / 2 - 420 / 2;
   container_flags.position.y = outrenderer.original_height / 2 - 210;
-  sub_container_flags.position.x = 115;
+  sub_container_flags.position.x = 125;
   sub_container_flags.position.y = 30 + 420;
   var row = 1;
   var col = 1;
@@ -1944,7 +1944,7 @@ function Scene1(stage, renderer, next_scene) {
   left_arrow.anchor.y = 0.5;
   left_arrow.width = 40;
   left_arrow.height = 40;
-  left_arrow.position.x = 40;
+  left_arrow.position.x = 50;
   left_arrow.position.y = 195 + 420;
   left_arrow.interactive = true;
   left_arrow.buttonMode = true;
@@ -1983,7 +1983,7 @@ function Scene1(stage, renderer, next_scene) {
   right_arrow.anchor.y = 0.5;
   right_arrow.width = 40;
   right_arrow.height = 40;
-  right_arrow.position.x = 380;
+  right_arrow.position.x = 390;
   right_arrow.position.y = 195 + 420;
   right_arrow.interactive = true;
   right_arrow.buttonMode = true;
