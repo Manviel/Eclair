@@ -2996,69 +2996,87 @@ function endGame(teams) {
  * JS code for the stage 4
  */
 var active4 = 0;
+var container_error = new PIXI.Container();
+var errorBottom;
+var prizeLogo;
 
 function Scene4(stage, renderer, background) {
-  containerscore = new PIXI.Sprite(
-    resources[prfx + "container_score.png"].texture
+  var logo4 = new PIXI.Sprite(resources[prfx + "small_logo.png"].texture);
+  var containerWrap = new PIXI.Sprite(
+    resources[prfx + "container_box.png"].texture
   );
+  prizeLogo = new PIXI.Sprite(resources[prfx + "red_card.png"].texture);
 
   outstage = stage;
   outrenderer = renderer;
   outbackground = background;
 
+  containerWrap.position.x = containerWrap.width / 2 - 35;
+  containerWrap.position.y = 0;
+  containerWrap.height = 480;
+  containerWrap.width = 420;
+  container_error.addChild(containerWrap);
+
+  logo4.anchor.x = 0.5;
+  logo4.anchor.y = 0.5;
+  logo4.position.x = containerWrap.width - 35;
+  logo4.position.y = 420;
+  logo4.height = 45;
+  logo4.width = 45;
+
+  container_error.addChild(logo4);
+
+  prizeLogo.anchor.x = 0.5;
+  prizeLogo.anchor.y = 0.5;
+  prizeLogo.position.x = containerWrap.width - 35;
+  prizeLogo.position.y = 220;
+  prizeLogo.height = 180;
+  prizeLogo.width = 180;
+  container_error.addChild(prizeLogo);
+
   message_final.anchor.x = 0.5;
   message_final.anchor.y = 0.5;
-  message_final.position.x = container_prize.width / 2;
-  message_final.position.y = container_prize.height;
+  message_final.position.x = containerWrap.width - 35;
+  message_final.position.y = container_error.height;
 
-  container_prize.addChild(message_final);
+  container_error.addChild(message_final);
 
-  c.fadeOut(textTop);
+  errorBottom = new PIXI.Text(messages["loser"], {
+    font: "bold 16px DIN",
+    fill: "white",
+    align: "center",
+  });
 
-  container_score.addChild(containerscore);
-  outstage.addChild(container_score);
+  errorBottom.anchor.x = 0.5;
+  errorBottom.anchor.y = 0.5;
+  errorBottom.position.x = containerWrap.width - 35;
+  errorBottom.position.y = 355;
+
+  container_error.addChild(errorBottom);
+  outstage.addChild(container_error);
 }
 
 Scene4.prototype.startScene = function (result) {
   active4 = 1;
 
-  console.log(result);
-
   message_final.texture =
     resources[prfx + "messages/try_again_" + lg + ".png"].texture;
-  prize.texture = resources[prfx + "red_card.png"].texture;
-  textBottom.text = result;
+  prizeLogo.texture = resources[prfx + "red_card.png"].texture;
+  errorBottom.text = result;
 
-  new Tween(
-    outbackground,
-    "position.x",
-    outbackground.position.x - CANVAS_HEIGHT,
-    outstage.transition_rate,
-    true
-  );
-  var tween_cont_final = new Tween(
-    container_prize,
-    "position.x",
-    outrenderer.original_width / 2 - 420 / 2,
-    outstage.transition_rate,
-    true
-  );
-
-  tween_cont_final.setOnComplete(function (params) {
-    showMessage(result);
-  });
+  showMessage();
 };
 
 Scene4.prototype.clearScene = function () {};
 Scene4.prototype.repositionElements = function (orientation) {
   if (active4 == 1) {
-    container_prize.position.x = outrenderer.original_width / 2 - 210;
+    container_error.position.x = outrenderer.original_width / 2 - 210;
   } else {
-    container_prize.position.x =
+    container_error.position.x =
       outrenderer.original_width * 2 + (outrenderer.original_width / 2 - 210);
   }
-  if (orientation >= 1) container_prize.position.y = 80;
-  else container_prize.position.y = 170;
+  if (orientation >= 1) container_error.position.y = 80;
+  else container_error.position.y = 170;
 };
 Scene4.prototype.isActive = function () {
   return active4 === 1 ? true : false;
