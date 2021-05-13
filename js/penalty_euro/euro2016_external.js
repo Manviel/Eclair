@@ -3107,7 +3107,7 @@ Scene4.prototype.startScene = function (result) {
 Scene4.prototype.clearScene = function () {};
 Scene4.prototype.repositionElements = function (orientation) {
   if (active4 == 1) {
-    container_error.position.x = 0;
+    container_error.position.x = -25;
   } else {
     container_error.position.x =
       outrenderer.original_width * 2 + (outrenderer.original_width / 2 - 210);
