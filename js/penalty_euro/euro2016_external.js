@@ -1368,30 +1368,30 @@ PIXI.SCALE_MODES.DEFAULT = PIXI.SCALE_MODES.NEAREST;
 PIXI.utils._saidHello = true;
 // initialization
 var names = {
-  1: ["ENG", "England"],
-  2: ["FRA", "France"],
-  3: ["ITA", "Italy"],
-  4: ["BEL", "Belgium"],
-  5: ["GER", "Germany"],
-  6: ["SPA", "Spain"],
-  7: ["POR", "Portugal"],
-  8: ["AUS", "Austria"],
-  9: ["RUS", "Russia"],
-  10: ["IRE", "Ireland"],
-  11: ["WAL", "Wales"],
-  12: ["ROM", "Romania"],
-  13: ["CRO", "Croatia"],
   14: ["TUR", "Turkey"],
+  3: ["ITA", "Italy"],
+  11: ["WAL", "Wales"],
+  19: ["SWZ", "Switzerland"],
+  12: ["DNK", "Denmark"],
+  21: ["FIN", "Finland"],
+  4: ["BEL", "Belgium"],
+  9: ["RUS", "Russia"],
+  17: ["NLD", "Netherlands"],
+  20: ["UKR", "Ukraine"],
+  8: ["AUS", "Austria"],
+  24: ["MKD", "North Macedonia"],
+  1: ["ENG", "England"],
+  13: ["CRO", "Croatia"],
+  22: ["SCT", "Scotland"],
+  18: ["CZR", "C. Republic"],
+  6: ["SPA", "Spain"],
   15: ["SWE", "Sweden"],
   16: ["POL", "Poland"],
-  17: ["SWZ", "Switzerland"],
-  18: ["CZR", "C. Republic"],
-  19: ["HUN", "Hungary"],
-  20: ["UKR", "Ukraine"],
-  21: ["NIR", "N. Ireland"],
-  22: ["ICE", "Iceland"],
   23: ["SLO", "Slovakia"],
-  24: ["ALB", "Albania"],
+  10: ["HUN", "Hungary"],
+  7: ["POR", "Portugal"],
+  2: ["FRA", "France"],
+  5: ["GER", "Germany"],
 };
 var messages = {
   winner: "CONGRATULATIONS!",
@@ -1729,7 +1729,7 @@ var text_temp;
 var text_play;
 
 var text_init = new PIXI.Text(messages["init_message"], {
-  font: "italic 19px Arial",
+  font: "19px DIN",
   fill: "white",
   align: "center",
 });
@@ -1769,7 +1769,7 @@ function Scene1(stage, renderer, next_scene) {
   container_flags.addChild(container_1);
 
   text_temp = new PIXI.Text(messages["title_text"], {
-    font: "italic 19px Arial",
+    font: "19px DIN",
     fill: "white",
     align: "center",
   });
@@ -1789,7 +1789,7 @@ function Scene1(stage, renderer, next_scene) {
 
   for (var i = 0; i < 12; i++) {
     name_flag = new PIXI.Text(names[i + 1][0], {
-      font: "bold 16px Arial",
+      font: "bold 16px DIN",
       fill: "white",
       align: "center",
     });
@@ -1843,7 +1843,7 @@ function Scene1(stage, renderer, next_scene) {
   positionx = 0;
   for (var i = 12; i < 24; i++) {
     name_flag = new PIXI.Text(names[i + 1][0], {
-      font: "bold 16px Arial",
+      font: "bold 16px DIN",
       fill: "white",
       align: "center",
     });
@@ -2458,13 +2458,13 @@ function Scene2(stage, renderer, next_scene, background) {
 }
 
 var textScoreTeam1 = new PIXI.Text("0", {
-  font: "bold 30px Arial",
+  font: "bold 30px DIN",
   fill: "white",
   align: "center",
 });
 
 var textScoreTeam2 = new PIXI.Text("0", {
-  font: "bold 30px Arial",
+  font: "bold 30px DIN",
   fill: "white",
   align: "center",
 });
@@ -2477,13 +2477,13 @@ Scene2.prototype.startScene = function (idflag, random_flag) {
   active2 = 1;
   active_score_2 = 1;
   textTeam1 = new PIXI.Text(names[idflag][1], {
-    font: "bold 17px Arial",
+    font: "bold 17px DIN",
     fill: "white",
     align: "left",
   });
   textTeam1.position.x = 45;
   textTeam2 = new PIXI.Text(names[random_flag][1], {
-    font: "bold 17px Arial",
+    font: "bold 17px DIN",
     fill: "white",
     align: "right",
   });
@@ -2697,7 +2697,7 @@ function alterTurnImages() {
   tipTextBot = new PIXI.Text(
     current_turn === 0 ? "YOU TURN TO KICK!" : "YOU TURN TO GOAL!",
     {
-      font: "bold 18px Arial",
+      font: "bold 18px DIN",
       fill: "white",
       align: "center",
     }
@@ -2846,7 +2846,7 @@ function Scene3(stage, renderer, background) {
   container_prize.addChild(message_final);
 
   textBottom = new PIXI.Text(messages["loser"], {
-    font: "bold italic 16px Arial",
+    font: "bold 16px DIN",
     fill: "white",
     align: "center",
   });
@@ -2858,7 +2858,7 @@ function Scene3(stage, renderer, background) {
   c.fadeOut(textBottom);
 
   textTop = new PIXI.Text(messages["top_winner"], {
-    font: "bold italic 18px Arial",
+    font: "bold 18px DIN",
     fill: "white",
     align: "center",
   });
