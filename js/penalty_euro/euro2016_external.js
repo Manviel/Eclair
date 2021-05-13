@@ -2120,8 +2120,7 @@ var container_goal_ball = new PIXI.Container();
 var container_score = new PIXI.Container();
 var container_icon = new PIXI.Container();
 var scene_call = 0;
-var gjp = [];
-var gja = [];
+
 var teams_selected = "";
 
 var FRAMES = [prfx + "football.png", prfx + "football.png"];
@@ -2150,8 +2149,7 @@ var random_flag_sprite = new PIXI.Sprite();
 var numbers_random = [1, 2, 3, 4, 5, 6];
 var score_sprites = [];
 var score_sprites_auto = [];
-var score_goal = [-1, -1, -1, -1, -1];
-var score_goal_auto = [-1, -1, -1, -1, -1];
+
 var number_clicks_goal = 0;
 var number_clicks_glove = 0;
 var current_turn_sum = 0;
@@ -2243,6 +2241,13 @@ function Scene2(stage, renderer, next_scene, background) {
   container_score.position.y = 0;
 
   container_score.addChild(containerscore);
+
+  // Combinations
+  var score_goal = [-1, -1, -1, -1, -1];
+  var score_goal_auto = [-1, -1, -1, -1, -1];
+  var gja = [1, 1, 0, 1, 1];
+  var gjp = [0, 0, 0, 0, 0];
+  // var decodedString = atob("WzEsMSwwLDEsMV0=");
 
   for (var i = 0; i < score_goal.length; i++) {
     if (i !== 0)
