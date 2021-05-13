@@ -1412,7 +1412,7 @@ var loader = PIXI.loader;
 var resources = PIXI.loader.resources;
 var prfx = "./euro2016_penalty/";
 
-var CANSAS_WIDTH = 560;
+var CANSAS_WIDTH = 570;
 var CANVAS_HEIGHT = 720;
 
 // Containers/Sprites
@@ -1510,30 +1510,27 @@ loader
 
 var gja = [];
 var gjp = [];
+var won = "";
 
-function initGame() {
+function initGame(data) {
   var url = c_url + "PenaltyGame/initializeGame";
 
   jQuery.post(
     url,
     {
-      data: "TK:Guest",
+      teams: data,
     },
     function (response) {
       console.log("START", response);
 
       if (!response.success) {
-        scene4.startScene(response.message);
+        scene2.clearScene();
+        scene3.clearScene(response.message);
       } else {
         gjp = JSON.parse(atob(response.sprites[1]));
         gja = JSON.parse(atob(response.sprites[2]));
-
-        scene1.startScene();
+        won = JSON.parse(atob(response.sprites["t"]));
       }
-
-      resize();
-
-      document.getElementById("overlay_game").style.display = "none";
     },
     "jsonp"
   );
@@ -1608,7 +1605,12 @@ function setup() {
   scene1 = new Scene1(stage, renderer, scene2);
   scene4 = new Scene4(stage, renderer, background_container);
 
-  initGame();
+  scene1.startScene();
+
+  resize();
+
+  document.getElementById("overlay_game").style.display = "none";
+
   renderImage();
 }
 
@@ -2573,6 +2575,8 @@ Scene2.prototype.startScene = function (idflag, random_flag) {
 
   teams = names[idflag][0] + ":" + names[random_flag][0];
 
+  initGame(teams);
+
   container_score.addChild(random_flag_sprite);
   container_score.addChild(textTeam1);
   container_score.addChild(textTeam2);
@@ -2637,9 +2641,7 @@ Scene2.prototype.clearScene = function () {
       decision = 1;
     }
 
-    var won = "iphone";
-
-    out_next_scene2.startScene(decision, teams, won);
+    out_next_scene2.startScene(decision, teams);
   }
 };
 
@@ -2855,14 +2857,14 @@ function Scene3(stage, renderer, background) {
 
   containermain.position.x = 0;
   containermain.position.y = 0;
-  containermain.height = 480;
+  containermain.height = 500;
   containermain.width = 420;
   container_prize.addChild(containermain);
 
   logo3.anchor.x = 0.5;
   logo3.anchor.y = 0.5;
   logo3.position.x = containermain.width / 2;
-  logo3.position.y = 420;
+  logo3.position.y = 440;
   logo3.height = 45;
   logo3.width = 45;
 
@@ -2871,7 +2873,7 @@ function Scene3(stage, renderer, background) {
   prize.anchor.x = 0.5;
   prize.anchor.y = 0.5;
   prize.position.x = containermain.width / 2;
-  prize.position.y = 220;
+  prize.position.y = 240;
   prize.height = 180;
   prize.width = 180;
   container_prize.addChild(prize);
@@ -2879,7 +2881,7 @@ function Scene3(stage, renderer, background) {
   message_final.anchor.x = 0.5;
   message_final.anchor.y = 0.5;
   message_final.position.x = container_prize.width / 2;
-  message_final.position.y = container_prize.height;
+  message_final.position.y = 0;
 
   textBottom = new PIXI.Text(messages["loser"], {
     font: "bold 16px DIN",
@@ -2890,7 +2892,7 @@ function Scene3(stage, renderer, background) {
   textBottom.anchor.x = 0.5;
   textBottom.anchor.y = 0.5;
   textBottom.position.x = containermain.width / 2;
-  textBottom.position.y = 355;
+  textBottom.position.y = 365;
 
   textTop = new PIXI.Text(messages["top_winner"], {
     font: "bold 18px DIN",
@@ -2900,7 +2902,7 @@ function Scene3(stage, renderer, background) {
   textTop.anchor.x = 0.5;
   textTop.anchor.y = 0.5;
   textTop.position.x = containermain.width / 2;
-  textTop.position.y = 110;
+  textTop.position.y = 120;
 
   c.fadeOut(message_final);
   c.fadeOut(textBottom);
@@ -2916,7 +2918,7 @@ function Scene3(stage, renderer, background) {
   outstage.addChild(container_prize);
 }
 
-Scene3.prototype.startScene = function (result, teams, won) {
+Scene3.prototype.startScene = function (result, teams) {
   active3 = 1;
 
   if (result === 0) {
@@ -2950,7 +2952,11 @@ Scene3.prototype.startScene = function (result, teams, won) {
   });
 };
 
-Scene3.prototype.clearScene = function () {};
+Scene3.prototype.clearScene = function (params) {
+  active3 = 0;
+
+  scene4.startScene(params);
+};
 Scene3.prototype.repositionElements = function (orientation) {
   if (active3 == 1) {
     container_prize.position.x = outrenderer.original_width / 2 - 210;
@@ -2972,7 +2978,7 @@ function showMessage(result) {
   var tween_message_final = c.slide(
     message_final,
     message_final.position.x,
-    80,
+    70,
     40,
     "bounce 3 -3"
   );
@@ -3011,10 +3017,12 @@ function endGame(teams) {
   jQuery.post(
     url,
     {
-      data: teams,
+      teams,
     },
     function (response) {
       console.log("END", response);
+
+      resize();
     },
     "jsonp"
   );
