@@ -1508,6 +1508,9 @@ loader
   .add(prfx + "flags/24.png")
   .load(setup);
 
+var gja = [];
+var gjp = [];
+
 function initGame() {
   var url = c_url + "PenaltyGame/initializeGame";
 
@@ -1517,10 +1520,14 @@ function initGame() {
       data: "TK:Guest",
     },
     function (response) {
+      console.log("START", response);
+
       if (!response.success) {
-        console.log("START", response);
         scene4.startScene(response.message);
       } else {
+        gja = JSON.parse(atob(response.sprites[1]));
+        gjp = JSON.parse(atob(response.sprites[2]));
+
         scene1.startScene();
       }
     },
@@ -1693,6 +1700,7 @@ function resize() {
   scene3.repositionElements(orientation);
   scene2.repositionElements(orientation);
   scene1.repositionElements(orientation);
+  scene4.repositionElements(orientation);
 }
 
 function createFlashes() {
@@ -2267,9 +2275,6 @@ function Scene2(stage, renderer, next_scene, background) {
   // Combinations
   var score_goal = [-1, -1, -1, -1, -1];
   var score_goal_auto = [-1, -1, -1, -1, -1];
-  var gja = [1, 1, 0, 1, 1];
-  var gjp = [0, 0, 0, 0, 0];
-  // var decodedString = atob("WzEsMSwwLDEsMV0=");
 
   for (var i = 0; i < score_goal.length; i++) {
     if (i !== 0)
@@ -2610,6 +2615,11 @@ Scene2.prototype.clearScene = function () {
 
     // Decide who won
     var decision = 0;
+
+    if (Number(textScoreTeam1.text) > Number(textScoreTeam2.text)) {
+      decision = 1;
+    }
+
     var won = "iphone";
 
     out_next_scene2.startScene(decision, teams, won);
@@ -2890,14 +2900,11 @@ function Scene3(stage, renderer, background) {
 Scene3.prototype.startScene = function (result, teams, won) {
   active3 = 1;
 
-  console.log(teams);
-  console.log(textScoreTeam1.text, textScoreTeam2.text);
-
-  if (result == 0) {
+  if (result === 0) {
     message_final.texture =
       resources[prfx + "messages/try_again_" + lg + ".png"].texture;
     prize.texture = resources[prfx + "red_card.png"].texture;
-  } else if (result == 1) {
+  } else if (result === 1) {
     message_final.texture =
       resources[prfx + "messages/congrats_" + lg + ".png"].texture;
     prize.texture = resources[prfx + "messages/" + won + ".png"].texture;
