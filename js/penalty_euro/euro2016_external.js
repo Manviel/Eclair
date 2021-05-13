@@ -1506,6 +1506,7 @@ loader
   .add(prfx + "flags/22.png")
   .add(prfx + "flags/23.png")
   .add(prfx + "flags/24.png")
+  .add(prfx + "play.png")
   .load(getTranslations);
 
 var gja = [];
@@ -2746,8 +2747,18 @@ function alterTurnImages() {
     container_icon.position.y = 95;
   }
 
+  var blackBox = new PIXI.Sprite(resources[prfx + "play.png"].texture);
+
+  blackBox.anchor.x = 0.5;
+  blackBox.anchor.y = 0.5;
+  blackBox.position.x = containermain.width / 2 + 30;
+  blackBox.position.y = 515;
+  blackBox.height = 50;
+  blackBox.width = 380;
+
   container_goal_ball.removeChild(tipTextBot);
 
+  // play
   tipTextBot = new PIXI.Text(
     current_turn === 0
       ? messages["your_turn_to_kick"]
@@ -2764,6 +2775,7 @@ function alterTurnImages() {
   tipTextBot.position.x = containermain.width / 2 + 30;
   tipTextBot.position.y = 515;
 
+  container_goal_ball.addChild(blackBox);
   container_goal_ball.addChild(tipTextBot);
 
   // Assign user score
@@ -2887,6 +2899,8 @@ function Scene3(stage, renderer, background) {
     font: "bold 16px DIN",
     fill: "white",
     align: "center",
+    wordWrap: true,
+    wordWrapWidth: 370,
   });
 
   textBottom.anchor.x = 0.5;
@@ -3082,6 +3096,8 @@ function Scene4(stage, renderer, background) {
     font: "bold 16px DIN",
     fill: "white",
     align: "center",
+    wordWrap: true,
+    wordWrapWidth: 370,
   });
 
   errorBottom.anchor.x = 0.5;
