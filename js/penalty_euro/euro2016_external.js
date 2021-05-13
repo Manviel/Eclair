@@ -1506,7 +1506,7 @@ loader
   .add(prfx + "flags/22.png")
   .add(prfx + "flags/23.png")
   .add(prfx + "flags/24.png")
-  .load(setup);
+  .load(getTranslations);
 
 var gja = [];
 var gjp = [];
@@ -1525,11 +1525,27 @@ function initGame() {
       if (!response.success) {
         scene4.startScene(response.message);
       } else {
-        gja = JSON.parse(atob(response.sprites[1]));
-        gjp = JSON.parse(atob(response.sprites[2]));
+        gjp = JSON.parse(atob(response.sprites[1]));
+        gja = JSON.parse(atob(response.sprites[2]));
 
         scene1.startScene();
       }
+
+      resize();
+    },
+    "jsonp"
+  );
+}
+
+function getTranslations() {
+  var url = c_url + "PenaltyGame/getTransactions/";
+
+  jQuery.post(
+    url,
+    function (response) {
+      messages = response;
+
+      setup();
     },
     "jsonp"
   );
@@ -1592,7 +1608,6 @@ function setup() {
 
   initGame();
   renderImage();
-  resize();
 }
 
 function renderImage() {
@@ -2730,7 +2745,9 @@ function alterTurnImages() {
   container_goal_ball.removeChild(tipTextBot);
 
   tipTextBot = new PIXI.Text(
-    current_turn === 0 ? "YOU TURN TO KICK!" : "YOU TURN TO GOAL!",
+    current_turn === 0
+      ? messages["your_turn_to_kick"]
+      : messages["your_turn_to_save"],
     {
       font: "bold 18px DIN",
       fill: "white",
@@ -2986,7 +3003,7 @@ function animatePrizeWinner() {
 }
 
 function endGame(teams) {
-  var url = c_url + "PenaltyEURO2016/endGame/";
+  var url = c_url + "PenaltyGame/endGame/";
 
   jQuery.post(
     url,
@@ -3078,13 +3095,18 @@ Scene4.prototype.startScene = function (result) {
 Scene4.prototype.clearScene = function () {};
 Scene4.prototype.repositionElements = function (orientation) {
   if (active4 == 1) {
-    container_error.position.x = outrenderer.original_width / 2 - 210;
+    container_error.position.x = 0;
   } else {
     container_error.position.x =
       outrenderer.original_width * 2 + (outrenderer.original_width / 2 - 210);
   }
-  if (orientation >= 1) container_error.position.y = 80;
-  else container_error.position.y = 170;
+
+  if (orientation >= 1) {
+    container_error.position.y = 80;
+  } else {
+    container_error.position.y = 170;
+    container_error.position.x = -100;
+  }
 };
 Scene4.prototype.isActive = function () {
   return active4 === 1 ? true : false;
