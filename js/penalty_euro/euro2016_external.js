@@ -1404,8 +1404,8 @@ var messages = {
 };
 var timers = [0, 1, 0, 1, 0, 1, 0, 1, 0, 1];
 
-var tn = "TK:Guest";
-var lg = "en";
+var lg = new URL(document.URL).searchParams.get("lang") || "en";
+
 var stage = new PIXI.Container();
 var c = new Charm(PIXI);
 var loader = PIXI.loader;
@@ -1509,12 +1509,12 @@ loader
   .load(setup);
 
 function initGame() {
-  var url = c_url + "PenaltyGame/click";
+  var url = c_url + "PenaltyGame/initializeGame";
 
   jQuery.post(
     url,
     {
-      data: tn,
+      data: "TK:Guest",
     },
     function (response) {
       if (!response.success) {
@@ -1689,6 +1689,7 @@ function resize() {
   document.getElementsByTagName("canvas")[0].style.height = height_new + "px";
   document.getElementsByTagName("canvas")[0].style.width = width_new + "px";
   document.getElementById("container_shoot").style.width = width_new + "px";
+
   scene3.repositionElements(orientation);
   scene2.repositionElements(orientation);
   scene1.repositionElements(orientation);
