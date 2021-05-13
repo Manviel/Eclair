@@ -1532,6 +1532,8 @@ function initGame() {
       }
 
       resize();
+
+      document.getElementById("overlay_game").style.display = "none";
     },
     "jsonp"
   );
