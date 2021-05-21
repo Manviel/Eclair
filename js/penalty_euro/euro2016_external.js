@@ -1401,6 +1401,8 @@ var messages = {
   title_text: "CHOOSE A TEAM TO START!",
   play: "PLAY",
   init_message: "",
+  your_turn_to_kick: "your_turn_to_kick",
+  your_turn_to_save: "your_turn_to_save",
 };
 var timers = [0, 1, 0, 1, 0, 1, 0, 1, 0, 1];
 
@@ -1426,7 +1428,6 @@ var background;
 var sky;
 var flash;
 var loading_container = new PIXI.Container();
-var c_url = "https://code.bet777.be/";
 // Scenes
 var scene1;
 var scene2;
@@ -1514,41 +1515,27 @@ var gjp = [];
 var won = "";
 
 function initGame(data) {
-  var url = c_url + "PenaltyGame/initializeGame";
-
-  jQuery.post(
-    url,
-    {
-      teams: data,
+  var response = {
+    success: true,
+    sprites: {
+      1: "WzEsMSwxLDEsMV0=",
+      2: "WzAsMSwxLDAsMV0=",
+      t: "InZvdWNoZXJfMTBfZW4i",
     },
-    function (response) {
-      console.log("START", response);
+  };
 
-      if (!response.success) {
-        scene2.clearScene();
-        scene3.clearScene(response.message);
-      } else {
-        gjp = JSON.parse(atob(response.sprites[1]));
-        gja = JSON.parse(atob(response.sprites[2]));
-        won = JSON.parse(atob(response.sprites["t"]));
-      }
-    },
-    "jsonp"
-  );
+  if (!response.success) {
+    scene2.clearScene();
+    scene3.clearScene(response.message);
+  } else {
+    gjp = JSON.parse(atob(response.sprites[1]));
+    gja = JSON.parse(atob(response.sprites[2]));
+    won = JSON.parse(atob(response.sprites["t"]));
+  }
 }
 
 function getTranslations() {
-  var url = c_url + "PenaltyGame/getTransactions/";
-
-  jQuery.post(
-    url,
-    function (response) {
-      messages = response;
-
-      setup();
-    },
-    "jsonp"
-  );
+  setup();
 }
 
 function setup() {
@@ -3026,20 +3013,7 @@ function animatePrizeWinner() {
 }
 
 function endGame(teams) {
-  var url = c_url + "PenaltyGame/endGame/";
-
-  jQuery.post(
-    url,
-    {
-      teams,
-    },
-    function (response) {
-      console.log("END", response);
-
-      resize();
-    },
-    "jsonp"
-  );
+  console.log(teams);
 }
 
 /**

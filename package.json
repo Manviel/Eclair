@@ -1,7 +1,7 @@
 {
   "name": "eclair",
   "version": "1.0.0",
-  "description": "- Credentials for Raspberry\r ```\r login: pi\r password: raspberry\r ```",
+  "description": "Credentials for Raspberry",
   "main": "index.js",
   "scripts": {
     "dev": "parcel index.html",
