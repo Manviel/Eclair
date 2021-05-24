@@ -1177,16 +1177,16 @@ THE SOFTWARE.
 */
 
 /*
-	@param {Object} object: Any object you want to tween. For example: PIXI.Sprite
-	@param {String} property: the property which needs to be changed. Use "property.property.property..." if the property is little deeper. Pass "" to create a Wait-Tween
-	@param {float} value: targetValue of tweening
-	@param {int} frames: duration of the tween in frames.
-	@param {boolean} autostart: starting when created? Set to false if you use it with ChainedTween
-	
-	use examples:
-	new Tween(sprite, "position.x", 100, 60, true);
-	new Tween(sprite.position, "x", 100, 60, true);
-	
+@param {Object} object: Any object you want to tween. For example: PIXI.Sprite
+@param {String} property: the property which needs to be changed. Use "property.property.property..." if the property is little deeper. Pass "" to create a Wait-Tween
+@param {float} value: targetValue of tweening
+@param {int} frames: duration of the tween in frames.
+@param {boolean} autostart: starting when created? Set to false if you use it with ChainedTween
+
+use examples:
+new Tween(sprite, "position.x", 100, 60, true);
+new Tween(sprite.position, "x", 100, 60, true);
+
 */
 function Tween(object, property, value, frames, autostart) {
   this.object = object;
@@ -1329,12 +1329,12 @@ Tween.outCubic = function (t, b, c, d) {
 // CHAINED TWEEN
 
 /*
-	@param {Array} tweens: Array of Tweens.
-	
-	example:
-	var tween1 = new Tween(sprite, "position.x", 100, 60, false);
-	var tween2 = new Tween(sprite, "position.x", 0, 60, false);
-	new ChainedTween([tween1, tween2]);
+@param {Array} tweens: Array of Tweens.
+
+example:
+var tween1 = new Tween(sprite, "position.x", 100, 60, false);
+var tween2 = new Tween(sprite, "position.x", 0, 60, false);
+new ChainedTween([tween1, tween2]);
 */
 function ChainedTween(tweens) {
   this.tweens = tweens;
@@ -1518,8 +1518,8 @@ function initGame(data) {
   var response = {
     success: true,
     sprites: {
-      1: "WzEsMSwxLDEsMV0=",
-      2: "WzAsMSwxLDAsMV0=",
+      1: "WzEsMCwwLDEsMF0=", // [1,0,0,1,0]
+      2: "WzEsMSwwLDEsMF0=", // [1,1,0,1,0]
       t: "InZvdWNoZXJfMTBfZW4i",
     },
   };
@@ -1528,8 +1528,8 @@ function initGame(data) {
     scene2.clearScene();
     scene3.clearScene(response.message);
   } else {
-    gjp = JSON.parse(atob(response.sprites[1]));
-    gja = JSON.parse(atob(response.sprites[2]));
+    gjp = JSON.parse(atob(response.sprites[1])); // player
+    gja = JSON.parse(atob(response.sprites[2])); // computer
     won = JSON.parse(atob(response.sprites["t"]));
   }
 }
@@ -2327,41 +2327,29 @@ function Scene2(stage, renderer, next_scene, background) {
       if (this.interactive == false) return;
       container_icon.visible = false;
       turnInteractiveOnOff(false);
-      var item;
-      var pr = -1;
-      var pr2 = -1;
-      if (gjp.length > 0) {
-        pr = -2;
-        pr2 = -2;
-      } else {
-        item =
-          numbers_random[Math.floor(Math.random() * numbers_random.length)];
-      }
+
+      var item =
+        numbers_random[Math.floor(Math.random() * numbers_random.length)];
 
       if (current_turn == 0) {
-        if (pr !== -1) {
-          pr = gjp[number_clicks_goal];
-          if (pr == 1) {
-            do {
-              item =
-                numbers_random[
-                  Math.floor(Math.random() * numbers_random.length)
-                ];
-            } while (
-              arcos[item - 1].position.x == this.position.x &&
-              arcos[item - 1].position.y == this.position.y
-            );
-          } else if (pr == 0) {
-            do {
-              item =
-                numbers_random[
-                  Math.floor(Math.random() * numbers_random.length)
-                ];
-            } while (
-              arcos[item - 1].position.x != this.position.x ||
-              arcos[item - 1].position.y != this.position.y
-            );
-          }
+        var pr = gjp[number_clicks_goal];
+
+        if (pr == 1) {
+          do {
+            item =
+              numbers_random[Math.floor(Math.random() * numbers_random.length)];
+          } while (
+            arcos[item - 1].position.x == this.position.x &&
+            arcos[item - 1].position.y == this.position.y
+          );
+        } else if (pr == 0) {
+          do {
+            item =
+              numbers_random[Math.floor(Math.random() * numbers_random.length)];
+          } while (
+            arcos[item - 1].position.x != this.position.x ||
+            arcos[item - 1].position.y != this.position.y
+          );
         }
 
         current_click = ball;
@@ -2383,29 +2371,24 @@ function Scene2(stage, renderer, next_scene, background) {
         number_clicks_goal += 1;
         current_turn = 1;
       } else {
-        if (pr2 !== -1) {
-          pr2 = gja[number_clicks_glove];
-          if (pr2 == 1) {
-            do {
-              item =
-                numbers_random[
-                  Math.floor(Math.random() * numbers_random.length)
-                ];
-            } while (
-              arcos[item - 1].position.x == this.position.x &&
-              arcos[item - 1].position.y == this.position.y
-            );
-          } else if (pr2 == 0) {
-            do {
-              item =
-                numbers_random[
-                  Math.floor(Math.random() * numbers_random.length)
-                ];
-            } while (
-              arcos[item - 1].position.x != this.position.x ||
-              arcos[item - 1].position.y != this.position.y
-            );
-          }
+        var pr2 = gja[number_clicks_glove];
+
+        if (pr2 == 1) {
+          do {
+            item =
+              numbers_random[Math.floor(Math.random() * numbers_random.length)];
+          } while (
+            arcos[item - 1].position.x == this.position.x &&
+            arcos[item - 1].position.y == this.position.y
+          );
+        } else if (pr2 == 0) {
+          do {
+            item =
+              numbers_random[Math.floor(Math.random() * numbers_random.length)];
+          } while (
+            arcos[item - 1].position.x != this.position.x ||
+            arcos[item - 1].position.y != this.position.y
+          );
         }
 
         current_click = gloves;
