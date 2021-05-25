@@ -2160,9 +2160,8 @@ var scene_call = 0;
 
 var teams_selected = "";
 
-var FRAMES = [prfx + "football.png", prfx + "football.png"];
 // You turn to kick
-var ball;
+var ball = new PIXI.Sprite(resources[prfx + "football2.png"].texture);
 var gloves;
 var white_mark;
 var arco;
@@ -2175,7 +2174,7 @@ var arco6;
 var container;
 var containerscore;
 var arcos;
-var blurFilter1;
+var blurFilter1 = new PIXI.filters.BlurFilter();
 var playerIcon;
 var textTeam1;
 var textTeam2;
@@ -2195,8 +2194,6 @@ var sum_score_auto = 0;
 
 function Scene2(stage, renderer, next_scene, background) {
   // Initialize sprites 2
-
-  ball = new PIXI.Sprite(resources[prfx + "football2.png"].texture);
   gloves = new PIXI.Sprite(resources[prfx + "gloves.png"].texture);
   white_mark = new PIXI.Sprite(resources[prfx + "white_mark.png"].texture);
   arco = new PIXI.Sprite(resources[prfx + "arco.png"].texture);
@@ -2211,7 +2208,6 @@ function Scene2(stage, renderer, next_scene, background) {
   containerscore = new PIXI.Sprite(
     resources[prfx + "container_score.png"].texture
   );
-  blurFilter1 = new PIXI.filters.BlurFilter();
   playerIcon = new PIXI.Sprite(resources[prfx + "player_icon.png"].texture);
 
   textTeam1;
@@ -2241,7 +2237,6 @@ function Scene2(stage, renderer, next_scene, background) {
   // center the sprites anchor point
   ball.anchor.x = 0.5;
   ball.anchor.y = 0.5;
-  ball.filters = [blurFilter1];
 
   arco1.position.x = arco2.position.x - 140;
   arco1.position.y = positionYBaseArco - 84;
