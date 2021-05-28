@@ -1427,7 +1427,6 @@ var container_logos = new PIXI.Container();
 var background;
 var sky;
 var flash;
-var loading_container = new PIXI.Container();
 // Scenes
 var scene1;
 var scene2;
@@ -1441,9 +1440,7 @@ loader
   .add(prfx + "container_box.png")
   .add(prfx + "logo.png")
   .add(prfx + "arrow_left.png")
-  .add(prfx + "arrow_lefth.png")
   .add(prfx + "arrow_right.png")
-  .add(prfx + "arrow_righth.png")
   .add(prfx + "football.png")
   .add(prfx + "gloves.png")
   .add(prfx + "gloves2.png")
@@ -1765,6 +1762,7 @@ var right_arrow;
 var flags = [];
 var text_temp;
 var text_play;
+var ARROW_SIZE = 40;
 
 var text_init = new PIXI.Text(messages["init_message"], {
   font: "19px DIN",
@@ -1934,8 +1932,8 @@ function Scene1(stage, renderer, next_scene) {
 
   left_arrow.anchor.x = 0.5;
   left_arrow.anchor.y = 0.5;
-  left_arrow.width = 40;
-  left_arrow.height = 40;
+  left_arrow.width = ARROW_SIZE;
+  left_arrow.height = ARROW_SIZE;
   left_arrow.position.x = 50;
   left_arrow.position.y = 195 + 420;
   left_arrow.interactive = true;
@@ -1958,23 +1956,22 @@ function Scene1(stage, renderer, next_scene) {
         true
       );
       page_flags = 1;
+      onArrowFlagsChange(page_flags);
     }
   };
   left_arrow.mouseover = function () {
     this.width = 45;
     this.height = 45;
-    this.texture = resources[prfx + "arrow_lefth.png"].texture;
   };
   left_arrow.mouseout = function () {
-    this.width = 40;
-    this.height = 40;
-    this.texture = resources[prfx + "arrow_left.png"].texture;
+    this.width = ARROW_SIZE;
+    this.height = ARROW_SIZE;
   };
 
   right_arrow.anchor.x = 0.5;
   right_arrow.anchor.y = 0.5;
-  right_arrow.width = 40;
-  right_arrow.height = 40;
+  right_arrow.width = ARROW_SIZE;
+  right_arrow.height = ARROW_SIZE;
   right_arrow.position.x = 390;
   right_arrow.position.y = 195 + 420;
   right_arrow.interactive = true;
@@ -1997,22 +1994,23 @@ function Scene1(stage, renderer, next_scene) {
         true
       );
       page_flags = 2;
+      onArrowFlagsChange(page_flags);
     }
   };
 
   right_arrow.mouseover = function () {
     this.width = 45;
     this.height = 45;
-    this.texture = resources[prfx + "arrow_righth.png"].texture;
   };
   right_arrow.mouseout = function () {
-    this.width = 40;
-    this.height = 40;
-    this.texture = resources[prfx + "arrow_right.png"].texture;
+    this.width = ARROW_SIZE;
+    this.height = ARROW_SIZE;
   };
   right_arrow.mask = mask_menu;
   left_arrow.mask = mask_menu;
   text_temp.mask = mask_menu;
+
+  onArrowFlagsChange(page_flags);
 
   container_flags.addChild(sub_container_flags);
   container_flags.addChild(sub_container_flags2);
@@ -2097,6 +2095,18 @@ Scene1.prototype.isActive = function () {
   return active1 === 1 ? true : false;
 };
 var yspeed_init = 0.6;
+
+function onArrowFlagsChange(tramp) {
+  if (tramp === 1) {
+    left_arrow.visible = false;
+
+    right_arrow.visible = true;
+  } else {
+    right_arrow.visible = false;
+
+    left_arrow.visible = true;
+  }
+}
 
 function moveToFlags() {
   c.slide(
@@ -2661,7 +2671,7 @@ function animateIcon() {
   playerIcon.position.y += yspeed;
   requestAnimationFrame(animateIcon);
 }
-function onButtonUpArco() {}
+
 function onTweenCompleteBall(param) {
   setTimeout(function () {
     var elasticTweenBackX = new Tween(param, "position.x", 240, 25, false);
