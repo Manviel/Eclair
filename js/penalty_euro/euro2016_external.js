@@ -1697,9 +1697,12 @@ function resize() {
     renderer.original_height = CANVAS_HEIGHT;
   }
 
-  document.getElementsByTagName("canvas")[0].style.height = height_new + "px";
-  document.getElementsByTagName("canvas")[0].style.width = width_new + "px";
-  document.getElementById("container_shoot").style.width = width_new + "px";
+  var mobileHeight = height_new + 50;
+  var mobileWidth = width_new + 30;
+
+  document.getElementsByTagName("canvas")[0].style.height = mobileHeight + "px";
+  document.getElementsByTagName("canvas")[0].style.width = mobileWidth + "px";
+  document.getElementById("container_shoot").style.width = mobileWidth + "px";
 
   scene3.repositionElements(orientation);
   scene2.repositionElements(orientation);
