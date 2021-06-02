@@ -1869,7 +1869,7 @@ function Scene1(stage, renderer, next_scene) {
 
     sub_container_flags.addChild(flag_mini_container);
   }
-  sub_container_flags2.position.x = 450;
+  sub_container_flags2.position.x = 460;
   sub_container_flags2.position.y = 450;
   row = 1;
   col = 1;
