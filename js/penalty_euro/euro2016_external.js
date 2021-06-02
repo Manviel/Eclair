@@ -1414,7 +1414,7 @@ var loader = PIXI.loader;
 var resources = PIXI.loader.resources;
 var prfx = "./euro2016_penalty/";
 
-var CANSAS_WIDTH = 550;
+var CANSAS_WIDTH = 570;
 var CANVAS_HEIGHT = 720;
 
 // Containers/Sprites
@@ -1694,12 +1694,10 @@ function resize() {
     renderer.original_width = CANSAS_WIDTH;
     renderer.original_height = CANVAS_HEIGHT;
   }
-  var mobileHeight = height_new + 60;
-  var mobileWidth = width_new + 30;
 
-  document.getElementsByTagName("canvas")[0].style.height = mobileHeight + "px";
-  document.getElementsByTagName("canvas")[0].style.width = mobileWidth + "px";
-  document.getElementById("container_shoot").style.width = mobileWidth + "px";
+  document.getElementsByTagName("canvas")[0].style.height = height_new + "px";
+  document.getElementsByTagName("canvas")[0].style.width = width_new + "px";
+  document.getElementById("container_shoot").style.width = width_new + "px";
 
   scene3.repositionElements(orientation);
   scene2.repositionElements(orientation);
@@ -1871,8 +1869,8 @@ function Scene1(stage, renderer, next_scene) {
 
     sub_container_flags.addChild(flag_mini_container);
   }
-  sub_container_flags2.position.x = 420;
-  sub_container_flags2.position.y = 30 + 420;
+  sub_container_flags2.position.x = 450;
+  sub_container_flags2.position.y = 450;
   row = 1;
   col = 1;
   positionx = 0;
