@@ -1414,7 +1414,7 @@ var loader = PIXI.loader;
 var resources = PIXI.loader.resources;
 var prfx = "./euro2016_penalty/";
 
-var CANSAS_WIDTH = 570;
+var CANSAS_WIDTH = 550;
 var CANVAS_HEIGHT = 720;
 
 // Containers/Sprites
@@ -1425,8 +1425,6 @@ var background_container = new PIXI.Container();
 var container_flashes = new PIXI.Container();
 var container_logos = new PIXI.Container();
 var background;
-var sky;
-var flash;
 // Scenes
 var scene1;
 var scene2;
@@ -1536,8 +1534,8 @@ function getTranslations() {
 }
 
 function setup() {
-  flash = new PIXI.Sprite(resources[prfx + "flash.png"].texture);
-  sky = new PIXI.Sprite(resources[prfx + "sky.jpg"].texture);
+  var sky = new PIXI.Sprite(resources[prfx + "sky.jpg"].texture);
+  var flash = new PIXI.Sprite(resources[prfx + "flash.png"].texture);
   background = new PIXI.Sprite(resources[prfx + "backgroundfull.png"].texture);
 
   // create a renderer instance.
@@ -1696,8 +1694,7 @@ function resize() {
     renderer.original_width = CANSAS_WIDTH;
     renderer.original_height = CANVAS_HEIGHT;
   }
-
-  var mobileHeight = height_new + 50;
+  var mobileHeight = height_new + 60;
   var mobileWidth = width_new + 30;
 
   document.getElementsByTagName("canvas")[0].style.height = mobileHeight + "px";
@@ -2087,12 +2084,12 @@ Scene1.prototype.repositionElements = function (orientation) {
     if (active1 === 1) logo.position.x = 155;
   } else {
     logo.position.y = 120;
-    if (active1 === 1)
+    if (active1 === 1) {
       container_flags.position.x = outrenderer.original_width / 2 - 420 / 2;
+    }
+
     container_flags.position.y = 220;
   }
-
-  //container_flags.position.y = (orientation >= 1 ? outrenderer.original_height/2 - (370/2):outrenderer.original_height/2 - ((370/2)-50));
 };
 Scene1.prototype.isActive = function () {
   return active1 === 1 ? true : false;
@@ -2502,6 +2499,10 @@ var textScoreTeam2 = new PIXI.Text("0", {
 var teams = null;
 // Team name
 Scene2.prototype.startScene = function (idflag, random_flag) {
+  scene_call += 1;
+
+  if (scene_call > 1) return;
+
   active2 = 1;
   active_score_2 = 1;
   textTeam1 = new PIXI.Text(names[idflag][1], {
@@ -2587,41 +2588,43 @@ Scene2.prototype.startScene = function (idflag, random_flag) {
 };
 
 Scene2.prototype.clearScene = function () {
-  if (scene_call == 0) {
+  scene_call += 1;
+
+  if (scene_call > 2) return;
+
+  message.visible = false;
+
+  active2 = 0;
+
+  new Tween(
+    outbackground,
+    "position.x",
+    outbackground.position.x - outrenderer.original_width,
+    outstage.transition_rate,
+    true
+  );
+
+  var cont_ball_tween = c.slide(
+    container_goal_ball,
+    -600,
+    container_goal_ball.position.y,
+    outstage.transition_rate,
+    "smoothstep"
+  );
+
+  cont_ball_tween.setOnComplete = function () {
+    container_goal_ball.visible = false;
     message.visible = false;
+  };
 
-    scene_call = 1;
-    active2 = 0;
-    new Tween(
-      outbackground,
-      "position.x",
-      outbackground.position.x - outrenderer.original_width,
-      outstage.transition_rate,
-      true
-    );
+  // Decide who won
+  var decision = 0;
 
-    var cont_ball_tween = c.slide(
-      container_goal_ball,
-      -600,
-      container_goal_ball.position.y,
-      outstage.transition_rate,
-      "smoothstep"
-    );
-
-    cont_ball_tween.setOnComplete = function () {
-      container_goal_ball.visible = false;
-      message.visible = false;
-    };
-
-    // Decide who won
-    var decision = 0;
-
-    if (Number(textScoreTeam1.text) > Number(textScoreTeam2.text)) {
-      decision = 1;
-    }
-
-    out_next_scene2.startScene(decision, teams);
+  if (Number(textScoreTeam1.text) > Number(textScoreTeam2.text)) {
+    decision = 1;
   }
+
+  out_next_scene2.startScene(decision, teams);
 };
 
 // Your turn to goal
@@ -2790,11 +2793,13 @@ function displayMessage(result) {
     20,
     "deceleration"
   );
-  var tween_breathe;
+
   tween_message.onComplete = function () {
-    tween_breathe = c.breathe(message, 1.2, 1.2, 20, true);
+    var tween_breathe = c.breathe(message, 1.2, 1.2, 20, true);
+
     tween_breathe.play();
-    setTimeout(function () {
+
+    setTimeout(() => {
       tween_breathe.pause();
       var tween_message2 = c.slide(
         message,
@@ -2803,8 +2808,10 @@ function displayMessage(result) {
         20,
         "acceleration"
       );
+
       tween_message2.onComplete = function () {
         message.position.x = -1000;
+
         if (number_clicks_glove === 5) {
           turnInteractiveOnOff(false);
           Scene2.prototype.clearScene();
