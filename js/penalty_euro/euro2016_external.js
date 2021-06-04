@@ -1399,7 +1399,7 @@ var messages = {
     "NO LUCK THIS TIME,\nCOME BACK AGAIN TO TRY TO\n WIN ONE OF OUR GREAT PRIZES",
   top_winner: "YOU HAVE WON",
   title_text: "CHOOSE A TEAM TO START!",
-  play: "PLAY",
+  play: "PLAY AGAIN",
   init_message: "",
   your_turn_to_kick: "your_turn_to_kick",
   your_turn_to_save: "your_turn_to_save",
@@ -2832,7 +2832,6 @@ var active3 = 0;
 
 var container_prize = new PIXI.Container();
 var message_final = new PIXI.Sprite();
-var logo3;
 var containermain;
 var prize;
 var textBottom;
@@ -2840,7 +2839,7 @@ var textTop;
 
 function Scene3(stage, renderer, background) {
   // Initialize sprites 3
-  logo3 = new PIXI.Sprite(resources[prfx + "small_logo.png"].texture);
+  var logoBox = new PIXI.Sprite(resources[prfx + "play.png"].texture);
   containermain = new PIXI.Sprite(
     resources[prfx + "container_box.png"].texture
   );
@@ -2856,14 +2855,34 @@ function Scene3(stage, renderer, background) {
   containermain.width = 420;
   container_prize.addChild(containermain);
 
-  logo3.anchor.x = 0.5;
-  logo3.anchor.y = 0.5;
-  logo3.position.x = containermain.width / 2;
-  logo3.position.y = 440;
-  logo3.height = 45;
-  logo3.width = 45;
+  logoBox.anchor.x = 0.5;
+  logoBox.anchor.y = 0.5;
+  logoBox.position.x = containermain.width / 2;
+  logoBox.position.y = 440;
+  logoBox.height = 50;
+  logoBox.width = 300;
+  logoBox.buttonMode = true;
+  logoBox.interactive = true;
+  logoBox.defaultCursor = "pointer";
 
-  container_prize.addChild(logo3);
+  logoBox.mouseup = logoBox.touchend = function () {
+    location.reload();
+  };
+
+  // play again
+  var playAgainText = new PIXI.Text(messages["play"], {
+    font: "bold 18px DIN",
+    fill: "white",
+    align: "center",
+  });
+
+  playAgainText.anchor.x = 0.5;
+  playAgainText.anchor.y = 0.5;
+  playAgainText.position.x = containermain.width / 2;
+  playAgainText.position.y = 440;
+
+  container_prize.addChild(logoBox);
+  container_prize.addChild(playAgainText);
 
   prize.anchor.x = 0.5;
   prize.anchor.y = 0.5;
