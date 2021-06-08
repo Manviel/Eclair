@@ -1403,6 +1403,7 @@ var messages = {
   init_message: "",
   your_turn_to_kick: "your_turn_to_kick",
   your_turn_to_save: "your_turn_to_save",
+  not_able: "Loading...",
 };
 var timers = [0, 1, 0, 1, 0, 1, 0, 1, 0, 1];
 
@@ -1430,6 +1431,7 @@ var scene1;
 var scene2;
 var scene3;
 var scene4;
+var scene5;
 
 loader
   .add(prfx + "backgroundfull.png")
@@ -1509,7 +1511,7 @@ var gja = [];
 var gjp = [];
 var won = "";
 
-function initGame(data) {
+function initGame(data, idflag, random_flag) {
   var response = {
     success: true,
     sprites: {
@@ -1526,6 +1528,13 @@ function initGame(data) {
     gjp = JSON.parse(atob(response.sprites[1])); // player
     gja = JSON.parse(atob(response.sprites[2])); // computer
     won = JSON.parse(atob(response.sprites["t"]));
+
+    out_next_scene1.startScene(idflag, random_flag.idflag);
+    active1 = 0;
+
+    setTimeout(() => {
+      scene5.clearScene(idflag, random_flag.idflag);
+    }, 2000);
   }
 }
 
@@ -1585,7 +1594,8 @@ function setup() {
   stage.addChild(background_container);
   scene3 = new Scene3(stage, renderer, background_container);
   scene2 = new Scene2(stage, renderer, scene3, background_container);
-  scene1 = new Scene1(stage, renderer, scene2);
+  scene5 = new Scene5(stage, renderer, background_container);
+  scene1 = new Scene1(stage, renderer, scene5);
   scene4 = new Scene4(stage, renderer, background_container);
 
   scene1.startScene();
@@ -1703,6 +1713,7 @@ function resize() {
   scene2.repositionElements(orientation);
   scene1.repositionElements(orientation);
   scene4.repositionElements(orientation);
+  scene5.repositionElements(orientation);
 }
 
 function createFlashes() {
@@ -2061,8 +2072,9 @@ Scene1.prototype.clearScene = function (idflag) {
   );
   var random_flag = flags[rand_number];
 
-  out_next_scene1.startScene(idflag, random_flag.idflag);
-  active1 = 0;
+  var gang = names[idflag][0] + ":" + names[random_flag.idflag][0];
+
+  initGame(gang, idflag, random_flag);
 };
 
 Scene1.prototype.repositionElements = function (orientation) {
@@ -2337,6 +2349,8 @@ function Scene2(stage, renderer, next_scene, background) {
       if (current_turn == 0) {
         var pr = gjp[number_clicks_goal];
 
+        console.log("Player", pr);
+
         if (pr == 1) {
           do {
             item =
@@ -2357,6 +2371,7 @@ function Scene2(stage, renderer, next_scene, background) {
 
         current_click = ball;
         current_auto = gloves;
+
         if (
           this.position.x == arcos[item - 1].position.x &&
           this.position.y == arcos[item - 1].position.y
@@ -2375,6 +2390,8 @@ function Scene2(stage, renderer, next_scene, background) {
         current_turn = 1;
       } else {
         var pr2 = gja[number_clicks_glove];
+
+        console.log("Computer", pr2);
 
         if (pr2 == 1) {
           do {
@@ -2552,8 +2569,6 @@ Scene2.prototype.startScene = function (idflag, random_flag) {
   random_flag_sprite.position.x = 380;
 
   teams = names[idflag][0] + ":" + names[random_flag][0];
-
-  initGame(teams);
 
   container_score.addChild(random_flag_sprite);
   container_score.addChild(textTeam1);
@@ -2839,7 +2854,6 @@ var textTop;
 
 function Scene3(stage, renderer, background) {
   // Initialize sprites 3
-  var logoBox = new PIXI.Sprite(resources[prfx + "play.png"].texture);
   containermain = new PIXI.Sprite(
     resources[prfx + "container_box.png"].texture
   );
@@ -2854,35 +2868,6 @@ function Scene3(stage, renderer, background) {
   containermain.height = 500;
   containermain.width = 420;
   container_prize.addChild(containermain);
-
-  logoBox.anchor.x = 0.5;
-  logoBox.anchor.y = 0.5;
-  logoBox.position.x = containermain.width / 2;
-  logoBox.position.y = 440;
-  logoBox.height = 50;
-  logoBox.width = 300;
-  logoBox.buttonMode = true;
-  logoBox.interactive = true;
-  logoBox.defaultCursor = "pointer";
-
-  logoBox.mouseup = logoBox.touchend = function () {
-    location.reload();
-  };
-
-  // play again
-  var playAgainText = new PIXI.Text(messages["play"], {
-    font: "bold 18px DIN",
-    fill: "white",
-    align: "center",
-  });
-
-  playAgainText.anchor.x = 0.5;
-  playAgainText.anchor.y = 0.5;
-  playAgainText.position.x = containermain.width / 2;
-  playAgainText.position.y = 440;
-
-  container_prize.addChild(logoBox);
-  container_prize.addChild(playAgainText);
 
   prize.anchor.x = 0.5;
   prize.anchor.y = 0.5;
@@ -3028,7 +3013,42 @@ function animatePrizeWinner() {
 }
 
 function endGame(teams) {
-  console.log(teams);
+  var success = false;
+
+  var logoBox = new PIXI.Sprite(resources[prfx + "play.png"].texture);
+
+  logoBox.anchor.x = 0.5;
+  logoBox.anchor.y = 0.5;
+  logoBox.position.x = containermain.width / 2;
+  logoBox.position.y = 440;
+  logoBox.height = 50;
+  logoBox.width = 300;
+  logoBox.buttonMode = true;
+  logoBox.interactive = true;
+  logoBox.defaultCursor = "pointer";
+
+  logoBox.mouseup = logoBox.touchend = function () {
+    location.reload();
+  };
+
+  var playAgainText = new PIXI.Text(messages["play"], {
+    font: "bold 18px DIN",
+    fill: "white",
+    align: "center",
+  });
+
+  playAgainText.anchor.x = 0.5;
+  playAgainText.anchor.y = 0.5;
+  playAgainText.position.x = containermain.width / 2;
+  playAgainText.position.y = 440;
+
+  if (success) {
+    container_prize.removeChild(logoBox);
+    container_prize.removeChild(playAgainText);
+  } else {
+    container_prize.addChild(logoBox);
+    container_prize.addChild(playAgainText);
+  }
 }
 
 /**
@@ -3128,4 +3148,65 @@ Scene4.prototype.repositionElements = function (orientation) {
 };
 Scene4.prototype.isActive = function () {
   return active4 === 1 ? true : false;
+};
+
+/**
+ * JS code for the stage 5
+ */
+var active5 = 0;
+var container_loading = new PIXI.Container();
+
+function Scene5(stage, renderer, background) {
+  var loadBox = new PIXI.Sprite(resources[prfx + "play.png"].texture);
+
+  outstage = stage;
+  outrenderer = renderer;
+  outbackground = background;
+
+  loadBox.anchor.x = 0;
+  loadBox.anchor.y = 0;
+  loadBox.position.x = containermain.width / 2;
+  loadBox.position.y = 440;
+  loadBox.height = 50;
+  loadBox.width = 300;
+
+  var loadAgainText = new PIXI.Text(messages["not_able"], {
+    font: "bold 18px DIN",
+    fill: "white",
+    align: "center",
+  });
+
+  loadAgainText.anchor.x = 0;
+  loadAgainText.anchor.y = 0;
+  loadAgainText.position.x = containermain.width / 2 + 110;
+  loadAgainText.position.y = 450;
+
+  container_loading.addChild(loadBox);
+  container_loading.addChild(loadAgainText);
+}
+
+Scene5.prototype.startScene = function () {
+  active5 = 1;
+
+  setTimeout(() => {
+    outstage.addChild(container_loading);
+  }, 1000);
+};
+
+Scene5.prototype.clearScene = function (idflag, random_flag) {
+  active5 = 0;
+
+  outstage.removeChild(container_loading);
+
+  scene2.startScene(idflag, random_flag);
+};
+Scene5.prototype.repositionElements = function (orientation) {
+  if (orientation >= 1) {
+    container_loading.position.x = 10;
+  } else {
+    container_loading.position.x = -50;
+  }
+};
+Scene5.prototype.isActive = function () {
+  return active5 === 1 ? true : false;
 };
