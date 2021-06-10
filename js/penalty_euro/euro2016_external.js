@@ -1522,6 +1522,7 @@ function initGame(data, idflag, random_flag) {
   };
 
   if (!response.success) {
+    scene5.clearScene(idflag, random_flag.idflag);
     scene2.clearScene();
     scene3.clearScene(response.message);
   } else {
