@@ -2287,7 +2287,7 @@ function Scene2(stage, renderer, next_scene, background) {
   containerscore.anchor.y = 0.5;
   containerscore.position.x = 200;
   containerscore.position.y = 41;
-  containerscore.width = 500;
+  containerscore.width = 550;
   containerscore.height = 92;
   container_score.position.x =
     outrenderer.original_width + (outrenderer.original_width / 2 - 200);
@@ -2526,14 +2526,16 @@ Scene2.prototype.startScene = function (idflag, random_flag) {
     fill: "white",
     align: "left",
   });
-  textTeam1.position.x = 45;
+
+  textTeam1.position.x = 25;
+
   textTeam2 = new PIXI.Text(names[random_flag][1], {
     font: "bold 17px DIN",
     fill: "white",
     align: "right",
   });
   textTeam2.anchor.x = 1;
-  textTeam2.position.x = 360;
+  textTeam2.position.x = 380;
 
   textTeam1.position.y = 18;
   textTeam2.position.y = 18;
@@ -2552,7 +2554,7 @@ Scene2.prototype.startScene = function (idflag, random_flag) {
   selected_flag.anchor.y = 0.5;
   selected_flag.width = 32;
   selected_flag.height = 32;
-  selected_flag.position.x = 20;
+  selected_flag.position.x = 0;
 
   selected_flag.position.y = 28;
   random_flag_sprite.position.y = 28;
@@ -2567,7 +2569,7 @@ Scene2.prototype.startScene = function (idflag, random_flag) {
   random_flag_sprite.anchor.y = 0.5;
   random_flag_sprite.width = 32;
   random_flag_sprite.height = 32;
-  random_flag_sprite.position.x = 380;
+  random_flag_sprite.position.x = 400;
 
   teams = names[idflag][0] + ":" + names[random_flag][0];
 
