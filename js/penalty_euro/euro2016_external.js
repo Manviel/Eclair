@@ -1374,13 +1374,13 @@ var names = {
   19: ["SWZ", "Switzerland"],
   12: ["DNK", "Denmark"],
   21: ["FIN", "Finland"],
-  4: ["BEL", "Belgium"],
+  1: ["BEL", "Belgium"],
   9: ["RUS", "Russia"],
   17: ["NLD", "Netherlands"],
   20: ["UKR", "Ukraine"],
   8: ["AUS", "Austria"],
   24: ["MKD", "North Macedonia"],
-  1: ["ENG", "England"],
+  4: ["ENG", "England"],
   13: ["CRO", "Croatia"],
   22: ["SCT", "Scotland"],
   18: ["CZR", "C. Republic"],
@@ -2287,7 +2287,7 @@ function Scene2(stage, renderer, next_scene, background) {
   containerscore.anchor.y = 0.5;
   containerscore.position.x = 200;
   containerscore.position.y = 41;
-  containerscore.width = 550;
+  containerscore.width = 530;
   containerscore.height = 92;
   container_score.position.x =
     outrenderer.original_width + (outrenderer.original_width / 2 - 200);
